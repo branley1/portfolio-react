@@ -81,6 +81,17 @@ const projects = [
     },
   },
   {
+    name: "Cue List",
+    technologies:
+      "HTML5, CSS3, JavaScript (ES6+), Local Storage API",
+    date: "Mar. 2025 - Present",
+    description:
+      "An easy-to-use task management app with priority-based sorting and deadline tracking to help me stay on top of my tasks.",
+    links: {
+      github: "https://github.com/branley1/cue-list",
+    },
+  },
+  {
     name: "Moodi-fi",
     technologies:
       "React (TypeScript, HTML, SCSS, JavaScript), MongoDB, Spotify WebAPI, Gemini 2.0 API, Gemini 1.5 API",
