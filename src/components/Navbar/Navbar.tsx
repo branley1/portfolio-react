@@ -28,7 +28,7 @@ const CustomNavbar: React.FC = () => {
       <Navbar.Brand href="/" className="navbar-brand">
         Bmmasi
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle aria-controls="basic-navbar-nav"  className="navbar-toggle"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto navbar-links">
           <Nav.Link href="#about">Who Am I? </Nav.Link>

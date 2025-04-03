@@ -1,7 +1,7 @@
 // src/components/ExperienceTimeline/_experience-timeline.scss
 
 .experience-timeline {
-    font-family: 'IBM Plex Mono', monospace; // Moved from inline style
+    font-family: 'PT Sans', sans-serif;
     padding-left: 0.5rem;
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -23,12 +23,14 @@
   
       h4 {
         font-size: 1.25rem;
+        font-weight: bold;
         color: var(--heading-color);
       }
   
       h5 {
         font-size: 1rem;
         color: var(--text-color);
+        font-weight: bold;
       }
   
       p {
