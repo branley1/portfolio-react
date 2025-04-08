@@ -70,6 +70,18 @@ const projects = [
     },
   },
   {
+    name: "TerraTune",
+    technologies: "React, Node.js, Express, PostgreSQL, Redis, Web Audio API",
+    date: "Apr. 2025 - Present",
+    description:
+      "A modern web-based music streaming service with features including user authentication, playlist management, music streaming with HTML5 Audio API, search functionality, and real-time audio visualizations.",
+    links: {
+      github: "https://github.com/branley1/terratune",
+      live: "https://uithub.com/branley1/terratune"
+    },
+    isFeatured: true,
+  },
+  {
     name: "JuaCode AI Coding Assistant",
     technologies:
       "React (HTML/CSS, JavaScript), Node.js/Express",

@@ -1,6 +1,7 @@
 // src/components/ExtraExperience/_extra-experience.scss
 
-.experience-timeline {   
+.extra-experience-timeline {
+    font-family: 'PT Sans', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     border-radius: 8px;
@@ -8,6 +9,15 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
+    overflow: hidden;
+    border: 2px solid var(--heading-color);
+    border-top: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   
     h2 {
       font-size: var(--font-size-subheading);
@@ -20,21 +30,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
-      border: 0.1px solid var(--border-color);
-      border-top: 0px;
-      border-left-width: 0px;
-      border-right-width: 0px;
-      border-top-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-      border-top-left-radius: 10px;
-      border-bottom-right-radius: 10px;
+      padding: 0.5rem 1rem;
       transition: all 0.2s ease;
       
       &:hover {
         background-color: var(--card-color);
-        transform: translateY(-1px);
-        box-shadow: 0 1px 2px var(--box-shadow-color);
       }
       
       .dropdown-toggle {
@@ -51,15 +51,52 @@
         }
       }
     }
+    
+    .experience-preview {
+      padding: 0.5rem 1rem 1rem;
+      background-color: var(--bg-color);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: var(--card-color);
+      }
+      
+      .preview-content {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+      }
+      
+      .preview-text {
+        font-size: var(--font-size-subsubheading);
+        color: var(--text-color);
+        opacity: 0.9;
+        
+        .preview-highlight {
+          font-weight: 600;
+          color: var(--heading-color);
+        }
+      }
+    }
   
     .experience-content {
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
+      max-height: 0;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      overflow: hidden;
+      
+      &.open {
+        max-height: 3000px; 
+        opacity: 1;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
     }
   
     .experience-item {
       padding: 1rem;
-      margin-bottom: 1rem;
+      margin: 0 1rem 1rem;
       background-color: var(--bg-color);
       border-top-right-radius: 20px;
       border-bottom-left-radius: 20px;
@@ -67,6 +104,16 @@
       border-bottom-right-radius: 10px;
       transition: all 0.2s ease;
       cursor: default;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeSlideIn 0.4s forwards;
+      animation-delay: calc(var(--item-index, 0) * 0.1s);
+      
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          --item-index: #{$i};
+        }
+      }
   
       h4 {
         font-size: 1.25rem;
@@ -87,11 +134,22 @@
           color: var(--text-color);
         }
       }
-    }
-
-    .experience-item:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 1px 2px var(--box-shadow-color);
-      background-color: var(--card-color);
+      
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 1px 2px var(--box-shadow-color);
+        background-color: var(--card-color);
+      }
     }
   }
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
