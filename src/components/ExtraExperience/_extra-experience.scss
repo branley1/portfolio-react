@@ -1,24 +1,72 @@
 // src/components/ExtraExperience/_extra-experience.scss
 
-.experience-timeline {
-    padding-left: 0.5rem;
+.experience-timeline {   
     background-color: var(--bg-color);
     color: var(--text-color);
     border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
   
     h2 {
       font-size: var(--font-size-subheading);
       color: var(--heading-color);
       font-weight: 700;
+      margin: 0;
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border: 0.1px solid var(--border-color);
+      border-top: 0px;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-top-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: var(--card-color);
+        transform: translateY(-1px);
+        box-shadow: 0 1px 2px var(--box-shadow-color);
+      }
+      
+      .dropdown-toggle {
+        color: var(--heading-color);
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+        
+        i {
+          font-size: 1.1rem;
+          transition: transform 0.2s ease;
+        }
+      }
+    }
+  
+    .experience-content {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
     }
   
     .experience-item {
       padding: 1rem;
+      margin-bottom: 1rem;
       background-color: var(--bg-color);
       border-top-right-radius: 20px;
       border-bottom-left-radius: 20px;
       border-top-left-radius: 10px;
       border-bottom-right-radius: 10px;
+      transition: all 0.2s ease;
+      cursor: default;
   
       h4 {
         font-size: 1.25rem;
