@@ -10,14 +10,55 @@
     transition: all 0.3s ease;
     cursor: pointer;
     overflow: hidden;
-    border: 2px solid var(--heading-color);
-    border-top: 0px;
-    border-left-width: 0px;
-    border-right-width: 0px;
+    border: 0;
+    position: relative;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    
+    /* Create a pseudo element that will act as our animated border */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none; /* So it doesn't interfere with clicks */
+      border: 2px solid var(--heading-color);
+      /* Match the exact border radius of the parent container */
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-top-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      /* Hide the border initially with clip-path */
+      clip-path: polygon(
+        0 100%,          /* Bottom left corner */
+        0 100%,          /* Left side starts at the bottom */
+        0 100%,          /* Back to bottom left */
+        0 100%,          /* Stay at bottom left - initially invisible */
+        100% 100%,       /* Stay at bottom right */
+        100% 100%        /* Stay at bottom right */
+      );
+      transition: clip-path 0.35s ease; /* Faster overall transition */
+    }
+    
+    &:hover::before {
+      /* When hovered, reveal the borders by changing the clip path */
+      clip-path: polygon(
+        0 100%,          /* Bottom left corner */
+        0 50%,           /* Left side goes up to 50% height */
+        0 100%,          /* Back to bottom left */
+        100% 100%,       /* Bottom right corner */
+        100% 100%,       /* Keep at bottom right */
+        100% calc(100% - 50px)  /* Right side goes up 50px */
+      );
+      transition: 
+        clip-path 0.1s ease-in 0s,        /* Faster animation for left side */
+        clip-path 0.1s ease-in 0.1s,     /* Faster animation for bottom */
+        clip-path 0.1s ease-in 0.2s;    /* Faster animation for right side */
+    }
   
     h2 {
       font-size: var(--font-size-subheading);
@@ -140,6 +181,11 @@
         box-shadow: 0 1px 2px var(--box-shadow-color);
         background-color: var(--card-color);
       }
+    }
+  
+    /* Hide the right-border element since we don't need it anymore */
+    .right-border {
+      display: none;
     }
   }
 

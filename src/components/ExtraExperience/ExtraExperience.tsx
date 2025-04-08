@@ -53,6 +53,8 @@ const ExperienceTimeline: React.FC = () => {
       id="extra-experience" 
       className="my-4 extra-experience-timeline"
     >
+      <div className="right-border"></div>
+      
       <div className="experience-header" onClick={toggleDropdown}>
         <h2>Extracurricular Experience</h2>
         <div className="dropdown-toggle">
