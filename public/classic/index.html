@@ -709,8 +709,10 @@
           <div class="col-md-6 order-md-last d-flex">
             <form
               method="POST"
-              action=""
+              action="https://getform.io/f/bgdpgdxa"
               class="bg-light p-4 p-md-5 contact-form"
+              id="contact-form"
+              target="_blank"
             >
               <div class="form-group">
                 <input
@@ -748,8 +750,13 @@
                   value="Send Message"
                   class="btn btn-primary py-3 px-5"
                 />
-                <input type="hidden" name="_next" value="//bmmasi.com" />
               </div>
+              <!-- Custom success message that will be styled with CSS -->
+              <div id="form-status" style="margin-top: 1rem; color: green; font-weight: bold; display: none; text-align: center;">
+                Message Sent!
+              </div>
+              <!-- Hidden iframe to handle submission without page reload -->
+              <iframe name="hidden-iframe" style="display: none;"></iframe>
             </form>
           </div>
 
@@ -898,5 +905,36 @@
     <script src="js/particles.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+      // Ultra simple form handler
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+        
+        // Update form to use the hidden iframe
+        if (form) {
+          // Set the form to submit to an iframe (prevents page reload)
+          form.target = "hidden-iframe";
+          
+          // When submit button is clicked:
+          form.addEventListener('submit', function() {
+            // Show success message
+            if (status) status.style.display = 'block';
+            
+            // Reset after delay
+            setTimeout(function() {
+              // Reset the form after submission
+              form.reset();
+              
+              // Hide status message after 5 seconds
+              setTimeout(function() {
+                if (status) status.style.display = 'none';
+              }, 5000);
+            }, 500); // Small delay to ensure form submission completes
+          });
+        }
+      });
+    </script>
   </body>
 </html>
