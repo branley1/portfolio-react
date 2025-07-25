@@ -59,6 +59,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
 const projects = [
   {
+    name: "JuaCode AI Coding Assistant",
+    technologies:
+      "React (HTML/CSS, JavaScript), Node.js/Express, Supabase, Deepseek-r1, OpenAI, Gemini API",
+    date: "Jan. 2025 - Present",
+    description:
+      "Full-stack AI coding assistant with real-time multi-model chat, contextual code suggestions, secure auth, persistent history, and a responsive dark/light UI.",
+    links: {
+      github: "https://github.com/branley1/juacode-ai",
+      live: "https://juacode.netlify.app/",
+    },
+  },
+  {
     name: "Bmmasi Portal",
     technologies: "React (TypeScript, HTML, SCSS, JavaScript)",
     date: "Nov. 2024 - Present",
@@ -80,17 +92,6 @@ const projects = [
       live: "https://uithub.com/branley1/terratune"
     },
     isFeatured: true,
-  },
-  {
-    name: "JuaCode AI Coding Assistant",
-    technologies:
-      "React (HTML/CSS, JavaScript), Node.js/Express",
-    date: "Jan. 2025 - Present",
-    description:
-      "Developed a full-stack AI coding assistant with a React frontend and FastAPI backend. Integrated Deepseek‑r1, OpenAI, and Gemini models for intelligent responses, featuring autosave, chat renaming, shareable links, and a modern UI with a collapsible sidebar.",
-    links: {
-      github: "https://github.com/branley1/juacode-ai",
-    },
   },
   {
     name: "Cue List",

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardTitle } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./_sidebar.scss";
 // import profileImage from "../../assets/images/sidebar/sidebargif.webp";
 // import courseImage from "../../assets/images/sidebar/education.jpg";
@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
           <li>
             <strong>Machine Learning: </strong>
             <span>
-              Scikit-learn, Keras, TensorFlow, PyTorch, XGBoost, OpenAI API, Hugging Face, Gemini 2.0 API
+              Scikit-learn, Keras, TensorFlow, PyTorch, XGBoost, OpenAI API, Hugging Face, Gemini API, OpenRouter, Anthropic API
             </span>
           </li>
           <li>
@@ -42,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
           </li>
           <li>
             <strong>Database: </strong>
-            <span>MySQL, PostgreSQL, SQLAlchemy, MongoDB</span>
+            <span>MySQL, PostgreSQL, SQLAlchemy, MongoDB, Firebase, SQLite</span>
           </li>
           <li>
             <strong>Tools: </strong>
@@ -50,14 +50,6 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
               gRPC, REST APIs, Git/GitHub, RabbitMQ, Xcode, Apache Flume, Jupyter Notebook, GCP, AWS, WebAPIs, Google Colab, RPC APIs, Websocket APIs
             </span>
           </li>
-        </ul>
-        <CardTitle>Current Courses (Spring 2025)</CardTitle>
-        <ul className="future-courses">
-          <li>CPSC 071: Software Engineering</li>
-          <li>CPSC 075: Compilers</li>
-          <li>CPSC 099: Senior Comprehensive</li>
-          <li>MUSC 119: Composition</li>
-          <li>PHIL 053: Indian Philosophy</li>
         </ul>
         <h5>
           🎧
@@ -78,6 +70,9 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
               <li>CPSC 046: Theory of Computation</li>
               <li>CPSC 063: Artificial Intelligence</li>
               <li>CPSC 066: Machine Learning</li>
+              <li>CPSC 071: Software Engineering</li>
+              <li>CPSC 075: Compilers</li>
+              <li>CPSC 099: Senior Comprehensive</li>
             </ul>
           </li>
           <li>
@@ -107,6 +102,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
               <li>PHIL 012B: Logic</li>
               <li>PHIL 034: Marx and Marxism</li>
               <li>PHIL 079: Poststructuralism</li>
+              <li>PHIL 053: Indian Philosophy</li>
             </ul>
           </li>
           <li>
@@ -114,6 +110,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
             <ul>
               <li>MUSC 002B: Reading & Making Music: Basics of Notation</li>
               <li>MUSC 003A: Intro to Music Technology</li>
+              <li>MUSC 119: Composition</li>
             </ul>
           </li>
           <li>
