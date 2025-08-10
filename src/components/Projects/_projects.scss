@@ -111,12 +111,12 @@
 
   /* Subtle responsiveness on hover (no expansion) */
   &:hover {
-    transform: scale(1.005);
+    transform: scale(1.08);
     box-shadow: 0 3px 8px var(--box-shadow-color);
   }
 
   &.active {
-    transform: scale(1.01);
+    transform: scale(1.08);
     box-shadow: 0 5px 10px var(--box-shadow-color);
     background-color: var(--card-color);
     /* Expand to natural content height when active */

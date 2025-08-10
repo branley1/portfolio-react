@@ -94,7 +94,7 @@ const ProfileDetails: React.FC = () => {
             href="/classic/index.html"
             onClick={handleClassicSite}
           >
-            🎨 Retro Version
+            🎨 Curious?
           </Button>
         </div>
       </div>

@@ -16,6 +16,7 @@
   overflow-y: auto;
   margin-top: 1rem;
   margin-left: -0.125rem;
+  transition: width 160ms ease, flex-basis 160ms ease, box-shadow 160ms ease, padding 160ms ease;
 
   &:hover {
     // transform: translateY(-2.5px);
@@ -31,6 +32,19 @@
     height: 100vh;
     margin-bottom: 1rem;
     display: none;
+  }
+
+  /* Desktop collapsed state (VS Code-like) */
+  &.collapsed {
+    width: 0px; 
+    flex-basis: 0px;
+    padding: 0.5rem;
+    overflow: hidden;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+
+    .sidebar-card { display: none; }
   }
 
   .card-title, .card-subtitle, .card-text, .card-link {
@@ -72,6 +86,7 @@
     margin: 0;
     text-align: left;
     border: none;
+    box-shadow: none;
 
     /* Adjust padding inside the card */
     .card-body {
@@ -156,6 +171,11 @@
     &.active {
       display: block; // Show when active (dropdown)
       background-color: var(--bg-color);
+    }
+
+    /* Ignore collapsed on mobile; active controls visibility */
+    &.collapsed {
+      display: none;
     }
   }
 }
