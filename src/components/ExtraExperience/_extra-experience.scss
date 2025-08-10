@@ -37,10 +37,9 @@
       transition: all 0.25s ease;
     }
     
+    /* Remove blue bottom border on hover */
     &:hover::before {
-      /* When hovered, reveal bottom border */
-      background-size: 100% 2px; /* bottom border grows to 100% width */
-      transition: background-size 0.2s ease;
+      background-size: 0% 2px;
     }
   
     h2 {
@@ -56,9 +55,11 @@
       align-items: center;
       padding: 0.5rem 1rem;
       transition: all 0.2s ease;
+      cursor: default;
       
       &:hover {
         background-color: var(--card-color);
+        cursor: pointer;
       }
       
       .dropdown-toggle {

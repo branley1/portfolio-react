@@ -15,26 +15,52 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
   duration,
   location,
   description,
-}) => (
-  <div className="experience-item">
-    <h4>{role}</h4>
-    <h5>
-      {company} | {location}
-    </h5>
-    <p>
-      <em>{duration}</em>
-    </p>
-    {Array.isArray(description) ? (
-      <ul>
-        {description.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    ) : (
-      <p>{description}</p>
-    )}
-  </div>
-);
+}) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const onToggle = () => setExpanded((v) => !v);
+
+  const descriptionPreview = Array.isArray(description)
+    ? description[0]
+    : description;
+
+  return (
+    <div
+      className={`experience-item ${expanded ? "expanded" : ""}`}
+      role="button"
+      tabIndex={0}
+      aria-expanded={expanded}
+      onClick={onToggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onToggle();
+        }
+      }}
+    >
+      <h4>{role}</h4>
+      <h5>
+        {company} | {location}
+      </h5>
+      <p>
+        <em>{duration}</em>
+      </p>
+      {expanded ? (
+        Array.isArray(description) ? (
+          <ul>
+            {description.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>{description}</p>
+        )
+      ) : (
+        <p className="experience-item__preview">{descriptionPreview}</p>
+      )}
+    </div>
+  );
+};
 
 const ExperienceTimeline: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,21 +75,34 @@ const ExperienceTimeline: React.FC = () => {
   };
   
   return (
-    <section 
-      id="extra-experience" 
+    <section
+      id="extra-experience"
       className="my-4 extra-experience-timeline"
     >
       <div className="right-border"></div>
-      
-      <div className="experience-header" onClick={toggleDropdown}>
-        <h2>Extracurricular Experience</h2>
-        <div className="dropdown-toggle">
+
+      <div
+        className="experience-header"
+        role="button"
+        tabIndex={0}
+        aria-expanded={isOpen}
+        aria-controls="extra-experience-content"
+        onClick={toggleDropdown}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleDropdown();
+          }
+        }}
+      >
+        <h2 id="extra-experience-heading">Extracurricular Experience</h2>
+        <div className="dropdown-toggle" aria-hidden="true">
           <i className={isOpen ? "fa fa-chevron-up" : "fa fa-chevron-down"}></i>
         </div>
       </div>
       
       {!isOpen && (
-        <div className="experience-preview" onClick={toggleDropdown}>
+        <div className="experience-preview">
           <div className="preview-content">
             <p className="preview-text">
               <span className="preview-highlight">6 experiences</span> including University Innovation Fellows, Resident Assistant, and more...
@@ -72,7 +111,12 @@ const ExperienceTimeline: React.FC = () => {
         </div>
       )}
       
-      <div className={`experience-content ${isOpen ? 'open' : ''}`} onClick={handleExperienceItemClick}>
+      <div
+        id="extra-experience-content"
+        className={`experience-content ${isOpen ? "open" : ""}`}
+        aria-labelledby="extra-experience-heading"
+        onClick={handleExperienceItemClick}
+      >
         {isOpen && (
           <>
             <ExperienceItem
