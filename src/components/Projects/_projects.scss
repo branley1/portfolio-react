@@ -40,8 +40,22 @@
   margin: 0.5rem;
   border: 0.1px solid var(--heading-color);
   overflow: hidden; // ensure inner content respects rounded corners
+  position: relative; // needed for bottom fade overlay
   /* Equal height for all project cards by default */
-  height: 340px;
+  height: 150px;
+
+  /* Bottom fade to imply truncated content */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 36px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), var(--bg-color));
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+  }
 
   .btn {
     // Project button opacity
@@ -52,7 +66,7 @@
 
   h3 {
     // Project title
-    font-size: var(--font-size-subsubheading);
+    font-size: var(--font-size-subheading);
     color: var(--heading-color);
   }
 
@@ -95,16 +109,26 @@
     width: 100%;
   }
 
+  /* Subtle responsiveness on hover (no expansion) */
   &:hover {
-    transform: translateY(-5px);
+    transform: scale(1.005);
+    box-shadow: 0 3px 8px var(--box-shadow-color);
+  }
+
+  &.active {
+    transform: scale(1.01);
     box-shadow: 0 5px 10px var(--box-shadow-color);
     background-color: var(--card-color);
-    /* Expand to natural content height on hover */
+    /* Expand to natural content height when active */
     height: auto;
-  
+
     .btn {
       transition: opacity 0.15s;
       opacity: 1;
+    }
+    /* Hide fade when expanded */
+    &::after {
+      opacity: 0;
     }
   }
 
@@ -118,6 +142,7 @@
   /* Clamp description to 3 lines with ellipsis by default */
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3; /* standard property for compatibility */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -127,9 +152,10 @@
   color: var(--button-bg);
 }
 
-/* Remove clamp when card is hovered to reveal full description */
-.project-card:hover p {
+/* Remove clamp when card is active to reveal full description */
+.project-card.active p {
   -webkit-line-clamp: unset;
+  line-clamp: unset; /* standard property for compatibility */
   overflow: visible;
 }
 

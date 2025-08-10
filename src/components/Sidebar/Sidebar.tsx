@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import "./_sidebar.scss";
 // import profileImage from "../../assets/images/sidebar/sidebargif.webp";
 // import courseImage from "../../assets/images/sidebar/education.jpg";
-import lastImage from "../../assets/images/sidebar/qr-code.png";
+// import lastImage from "../../assets/images/sidebar/qr-code.png";
 
 interface SidebarProps {
   className?: string;
@@ -51,13 +51,6 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
             </span>
           </li>
         </ul>
-        <h5>
-          🎧
-            <a><i>
-              <img src="https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false)](https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&redirect=true)"></img>
-            </i>
-            </a>
-        </h5>
         <Card.Title>Coursework</Card.Title>
         <ul className="course-highlight">
           <li>
@@ -128,13 +121,6 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
             </ul>
           </li>
         </ul>
-        <Card.Img
-          variant="top"
-          src={lastImage}
-          alt="Profile"
-          className="sidebar-profile-image"
-          loading="eager"
-        />
         <Card.Link href="https://linkedin.com/in/bmmasi1">LinkedIn</Card.Link>
         <Card.Link href="https://github.com/branley1">GitHub</Card.Link>
       </Card.Body>

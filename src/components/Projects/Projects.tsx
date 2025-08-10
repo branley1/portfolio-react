@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
 interface ProjectCardProps {
@@ -11,6 +11,8 @@ interface ProjectCardProps {
     github?: string; // Optional GitHub link
   };
   isFeatured?: boolean; // Optional boolean to indicate if the project is featured
+  active?: boolean;
+  onToggle?: () => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -20,8 +22,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   links,
   isFeatured,
+  active,
+  onToggle,
 }) => (
-  <div className="project-card">
+  <div
+    className={`project-card ${active ? "active" : ""}`}
+    onClick={onToggle}
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onToggle && onToggle();
+      }
+    }}
+  >
     {/* Render custom live button for site */}
     <h3>{name}</h3>
     <p>
@@ -188,17 +203,31 @@ const projects = [
   },
 ];
 
-const ProjectsShowcase: React.FC = () => (
-  <section id="custom-projects" className="projects-section my-4">
-    <h2>Projects</h2>
-    <Row className="g-4 justify-content-left project grid">
-      {projects.map((project, index) => (
-        <Col key={index} xs={12} sm={6} md={6} lg={4} xl={3}>
-          <ProjectCard key={index} {...project} isFeatured={index === 0} />
-        </Col>
-      ))}
-    </Row>
-  </section>
-);
+const ProjectsShowcase: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setActiveIndex((prev) => (prev === index ? null : index));
+  };
+
+  return (
+    <section id="custom-projects" className="projects-section my-4">
+      <h2>Projects</h2>
+      <Row className="g-4 justify-content-left project grid">
+        {projects.map((project, index) => (
+          <Col key={index} xs={12} sm={6} md={6} lg={4} xl={3}>
+            <ProjectCard
+              key={index}
+              {...project}
+              isFeatured={index === 0}
+              active={activeIndex === index}
+              onToggle={() => handleToggle(index)}
+            />
+          </Col>
+        ))}
+      </Row>
+    </section>
+  );
+};
 
 export default ProjectsShowcase;
