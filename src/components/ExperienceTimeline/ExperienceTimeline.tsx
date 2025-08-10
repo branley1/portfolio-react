@@ -43,10 +43,10 @@ const ExperienceTimeline: React.FC = () => (
       role="
       Software Engineer"
       company="Bloomberg LP"
-      duration="From July 2025"
+      duration="From Sep 2025"
       location="New York, NY"
       description={[
-        "Joining the Bloomberg Engineering team as a full-time Software Engineer this summer."
+        "Starting at Bloomberg Engineering as a full-time Software Engineer in September 2025."
       ]}
     />
     <ExperienceItem

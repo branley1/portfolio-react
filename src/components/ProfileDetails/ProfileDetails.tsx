@@ -51,8 +51,8 @@ const ProfileDetails: React.FC = () => {
         <h1>Branley Mmasi</h1>
         <h4>
           {" "}
-          Incoming SWE @ Bloomberg | Computer Science major with a Cognitive Science minor at
-          Swarthmore College, graduating in May, 2025.{" "}
+          Software Engineer @ Bloomberg (starting Sep 2025) | Computer Science major with a Cognitive Science minor at
+          Swarthmore College, graduated in May 2025.{" "}
         </h4>
         <div className="hero-buttons mt-3">
           <Button

@@ -8,7 +8,7 @@ button.btn.btn-primary {
   }
   
   button.btn.btn-primary:hover {
-    transform: translateY(-2.5px);
+    transform: translateY(1px);
     box-shadow: 0 10px 20px var(--box-shadow-color);
     background-color: var(--button-bg);
   }
@@ -28,7 +28,7 @@ button.btn.btn-primary {
   }
   
   button.btn.btn-outline-secondary:hover {
-    transform: translateY(-2.5px);
+    transform: translateY(1px);
     background-color: var(--bg-color);
     box-shadow: 0 10px 20px var(--box-shadow-color);
   }

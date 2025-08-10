@@ -13,7 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
   <div className={`sidebar ${className}`}>
     <Card className="sidebar-card">
       <h5>
-        Current Mood 🎧
+        Vibe with Me! 🎧
         <a><i>
             <img src="https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&cover_image=true&theme=default&show_offline=true&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false)](https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&redirect=true)"></img>
             </i>
@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
           <li>
             <strong>Machine Learning: </strong>
             <span>
-              Scikit-learn, Keras, TensorFlow, PyTorch, XGBoost, OpenAI API, Hugging Face, Gemini API, OpenRouter, Anthropic API
+              Scikit-learn, Keras, TensorFlow, PyTorch, XGBoost, OpenAI API, Hugging Face, Gemini API, OpenRouter, Anthropic API, DashScope API, LangChain
             </span>
           </li>
           <li>
@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
             </i>
             </a>
         </h5>
-        <Card.Title>Course Highlight</Card.Title>
+        <Card.Title>Coursework</Card.Title>
         <ul className="course-highlight">
           <li>
             <strong>Computer Science:</strong>
