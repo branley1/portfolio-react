@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 import ExtraExperience from "../components/ExtraExperience/ExtraExperience";
 
 const Extracurricular: React.FC = () => (
-  <div className="app-container">
+  <div className="app-container page-extracurricular">
     <CustomNavbar />
     <div className="content-container">
       <Layout sidebarVariant="spotifyOnly">

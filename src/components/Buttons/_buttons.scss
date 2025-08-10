@@ -33,4 +33,34 @@ button.btn.btn-primary {
     box-shadow: 0 10px 20px var(--box-shadow-color);
   }
   
+/* CTA: View Extracurricular Experience */
+.cta-extracurricular-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.4rem 0.8rem;
+  border-radius: 25px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px var(--box-shadow-color);
+}
+
+.cta-extracurricular-btn:hover,
+.cta-extracurricular-btn:focus-visible {
+  animation: cta-nudge 420ms ease-out;
+  box-shadow: 0 6px 12px var(--box-shadow-color);
+}
+
+@keyframes cta-nudge {
+  0% { transform: translateX(0); }
+  40% { transform: translateX(4px); }
+  70% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-extracurricular-btn:hover,
+  .cta-extracurricular-btn:focus-visible {
+    animation: none;
+    transform: translateX(0);
+  }
+}
   
