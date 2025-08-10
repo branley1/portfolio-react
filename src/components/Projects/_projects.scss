@@ -32,13 +32,16 @@
 .project-card {
   background-color: var(--bg-color);
   color: var(--text-color);
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 25px;
+  padding: 1.25rem 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
   border: 0.1px solid var(--heading-color);
+  overflow: hidden; // ensure inner content respects rounded corners
+  /* Equal height for all project cards by default */
+  height: 340px;
 
   .btn {
     // Project button opacity
@@ -70,11 +73,11 @@
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 22px;
     font-size: var(--font-size-project-button);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
   }
   
@@ -96,6 +99,8 @@
     transform: translateY(-5px);
     box-shadow: 0 5px 10px var(--box-shadow-color);
     background-color: var(--card-color);
+    /* Expand to natural content height on hover */
+    height: auto;
   
     .btn {
       transition: opacity 0.15s;
@@ -110,10 +115,22 @@
 
 .project-card p {
   color: var(--text-color);
+  /* Clamp description to 3 lines with ellipsis by default */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-card a {
   color: var(--button-bg);
+}
+
+/* Remove clamp when card is hovered to reveal full description */
+.project-card:hover p {
+  -webkit-line-clamp: unset;
+  overflow: visible;
 }
 
 }
