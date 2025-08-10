@@ -1,0 +1,44 @@
+.highlights-page {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlights-content {
+  flex: 1;
+  padding: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: var(--font-size-heading);
+  color: var(--heading-color);
+  text-align: center;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.tools-section, .stats-section {
+  background: var(--bg-color);
+  border: 1px solid var(--box-shadow-color);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+  align-items: center;
+  justify-items: center;
+}

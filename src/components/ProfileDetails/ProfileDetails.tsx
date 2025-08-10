@@ -37,11 +37,11 @@ const ProfileDetails: React.FC = () => {
     });
   };
 
-  const handleClassicSite = () => {
+  const handleHighlights = () => {
     ReactGA.event({
       category: "Navigation",
-      action: "Visited Classic Site",
-      label: "Classic Site Button",
+      action: "Visited Highlights",
+      label: "Git Stats Button",
     });
   };
 
@@ -91,10 +91,10 @@ const ProfileDetails: React.FC = () => {
           </Button>
           <Button
             variant="outline-secondary"
-            href="/classic/index.html"
-            onClick={handleClassicSite}
+            href="/highlights"
+            onClick={handleHighlights}
           >
-            🎨 Curious?
+            🏆 Git Stats
           </Button>
         </div>
       </div>

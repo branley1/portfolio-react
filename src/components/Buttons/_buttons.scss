@@ -1,3 +1,8 @@
+/* Global button radius override for React app */
+.btn {
+  border-radius: 25px !important;
+}
+
 button.btn.btn-primary {
   background-color: var(--button-bg);
   color: var(--button-text);
@@ -9,7 +14,7 @@ button.btn.btn-primary {
   
   button.btn.btn-primary:hover {
     transform: translateY(1px);
-    box-shadow: 0 10px 20px var(--box-shadow-color);
+    box-shadow: 0 3px 6px var(--box-shadow-color);
     background-color: var(--button-bg);
   }
   
@@ -30,7 +35,7 @@ button.btn.btn-primary {
   button.btn.btn-outline-secondary:hover {
     transform: translateY(1px);
     background-color: var(--bg-color);
-    box-shadow: 0 10px 20px var(--box-shadow-color);
+    box-shadow: 0 3px 6px var(--box-shadow-color);
   }
   
 /* CTA: View Extracurricular Experience */
@@ -40,13 +45,13 @@ button.btn.btn-primary {
   padding: 0.4rem 0.8rem;
   border-radius: 25px;
   margin-top: 1rem;
-  box-shadow: 0 4px 10px var(--box-shadow-color);
+  box-shadow: 0 2px 6px var(--box-shadow-color);
 }
 
 .cta-extracurricular-btn:hover,
 .cta-extracurricular-btn:focus-visible {
   animation: cta-nudge 420ms ease-out;
-  box-shadow: 0 6px 12px var(--box-shadow-color);
+  box-shadow: 0 3px 8px var(--box-shadow-color);
 }
 
 @keyframes cta-nudge {

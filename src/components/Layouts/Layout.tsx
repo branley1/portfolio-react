@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import SidebarSpotifyOnly from "../Sidebar/SidebarSpotifyOnly";
 import "./_layout.scss";
@@ -10,17 +10,66 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" }) => {
   // Single state governs both desktop (collapsed) and mobile (active) behavior
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
 
+  // Refs for detecting outside clicks
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!isSidebarOpen) return;
+      const sidebarEl = sidebarRef.current;
+      const toggleEl = toggleBtnRef.current;
+      const target = e.target as Node | null;
+      if (!target) return;
+      // If click is outside both the sidebar container and the toggle button, close
+      const clickedOutsideSidebar = sidebarEl ? !sidebarEl.contains(target) : true;
+      const clickedOutsideToggle = toggleEl ? !toggleEl.contains(target) : true;
+      if (clickedOutsideSidebar && clickedOutsideToggle) {
+        setIsSidebarOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isSidebarOpen]);
+
+  // Determine Spotify activity by inspecting the external SVG text
+  const [spotifyActive, setSpotifyActive] = useState(false);
+  useEffect(() => {
+    const spotifySvgUrl =
+      "https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&cover_image=true&theme=default&show_offline=true&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false";
+    let cancelled = false;
+
+    const checkSpotify = async () => {
+      try {
+        const res = await fetch(spotifySvgUrl, { cache: "no-store" });
+        const text = await res.text();
+        const inactive = /currently not playing on spotify/i.test(text);
+        if (!cancelled) setSpotifyActive(!inactive);
+      } catch {
+        if (!cancelled) setSpotifyActive(false);
+      }
+    };
+
+    checkSpotify();
+    const id = window.setInterval(checkSpotify, 10_000);
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, []);
+
   return (
     <div className="content-wrapper">
       <button
-        className="sidebar-toggle"
+        className={`sidebar-toggle ${spotifyActive ? "spotify-active" : ""}`}
         onClick={toggleSidebar}
+        ref={toggleBtnRef}
         aria-label={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
         title={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
       >
@@ -32,11 +81,13 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
       </button>
 
       {/* Sidebar: 'active' for mobile open, 'collapsed' for desktop collapse */}
-      {sidebarVariant === "spotifyOnly" ? (
-        <SidebarSpotifyOnly className={isSidebarOpen ? "active" : "collapsed"} />
-      ) : (
-        <Sidebar className={isSidebarOpen ? "active" : "collapsed"} />
-      )}
+      <div ref={sidebarRef}>
+        {sidebarVariant === "spotifyOnly" ? (
+          <SidebarSpotifyOnly className={isSidebarOpen ? "active" : "collapsed"} />
+        ) : (
+          <Sidebar className={isSidebarOpen ? "active" : "collapsed"} />
+        )}
+      </div>
 
       {/* Main content */}
       <main className="main-content">{children}</main>

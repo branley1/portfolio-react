@@ -4,25 +4,3 @@
 @use '@styles/themes/themes' as *;
 @use '@styles/components/index' as *;
 @use '@styles/base/global' as *;
-
-// Global button radius override for React app
-.btn {
-  border-radius: 25px !important;
-}
-
-/* Page-specific layout: Extracurricular page sticky footer */
-.page-extracurricular {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.page-extracurricular > .content-container {
-  flex: 1 0 auto;
-}
-
-.page-extracurricular > footer,
-.page-extracurricular > .footer,
-.page-extracurricular .footer {
-  margin-top: auto;
-}

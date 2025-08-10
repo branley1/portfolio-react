@@ -17,6 +17,26 @@
     }
 }
 
+/* Blinking green dot indicator when Spotify is active */
+.sidebar-toggle.spotify-active::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1DB954; /* Spotify green */
+  bottom: -3px;
+  right: -3px;
+  box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7);
+  animation: spotify-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes spotify-blink {
+  0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); opacity: 1; }
+  70% { box-shadow: 0 0 0 6px rgba(29, 185, 84, 0); opacity: 0.8; }
+  100% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0); opacity: 1; }
+}
+
 /* VS Code-like sidebar toggle */
 .sidebar-toggle {
   position: sticky;
@@ -33,6 +53,7 @@
   border: 1px solid var(--box-shadow-color);
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+  position: sticky;
 
   &:hover {
     transform: translateY(-1px);
@@ -77,6 +98,5 @@
     padding-right: 1rem;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border-bottom: 2px solid var(--heading-color);
     padding-bottom: -1rem;
 }

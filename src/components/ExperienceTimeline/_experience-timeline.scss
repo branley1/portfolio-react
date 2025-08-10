@@ -6,6 +6,12 @@
     background-color: var(--bg-color);
     color: var(--text-color);
     border-radius: 8px;
+    /* Remove any decorative bottom line/underline */
+    border-bottom: 0 !important;
+    &::before { background: none !important; }
+    &:hover::before { background: none !important; }
+    h2 { border-bottom: 0; }
+    a { text-decoration: none; border-bottom: 0; }
   
     h2 {
       font-size: var(--font-size-subheading);

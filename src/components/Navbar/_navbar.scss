@@ -1,11 +1,37 @@
 @use '../../styles/abstracts' as *;
 
 .custom-navbar {
-    background-color: var(--bg-color);
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 1000; /* stay above page content */
+    /* Frosted glass base: theme-aware translucent gradient */
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--heading-color) 18%, transparent),
+      color-mix(in srgb, var(--bg-color) 18%, transparent)
+    );
     color: var(--text-color);
     font-family: 'PT Sans', sans-serif;
-    margin-right: 1rem;
-    border-radius: 8px;
+    border-radius: 25px;
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid color-mix(in srgb, var(--heading-color) 26%, transparent);
+    padding: 0.5rem 1rem;
+  }
+
+  /* On scroll, add subtle blur + border/shadow. Keep bg from variables (no RGB needed) */
+  .custom-navbar.scrolled {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--heading-color) 32%, transparent),
+      color-mix(in srgb, var(--bg-color) 32%, transparent)
+    );
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: color-mix(in srgb, var(--heading-color) 38%, transparent);
   }
   
   .custom-navbar .navbar-links .nav-link {
@@ -81,4 +107,41 @@
 
 :root[data-theme='light'] .custom-navbar .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Manual layout (no bootstrap) */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Responsive behavior */
+@media (max-width: 767px) {
+  .navbar-toggle { display: inline-flex; }
+  .navbar-collapse { display: none; width: 100%; }
+  .custom-navbar.expanded .navbar-collapse { display: block; }
+  .navbar-links { flex-direction: column; align-items: flex-start; margin-top: 0.5rem; }
+}
+
+@media (min-width: 768px) {
+  .navbar-toggle { display: none; }
+}
+
+/* Spacer placed right after <CustomNavbar /> to push content below fixed bar */
+.navbar-spacer {
+  height: calc(1.5rem + var(--navbar-height, 64px));
 }

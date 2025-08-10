@@ -1,0 +1,12 @@
+/* Page-specific layout: Projects page tighter top spacing */
+.page-projects {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-projects > .content-container {
+  flex: 1 0 auto;
+  padding-top: 0rem; /* reduce space between navbar and projects title */
+  margin-top: 0;
+}
