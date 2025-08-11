@@ -24,6 +24,7 @@
     }
 
     .hero-buttons {
+      margin-left: 0.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -37,7 +38,7 @@
         padding: 0.4rem 0.8rem;
 
         &:hover {
-          transform: translateY(1px);
+          transform: translateY(0.5px);
           box-shadow: 0 5px 10px var(--box-shadow-color);
           background-color: var(--button-bg);
         }

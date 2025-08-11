@@ -1,0 +1,131 @@
+@use '../../styles/abstracts' as *;
+
+/* Modern theme toggle (gradient, frosted, circular icons) */
+.theme-toggle.modern {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 0.5rem;
+  width: 44px;
+  height: 22px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--heading-color) 28%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 22%, transparent),
+    color-mix(in srgb, var(--bg-color) 22%, transparent)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.theme-toggle .toggle-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.theme-toggle .toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 65%, var(--heading-color) 35%),
+    color-mix(in srgb, var(--heading-color) 20%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--heading-color) 35%, transparent);
+  transition: transform 0.25s ease;
+}
+
+/* Move thumb right when dark */
+.theme-toggle.dark .toggle-thumb { transform: translateX(22px); }
+
+.theme-toggle .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Use SVGs from public/ */
+.theme-toggle .icon.sun { background-image: url('/sun-light.svg'); }
+.theme-toggle .icon.moon { background-image: url('/moon-light.svg'); }
+
+[data-theme='dark'] .theme-toggle .icon.sun { background-image: url('/sun-dark.svg'); }
+[data-theme='dark'] .theme-toggle .icon.moon { background-image: url('/moon-dark.svg'); }
+
+/* Single icon-only theme button at far right */
+.theme-toggle.icon-only {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--heading-color) 28%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 18%, transparent),
+    color-mix(in srgb, var(--bg-color) 18%, transparent)
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.theme-toggle.icon-only.btn-gradient {
+  width: 28px;
+  height: 28px;
+  padding: 0; /* override btn-gradient padding */
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0; /* no inner gap for icon-only */
+}
+
+.theme-toggle.icon-only.btn-gradient:hover,
+.theme-toggle.icon-only.btn-gradient:focus-visible {
+  transform: translateY(1px);
+  box-shadow: 0 5px 10px var(--box-shadow-color);
+}
+
+/* Icon image based on theme using SVGs in public/ */
+[data-theme='light'] .theme-toggle.icon-only {
+  background-image: url('/sun-light.svg'), linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 18%, transparent),
+    color-mix(in srgb, var(--bg-color) 18%, transparent)
+  );
+  background-size: 16px 16px, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+[data-theme='dark']  .theme-toggle.icon-only {
+  background-image: url('/moon-dark.svg'), linear-gradient(
+    135deg,
+    color-mix(in srgb, white 16%, transparent),
+    color-mix(in srgb, var(--bg-color) 18%, transparent)
+  );
+  background-size: 16px 16px, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+

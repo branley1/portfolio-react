@@ -1,0 +1,235 @@
+@use '../../styles/abstracts' as *;
+
+/* Responsive behavior */
+@media (max-width: 767px) {
+  .custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0.25rem;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    z-index: 1200;
+  }
+
+  .navbar-actions { gap: 0.5rem; }
+  .navbar-toggle { display: inline-flex; }
+  
+  /* Hide the main navbar collapse by default on mobile */
+  .navbar-collapse { 
+    display: none; 
+  }
+  
+  /* Show main navbar links only when expanded */
+  .custom-navbar.expanded .navbar-collapse {
+    display: flex;
+    width: 100%;
+  }
+  /* Ensure links are hidden when navbar is not expanded */
+  .custom-navbar:not(.expanded) .navbar-links {
+    display: none;
+  }
+  
+  .navbar-links { display: none; }
+  .custom-navbar.expanded .navbar-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: none; /* no bottom border when expanded */
+    position: relative;
+  }
+
+  /* Essential links inline styling */
+  .navbar-essential-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* Hidden measurement container */
+  .navbar-essential-links-measure {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    top: 0;
+    left: -9999px;
+  }
+  /* Soft blur fade at the bottom when expanded */
+  .custom-navbar.expanded .navbar-links::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.5rem;
+    height: 18px;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--bg-color) 12%, transparent) 0%,
+      color-mix(in srgb, var(--bg-color) 24%, transparent) 60%,
+      color-mix(in srgb, var(--bg-color) 38%, transparent) 100%
+    );
+    filter: blur(6px);
+  }
+
+  .desktop-only { display: none !important; }
+  .mobile-only { display: inline-flex; }
+
+  /* Keep closed height consistent; inline links sit in a single row without wrapping */
+  .navbar-content { min-height: 44px; }
+  .navbar-links-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1 1 auto;
+  }
+  .navbar-links-inline .nav-link {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  /* Hidden measurement container: no layout impact */
+  .navbar-links-inline .inline-measure {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* Mobile theme switch uses consistent button styling */
+  .theme-switch-container {
+    color: var(--text-color);
+    font-size: var(--font-size-body);
+    font-weight: 450;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    text-decoration: none;
+    background: transparent;
+    cursor: default;
+    margin-top: 0.25rem;
+  }
+  .theme-switch-container:hover,
+  .theme-switch-container:focus {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    transform: none;
+    color: var(--text-color);
+  }
+
+  .mobile-theme-switch {
+    margin: 0;
+    padding-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .mobile-theme-switch .form-check-input {
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+    position: static !important;
+    margin: 0 !important;
+    cursor: pointer;
+  }
+  .mobile-theme-switch .form-check-input:checked {
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
+  }
+  .mobile-theme-switch .form-check-label {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin-left: 0.5rem;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-toggle { display: none; }
+  .desktop-only { display: inline-flex; }
+  .mobile-only { display: none; }
+  .navbar-links { display: flex; }
+  .navbar-collapse { display: flex; }
+  
+  /* Hide essential links on desktop */
+  .navbar-essential-links,
+  .navbar-essential-links-measure {
+    display: none;
+  }
+
+  /* Desktop theme switch styling - consistent with button system */
+  .desktop-theme-switch-container {
+    color: var(--text-color);
+    font-size: var(--font-size-body);
+    font-weight: 450;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    text-decoration: none;
+    background: transparent;
+    cursor: default;
+  }
+  .desktop-theme-switch-container:hover,
+  .desktop-theme-switch-container:focus {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    transform: none;
+    color: var(--text-color);
+  }
+  .desktop-theme-switch {
+    margin: 0;
+    padding-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .desktop-theme-switch .form-check-input {
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+    position: static !important;
+    margin: 0 !important;
+    cursor: pointer;
+  }
+  .desktop-theme-switch .form-check-input:checked {
+    background-color: var(--heading-color);
+    border-color: var(--heading-color);
+  }
+  .desktop-theme-switch .form-check-label {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin-left: 0.5rem;
+    margin-bottom: 0 !important;
+  }
+}
+
+

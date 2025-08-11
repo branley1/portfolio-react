@@ -1,0 +1,74 @@
+@use '../../../styles/abstracts' as *;
+
+/* Mobile hamburger toggle button */
+.navbar-toggle,
+.navbar-toggler {
+  /* Apply consistent button styling */
+  color: var(--text-color);
+  font-size: var(--font-size-body);
+  font-weight: 450;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: relative; /* allow absolute children like the status dot */
+}
+
+.navbar-toggle:hover,
+.navbar-toggler:hover,
+.navbar-toggle:focus,
+.navbar-toggler:focus,
+.navbar-toggle:active,
+.navbar-toggler:active {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 28%, transparent),
+    color-mix(in srgb, var(--heading-color) 16%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--bg-color) 30%, transparent);
+  box-shadow: 0 5px 10px var(--box-shadow-color);
+  transform: translateY(1px);
+  color: var(--text-color);
+}
+
+/* Make the Bootstrap hamburger visible across themes */
+:root[data-theme='dark'] .custom-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+:root[data-theme='light'] .custom-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Compact Spotify indicator anchored to the toggle button */
+.navbar-spotify-indicator {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  pointer-events: none; /* purely indicative */
+}
+
+.navbar-spotify-indicator .spotify-status {
+  margin: 0;
+}
+
+.navbar-spotify-indicator .spotify-status .status-row {
+  gap: 0;
+}
+
+.navbar-spotify-indicator .spotify-status .dot {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 6px rgba(83, 177, 79, 0.55);
+  border: none;
+}

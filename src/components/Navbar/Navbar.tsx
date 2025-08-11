@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./_navbar.scss";
+import { useSpotify } from "../../contexts/SpotifyContext";
 
 const CustomNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -42,16 +43,6 @@ const CustomNavbar: React.FC = () => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Track viewport size to place a single theme toggle appropriately
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
-    updateIsMobile();
-    mediaQuery.addEventListener('change', updateIsMobile);
-    return () => mediaQuery.removeEventListener('change', updateIsMobile);
-  }, []);
-
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
       if (expanded && containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -73,6 +64,18 @@ const CustomNavbar: React.FC = () => {
     return () => window.removeEventListener("resize", updateHeightVar);
   }, []);
 
+  // Spotify state for brand animation
+  const { isPlaying } = useSpotify();
+
+  // Navigation handler that scrolls to top and closes mobile menu
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+    setExpanded(false);
+  };
+
   return (
     <nav
       className={`custom-navbar ${scrolled ? "scrolled" : ""} ${expanded ? "expanded" : ""}`}
@@ -80,11 +83,61 @@ const CustomNavbar: React.FC = () => {
       aria-label="Primary navigation"
     >
       <div className="navbar-content">
-        <a href="/" className="navbar-brand">Bmmasi</a>
+        <button
+          className={`navbar-brand vinyl-disk ${isPlaying ? 'playing' : ''}`}
+          onClick={() => handleNavigation('/')}
+          aria-label="Home"
+          style={{ border: 'none', background: 'transparent', padding: 0 }}
+        >
+          {isPlaying ? (
+            <svg className={`vinyl-svg ${isPlaying ? 'playing' : ''}`} viewBox="0 0 200 200" width="48" height="48" aria-hidden="true" role="img">
+              {/* Record spins around center (100,100) */}
+              <g className="record-spin">
+                <circle cx="100" cy="100" r="80" className="record" />
+                <circle className="groove" cx="100" cy="100" r="70" />
+                <circle className="groove" cx="100" cy="100" r="60" />
+                <circle className="groove" cx="100" cy="100" r="50" />
+                <circle className="groove" cx="100" cy="100" r="40" />
+                <circle cx="100" cy="100" r="20" className="label" />
+                <circle cx="100" cy="100" r="5" className="center" />
+                {/* Spinning markers to make rotation obvious */}
+                <circle cx="180" cy="100" r="3.2" className="spin-marker" />
+                <circle cx="60" cy="31" r="3.2" className="spin-marker" />
+                <circle cx="60" cy="169" r="3.2" className="spin-marker" />
+              </g>
+              {/* Tonearm (player stick) remains static */}
+              <g className="tonearm">
+                <rect x="140" y="40" width="6" height="80" rx="3" />
+                <circle cx="143" cy="40" r="8" />
+                <rect x="138" y="120" width="12" height="25" rx="3" />
+              </g>
+            </svg>
+          ) : (
+            <img
+              src="/portfolio-logo.png"
+              alt="Logo"
+              width={48}
+              height={48}
+              className="brand-logo"
+              aria-hidden="true"
+            />
+          )}
+          <span className="sr-only">Bmmasi</span>
+        </button>
         <div id="primary-nav" className="navbar-collapse">
           <div id="primary-links" className="navbar-links">
-            <a className="nav-link" href="#about">Who Am I?</a>
-            <a className="nav-link" href="/juacode">
+            <button
+              className="nav-link"
+              onClick={() => handleNavigation('/#about')}
+              style={{ border: 'none', background: 'transparent' }}
+            >
+              Who Am I?
+            </button>
+            <button 
+              className="nav-link btn-gradient" 
+              onClick={() => handleNavigation('/juacode')}
+              style={{ border: 'none' }}
+            >
               <img
                 src="/icon-64.png"
                 alt="JuaCode logo"
@@ -92,15 +145,33 @@ const CustomNavbar: React.FC = () => {
                 height={16}
                 style={{ marginRight: '2px', verticalAlign: 'text-bottom', marginTop: '2px'}}
               />
-              Try JuaCode
-            </a>
-            <a className="nav-link" href="#experience">Technical</a>
-            <a className="nav-link" href="/extra-experience">Extracurricular</a>
-            <a className="nav-link" href="/projects">Projects</a>
-            <a className="nav-link" href="/classic/index.html">🎨 Curious?</a>
-            {/* Theme toggle switch appears here only on mobile when expanded */}
-            {isMobile && expanded && (
-              <div className="nav-link theme-switch-container">
+              JuaCode AI
+            </button>
+            <button
+              className="nav-link btn-gradient"
+              onClick={() => handleNavigation('/technical')}
+              style={{ border: 'none' }}
+            >
+              Technical
+            </button>
+            <button 
+              className="nav-link btn-gradient" 
+              onClick={() => handleNavigation('/extra-experience')}
+              style={{ border: 'none' }}
+            >
+              Extracurricular
+            </button>
+            <button 
+              className="nav-link btn-gradient" 
+              onClick={() => handleNavigation('/projects')}
+              style={{ border: 'none' }}
+            >
+              Projects
+            </button>
+            <a className="nav-link btn-gradient" href="/classic/index.html">Curious?</a>
+            {/* Theme toggle switch appears only when expanded on mobile */}
+            {expanded && (
+              <div className="nav-link btn-gradient theme-switch-container">
                 <Form.Check
                   type="switch"
                   id="mobile-theme-toggle"
@@ -115,21 +186,19 @@ const CustomNavbar: React.FC = () => {
         </div>
         {/* Right-side actions: desktop theme toggle (far right) and mobile hamburger */}
         <div className="navbar-actions">
-          {!isMobile && (
-            <div className="desktop-theme-switch-container">
-              <Form.Check
-                type="switch"
-                id="desktop-theme-toggle"
-                label={theme === "light" ? "" : ""}
-                style={{fontSize: '0.9rem'}}
-                onChange={handleThemeToggle}
-                checked={theme === "dark"}
-                className="desktop-theme-switch"
-              />
-            </div>
-          )}
+          <div className="desktop-theme-switch-container desktop-only">
+            <Form.Check
+              type="switch"
+              id="desktop-theme-toggle"
+              label={theme === "light" ? "" : ""}
+              style={{fontSize: '0.9rem'}}
+              onChange={handleThemeToggle}
+              checked={theme === "dark"}
+              className="desktop-theme-switch"
+            />
+          </div>
           <button
-            className="navbar-toggle"
+            className="navbar-toggle mobile-only"
             aria-expanded={expanded}
             aria-controls="primary-nav"
             onClick={() => setExpanded((e) => !e)}

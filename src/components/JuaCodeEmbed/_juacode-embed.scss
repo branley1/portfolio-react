@@ -1,4 +1,4 @@
-@import '../../styles/abstracts/variables';
+@use '../../styles/abstracts' as *;
 
 .juacode-embed-container {
   width: 100%;
@@ -11,27 +11,34 @@
     max-width: none;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    /* Take full available height minus navbar space */
+    height: calc(100vh - var(--navbar-height, 64px) - 1rem);
 
     .juacode-iframe-wrapper {
+      top: 1rem;
       height: 100%;
       border: none;
-      border-radius: 0;
+      border-radius: 25px;
       box-shadow: none;
     }
 
     .juacode-iframe {
       display: block;
     }
+    
+    .juacode-actions {
+      margin: 0.5rem 0 0.75rem 0;
+      display: flex;
+      justify-content: center;
+    }
   }
   
   .juacode-header {
     text-align: center;
-    margin-bottom: 2rem;
     
     h2 {
       color: var(--text-primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
     
     p {
@@ -42,8 +49,8 @@
   
   .juacode-preview {
     background: var(--background-secondary);
-    border: 2px dashed var(--border-color);
-    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
     padding: 3rem;
     text-align: center;
     min-height: 400px;
@@ -54,7 +61,6 @@
     .preview-content {
       h3 {
         color: var(--text-primary);
-        margin-bottom: 1rem;
       }
       
       p {
@@ -67,8 +73,10 @@
         padding: 0.75rem 2rem;
         font-size: 1.1rem;
         font-weight: 600;
-        border-radius: 8px;
+        border-radius: 25px;
         transition: all 0.3s ease;
+        border: 1px solid red;
+        
         
         &:hover {
           transform: translateY(-2px);
@@ -82,10 +90,18 @@
     position: relative;
     width: 100%;
     height: 600px;
-    border-radius: 12px;
+    border-radius: 25px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border-color);
+    transform-origin: top center;
+    
+    &.zoom-75 {
+      /* Default zoom of 75% */
+      transform: scale(0.80);
+      /* Maintain visual height by compensating the scale shrink */
+      height: calc(600px / 0.70);
+    }
     
     .juacode-iframe {
       width: 100%;
@@ -103,6 +119,9 @@
     
     .juacode-iframe-wrapper {
       height: 500px;
+      /* Disable zoom on small screens for readability */
+      transform: none !important;
+      &.zoom-75 { height: 500px; }
     }
     
     .juacode-preview {

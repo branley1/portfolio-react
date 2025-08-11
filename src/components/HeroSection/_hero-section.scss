@@ -9,13 +9,8 @@
     height: auto;
     box-sizing: border-box;
     min-height: 100px;
-    margin-top: -15px;
+    margin-top: 0.5rem; /* 0.5rem spacing from navbar */
     border-radius: 25px;
-    
-    /* On mobile, ensure proper spacing from navbar */
-    @media (max-width: 767px) {
-        margin-top: 0; /* Remove negative margin on mobile for better spacing */
-    }
 
     .hero-banner {
       position: relative;

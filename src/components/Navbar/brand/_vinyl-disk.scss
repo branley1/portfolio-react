@@ -1,0 +1,86 @@
+@use '../../../styles/abstracts' as *;
+
+/* Spin animation */
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Default navbar brand - normal text styling */
+.custom-navbar .navbar-brand.vinyl-disk {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  position: relative;
+  margin-right: 1.5rem;
+}
+
+.custom-navbar .navbar-brand.vinyl-disk .vinyl-svg { display: block; width: 48px; height: 48px; aspect-ratio: 1 / 1; background: none; }
+/* Support image logo with same sizing */
+.custom-navbar .navbar-brand.vinyl-disk .brand-logo {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.custom-navbar .navbar-brand.vinyl-disk .record { fill: var(--record-fill, #111); }
+.custom-navbar .navbar-brand.vinyl-disk .label { fill: var(--label-fill, #f5f5f5); }
+.custom-navbar .navbar-brand.vinyl-disk .center { fill: var(--record-fill, #111); }
+.custom-navbar .navbar-brand.vinyl-disk .tonearm * { fill: var(--tonearm-fill, #ccc); }
+.custom-navbar .navbar-brand.vinyl-disk .groove { fill: none; stroke: var(--groove-stroke, rgba(255, 255, 255, 0.08)); stroke-width: 1; }
+.custom-navbar .navbar-brand.vinyl-disk .record-spin { transform-box: fill-box; transform-origin: 50% 50%; animation: none; }
+/* small spinning markers for clear motion */
+.custom-navbar .navbar-brand.vinyl-disk .spin-marker {
+  fill: color-mix(in srgb, var(--heading-color) 85%, transparent);
+  stroke: none;
+}
+
+/* Spin and glow only when Spotify is playing */
+.custom-navbar .navbar-brand.vinyl-disk.playing .record-spin,
+.custom-navbar .navbar-brand.vinyl-disk .vinyl-svg.playing .record-spin { animation: vinyl-spin 3s linear infinite; }
+
+/* Optional glow when playing (applies to svg record or image logo) */
+.custom-navbar .navbar-brand.vinyl-disk.playing .record,
+.custom-navbar .navbar-brand.vinyl-disk .vinyl-svg.playing .record,
+.custom-navbar .navbar-brand.vinyl-disk.playing .brand-logo,
+.custom-navbar .navbar-brand.vinyl-disk .brand-logo.playing {
+  filter: drop-shadow(0 0 6px rgba(83, 177, 79, 0.6));
+}
+
+.custom-navbar .navbar-brand.vinyl-disk.playing .tonearm,
+.custom-navbar .navbar-brand.vinyl-disk .vinyl-svg.playing .tonearm {
+  transform-origin: 143px 40px; /* hinge at top circle */
+  transform: rotate(8deg);
+}
+
+/* Remove decorative background/border in expanded state; keep SVG only */
+.custom-navbar.expanded .navbar-brand.vinyl-disk {
+  width: auto; height: auto; border-radius: 0;
+  background: none;
+  border: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  position: relative; margin-right: 1.5rem; transition: none;
+}
+
+.custom-navbar.expanded .navbar-brand.vinyl-disk::before { content: none; }
+.custom-navbar.expanded .navbar-brand.vinyl-disk .vinyl-label { z-index: 1; text-align: center; line-height: 1; color: var(--heading-color); text-shadow: 0 0 2px var(--bg-color); }
+.custom-navbar .navbar-brand.vinyl-disk .vinyl-label { z-index: 1; text-align: center; line-height: 1; color: var(--heading-color); text-shadow: none; font-size: 2rem; font-weight: 700; text-transform: none; letter-spacing: normal; }
+/* If we decide to re-enable spin for SVG, keep selector; for image logo we skip rotation */
+.custom-navbar.expanded .navbar-brand.vinyl-disk.playing .record-spin,
+.custom-navbar.expanded .navbar-brand.vinyl-disk .vinyl-svg.playing .record-spin {
+  animation: vinyl-spin 3s linear infinite;
+}
+.custom-navbar.expanded .navbar-brand.vinyl-disk:hover { transform: none; box-shadow: none; }
+.custom-navbar .navbar-brand.vinyl-disk:hover:not(.custom-navbar.expanded .navbar-brand.vinyl-disk) { transform: none; }
+
+

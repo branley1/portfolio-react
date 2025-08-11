@@ -11,11 +11,28 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" }) => {
   // Single state governs both desktop (collapsed) and mobile (active) behavior
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const SIDEBAR_STORAGE_KEY = "sidebar:open";
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(() => {
+    try {
+      const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY);
+      return stored === "true"; // closed by default when key is missing
+    } catch {
+      return false;
+    }
+  });
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
+  // Persist state across reloads
+  useEffect(() => {
+    try {
+      localStorage.setItem(SIDEBAR_STORAGE_KEY, String(isSidebarOpen));
+    } catch {
+      // ignore write errors (e.g., privacy mode)
+    }
+  }, [isSidebarOpen]);
 
   // Refs for detecting outside clicks
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -39,8 +56,6 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [isSidebarOpen]);
 
-
-
   return (
     <div className="content-wrapper">
       <button
@@ -55,10 +70,12 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
           <rect x="3" y="4" width="6" height="16" rx="1.5" fill="currentColor" opacity="0.85"/>
           <rect x="11" y="4" width="10" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.6" fill="none"/>
         </svg>
-        {/* Compact Spotify indicator on the toggle button */}
-        <div className="navbar-spotify-indicator">
-          <SpotifyStatus compact />
-        </div>
+        {/* Compact Spotify indicator on the toggle button - only when sidebar is closed */}
+        {!isSidebarOpen && (
+          <div className="navbar-spotify-indicator">
+            <SpotifyStatus compact />
+          </div>
+        )}
       </button>
 
       {/* Sidebar: 'active' for mobile open, 'collapsed' for desktop collapse */}

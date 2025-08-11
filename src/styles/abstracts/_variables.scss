@@ -13,8 +13,12 @@
     --box-shadow-color: rgba(0, 0, 0, 0.2);
     --highlight-color: color-mix(in srgb, var(--bg-color) 28%, transparent);
     --hover-color: var(--bg-color);
-   
-   
+    /* Aliases used by JuaCode styles */
+    --background-primary: var(--bg-color);
+    --background-secondary: var(--card-bg);
+    --text-primary: var(--text-color);
+    --text-secondary: color-mix(in srgb, var(--text-color) 70%, var(--bg-color) 30%);
+
     --font-size-base: 12px;
     --font-size-heading: 2rem;
     --font-size-subheading: 1.5rem;

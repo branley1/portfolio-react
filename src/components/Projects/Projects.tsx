@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
 interface ProjectCardProps {
@@ -11,8 +11,7 @@ interface ProjectCardProps {
     github?: string; // Optional GitHub link
   };
   isFeatured?: boolean; // Optional boolean to indicate if the project is featured
-  active?: boolean;
-  onToggle?: () => void;
+  // no interactive props needed for hover expansion
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -22,20 +21,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   links,
   isFeatured,
-  active,
-  onToggle,
 }) => (
   <div
-    className={`project-card ${active ? "active" : ""}`}
-    onClick={onToggle}
-    role="button"
-    tabIndex={0}
-    onKeyDown={(e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onToggle && onToggle();
-      }
-    }}
+    className="project-card"
   >
     {/* Render custom live button for site */}
     <h3>{name}</h3>
@@ -49,7 +37,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     <div className={`links ${isFeatured ? "featured-links" : ""}`}>
       {isFeatured && links.live && (
         <Button
-          className="live-button"
+          variant="outline-secondary"
+          className="btn-gradient"
           href={links.live}
           target="_blank"
           rel="noopener noreferrer"
@@ -60,7 +49,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {/* Use default Button for GitHub link or regular projects */}
       {links.github && (
         <Button
-          className="github-button"
+          variant="outline-secondary"
+          className="btn-gradient"
           href={links.github}
           target="_blank"
           rel="noopener noreferrer"
@@ -204,14 +194,8 @@ const projects = [
 ];
 
 const ProjectsShowcase: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  const handleToggle = (index: number) => {
-    setActiveIndex((prev) => (prev === index ? null : index));
-  };
-
   return (
-    <section id="custom-projects" className="projects-section my-4">
+    <section id="custom-projects" className="projects-section my-2">
       <h2>Projects</h2>
       <Row className="g-4 justify-content-left project grid">
         {projects.map((project, index) => (
@@ -220,8 +204,6 @@ const ProjectsShowcase: React.FC = () => {
               key={index}
               {...project}
               isFeatured={index === 0}
-              active={activeIndex === index}
-              onToggle={() => handleToggle(index)}
             />
           </Col>
         ))}

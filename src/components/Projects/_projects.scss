@@ -1,7 +1,7 @@
 .projects-section {
   background-color: transparent;
   color: var(--text-color);
-  padding: 1rem;
+  padding: 0.5rem 0.5rem 1rem 0.5rem; /* reduce top spacing */
   font-family: 'PT Sans', sans-serif;
   border-radius: 8px;
   padding-left: 0.5rem;
@@ -17,7 +17,8 @@
     font-weight: 700;
     color: var(--heading-color);
     text-align: center;
-    margin-bottom: 1rem;
+    margin-top: 0.25rem; /* tighter to navbar */
+    margin-bottom: 0.5rem; /* reduce gap before grid */
     padding: 0.5rem 1rem;
   }
   
@@ -34,7 +35,8 @@
   color: var(--text-color);
   border-radius: 25px;
   padding: 1.25rem 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 220ms ease, box-shadow 220ms ease, max-height 360ms ease;
+  will-change: transform, max-height;
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
@@ -42,7 +44,7 @@
   overflow: hidden; // ensure inner content respects rounded corners
   position: relative; // needed for bottom fade overlay
   /* Equal height for all project cards by default */
-  height: 150px;
+  max-height: 150px;
 
   /* Bottom fade to imply truncated content */
   &::after {
@@ -52,7 +54,12 @@
     right: 0;
     bottom: 0;
     height: 36px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), var(--bg-color));
+    /* Use theme background mix to avoid harsh white in light mode */
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0),
+      color-mix(in srgb, var(--bg-color) 22%, transparent)
+    );
     pointer-events: none;
     transition: opacity 0.2s ease-in-out;
   }
@@ -83,25 +90,18 @@
     gap: 30px; /* Adds space between buttons for featured projects */
   }
   
-  .live-button, .github-button {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    padding: 12px 22px;
+  /* Buttons follow global themed button styles via Bootstrap variants
+     Additional spacing and scaling for project context */
+  .btn {
     font-size: var(--font-size-project-button);
-    color: white;
-    border: none;
+    padding: 12px 22px;
     border-radius: 25px;
-    cursor: pointer;
+    transition: transform 0.1s ease;
   }
+
+  .btn:hover { transform: scale(1.02); }
   
-  .live-button {
-    background-color: var(--button-bg);
-  }
-  
-  .github-button {
-    background-color: var(--button-bg)
-  }
+  /* Rely on .btn-primary and .btn-outline-secondary from _buttons.scss */
   
   /* Ensure full width for non-featured projects */
   .links:not(.featured-links) .live-button,
@@ -109,27 +109,24 @@
     width: 100%;
   }
 
-  /* Subtle responsiveness on hover (no expansion) */
-  &:hover {
-    transform: scale(1.08);
-    box-shadow: 0 3px 8px var(--box-shadow-color);
-  }
-
-  &.active {
-    transform: scale(1.08);
+  /* Expand smoothly on hover/focus within */
+  &:hover, &:focus-within {
+    cursor: pointer;
+    transform: scale(1.04);
     box-shadow: 0 5px 10px var(--box-shadow-color);
-    background-color: var(--card-color);
-    /* Expand to natural content height when active */
-    height: auto;
+    /* Subtle glass background tied to theme, less white in light mode */
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--heading-color) 14%, transparent),
+      color-mix(in srgb, var(--bg-color) 14%, transparent)
+    );
+    max-height: 700px; /* large enough to reveal full content */
 
     .btn {
       transition: opacity 0.15s;
       opacity: 1;
     }
-    /* Hide fade when expanded */
-    &::after {
-      opacity: 0;
-    }
+    &::after { opacity: 0; }
   }
 
 .card-body {
@@ -152,8 +149,9 @@
   color: var(--button-bg);
 }
 
-/* Remove clamp when card is active to reveal full description */
-.project-card.active p {
+/* Remove clamp when expanded via hover/focus */
+.project-card:hover p,
+.project-card:focus-within p {
   -webkit-line-clamp: unset;
   line-clamp: unset; /* standard property for compatibility */
   overflow: visible;

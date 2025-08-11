@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./_about-me.scss";
-import JuaCodeLogo from "../../../public/icon-64.png"
+import JuaCodeLogo from "../../assets/images/icon-64.png"
 
 const AboutMe: React.FC = () => {
   const navigate = useNavigate();
@@ -26,17 +26,20 @@ const AboutMe: React.FC = () => {
       <p>I enjoy collaborating on open source and building things people actually use. If you're into AI agents, product engineering, or data tooling, I'm always happy to chat.</p>
 
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem", marginTop: "1rem" }}>
-        <button className="btn-gradient cta-extracurricular-btn" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-        <a className="nav-link" href="/juacode">
-              <img
-                src={JuaCodeLogo}
-                alt="JuaCode logo"
-                width={16}
-                height={16}
-                style={{ marginRight: '2px', verticalAlign: 'text-bottom', marginTop: '2px'}}
-              />
-              Try JuaCode <i className="fa fa-arrow-right blink-arrow"></i>
-            </a>
+        <button 
+          type="button"
+          className="btn-gradient cta-extracurricular-btn" 
+          style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}
+          onClick={() => navigate("/juacode")}
+        >
+          <img
+            src={JuaCodeLogo}
+            alt="JuaCode logo"
+            width={16}
+            height={16}
+            style={{ marginRight: '2px', verticalAlign: 'text-bottom', marginTop: '2px'}}
+          />
+          Try JuaCode <i className="fa fa-arrow-right blink-arrow"></i>
         </button>
         <button
           type="button"
@@ -44,6 +47,13 @@ const AboutMe: React.FC = () => {
           onClick={() => navigate("/projects")}
         >
           View Projects <i className="fa fa-arrow-right blink-arrow"></i>
+        </button>
+        <button
+          type="button"
+          className="btn-gradient cta-extracurricular-btn"
+          onClick={() => navigate("/technical")}
+        >
+          View Technical Experience <i className="fa fa-arrow-right blink-arrow"></i>
         </button>
       </div>
     </section>

@@ -1,0 +1,150 @@
+@use '../../styles/abstracts' as *;
+
+.custom-navbar {
+  position: fixed;
+  top: 0.5rem; /* keep content scrollable beneath; matched by navbar-spacer */
+  left: 0.5rem;
+  right: 0.5rem;
+  margin-bottom: 0.5rem !important;
+  z-index: 1200; /* stay above page content */
+  /* Frosted glass base: theme-aware translucent gradient */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 18%, transparent),
+    color-mix(in srgb, var(--bg-color) 18%, transparent)
+  );
+  color: var(--text-color);
+  font-family: 'PT Sans', sans-serif;
+  border-radius: 25px;
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--heading-color) 26%, transparent);
+  padding: 0.5rem 1rem;
+}
+
+/* Remove bottom blurry border/glow */
+.custom-navbar::after { content: none; }
+
+/* On scroll, add subtle blur + border/shadow. Keep bg from variables (no RGB needed) */
+.custom-navbar.scrolled {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 32%, transparent),
+    color-mix(in srgb, var(--bg-color) 32%, transparent)
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: color-mix(in srgb, var(--heading-color) 38%, transparent);
+}
+
+.custom-navbar .navbar-brand {
+  margin-right: 1.5rem;
+  color: var(--heading-color);
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Manual layout (no bootstrap) */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 40px; /* Ensure consistent height when navbar is closed */
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0; /* allow links to shrink as needed */
+  justify-content: space-between;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Compact Spotify indicator anchored to the toggle button */
+.navbar-spotify-indicator {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  pointer-events: none; /* purely indicative */
+}
+
+.navbar-spotify-indicator .spotify-status {
+  margin: 0;
+}
+
+.navbar-spotify-indicator .spotify-status .status-row {
+  gap: 0;
+}
+
+.navbar-spotify-indicator .spotify-status .dot {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 6px rgba(83, 177, 79, 0.55);
+  border: none;
+}
+
+.navbar-toggle,
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent;
+  color: var(--heading-color);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px !important;
+  position: relative; /* allow absolute children like the status dot */
+}
+
+.navbar-toggle:hover,
+.navbar-toggler:hover,
+.navbar-toggle:active,
+.navbar-toggler:active {
+  border: 1px solid var(--box-shadow-color) !important;
+  box-shadow: none !important;
+  border-radius: 25px !important;
+}
+
+/* Make the Bootstrap hamburger visible across themes */
+:root[data-theme='dark'] .custom-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+:root[data-theme='light'] .custom-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-light .navbar-nav .nav-link { color: inherit; }
+.navbar-dark .navbar-nav .nav-link { color: inherit; }
+
+/* Spacer placed right after <CustomNavbar /> to push content below fixed bar */
+.navbar-spacer {
+  /* Match the navbar top offset so content starts below the fixed bar */
+  height: calc(var(--navbar-top-offset, 0.5rem) + var(--navbar-height, 64px));
+}
+
+

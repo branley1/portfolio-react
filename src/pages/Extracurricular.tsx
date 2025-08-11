@@ -3,11 +3,10 @@ import CustomNavbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import ExtraExperience from "../components/ExtraExperience/ExtraExperience";
 import ChatbotEmbed from "../components/Embeds/ChatbotEmbed";
-import "./Extracurricular.scss";
 
 const Extracurricular: React.FC = () => {
   return (
-    <div className="app-container page-extracurricular">
+    <div className="app-container">
       <CustomNavbar />
       <div className="navbar-spacer" aria-hidden />
       <div className="content-container">
