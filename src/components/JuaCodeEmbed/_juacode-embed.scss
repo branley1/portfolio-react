@@ -1,0 +1,127 @@
+@import '../../styles/abstracts/variables';
+
+.juacode-embed-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  &.fullpage {
+    width: 100vw;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    .juacode-iframe-wrapper {
+      height: 100%;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .juacode-iframe {
+      display: block;
+    }
+  }
+  
+  .juacode-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    h2 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+  }
+  
+  .juacode-preview {
+    background: var(--background-secondary);
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .preview-content {
+      h3 {
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+      
+      .load-juacode-btn {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+      }
+    }
+  }
+  
+  .juacode-iframe-wrapper {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    
+    .juacode-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: var(--background-primary);
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .juacode-embed-container {
+    padding: 1rem;
+    
+    .juacode-iframe-wrapper {
+      height: 500px;
+    }
+    
+    .juacode-preview {
+      padding: 2rem 1rem;
+      min-height: 300px;
+    }
+  }
+}
+
+// Dark theme support
+[data-theme="dark"] {
+  .juacode-embed-container {
+    .juacode-preview {
+      background: var(--background-secondary);
+      border-color: var(--border-color);
+    }
+    
+    .juacode-iframe-wrapper {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+  }
+}

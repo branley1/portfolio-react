@@ -11,7 +11,8 @@
     --container-padding: 24px;
     --max-content-width: 1200px;
     --box-shadow-color: rgba(0, 0, 0, 0.2);
-    --highlight-color: #d3dde2;
+    --highlight-color: color-mix(in srgb, var(--bg-color) 28%, transparent);
+    --hover-color: var(--bg-color);
    
    
     --font-size-base: 12px;
@@ -21,8 +22,7 @@
     --font-size-hero-section: 1.0625rem;
     --font-size-body: 1rem;
     --font-size-project-button: 0.5rem
-   
-   
+
     --section-spacing: 2rem;
     --component-spacing: 1.5rem;
    }
@@ -30,7 +30,8 @@
    
    [data-theme="dark"] {
     /* Dark Theme Colors */
-    --bg-color: #161b22; // 0d1117 original Github dark
+    --bg-color: #161b22 !important; // 0d1117 original Github dark
+    --bg-color-hover: #161b22 !important;
     --text-color: #f5f5f5;
     --navbar-bg: var(--bg-color);
     --button-bg: #1f77d0;
@@ -39,5 +40,6 @@
     --border-color: #404040;
     --heading-color: #1f77d0;
     --box-shadow-color: rgba(255, 255, 255, 0.2);
-    --highlight-color: #d3dde2;
+    --highlight-color: color-mix(in srgb, #161b22 28%, transparent);
+    --hover-color: var(--bg-color-hover) !important;
    }

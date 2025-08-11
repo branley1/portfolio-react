@@ -49,16 +49,7 @@
 }
 
 
-body, html {
- background-color: var(--bg-color);
- color: var(--text-color);
- font-family: 'IBM Plex Mono', monospace;
- font-size: var(--font-size-base);
- margin: 0;
- padding: 0;
- line-height: 1.2;
- overflow-x: hidden;
-}
+/* Global body/html styles moved to src/styles/base/_global.scss */
 
 .app-container {
   display: flex;
@@ -95,10 +86,7 @@ body, html {
   color: var(--heading-color);
 }
 
-/* Apply transitions to all elements */
-* {
-  transition: background-color 0.15s ease-in-out;
-}
+/* Global transition styles moved to src/styles/base/_global.scss */
 
 
 .card-subtitle {
@@ -292,7 +280,7 @@ button.btn.btn-outline-secondary {
 
 button.btn.btn-outline-secondary:hover {
   transform: translateY(-2.5px);
-  background-color: var(--bg-color);
+  background-color: var(--hover-color);
   box-shadow: 0 10px 20px var(--box-shadow-color);
 }
 

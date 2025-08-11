@@ -3,6 +3,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* Apply frosted gradient + blur to the whole page, not just the component */
+  background: linear-gradient(
+    225deg,
+    color-mix(in srgb, var(--heading-color) 16%, transparent),
+    color-mix(in srgb, var(--bg-color) 16%, transparent)
+  ) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }
 
 .page-extracurricular > .content-container {

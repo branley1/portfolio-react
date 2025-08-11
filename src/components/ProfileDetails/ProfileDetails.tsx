@@ -56,7 +56,8 @@ const ProfileDetails: React.FC = () => {
         </h4>
         <div className="hero-buttons mt-3">
           <Button
-            variant="primary"
+            variant="outline-secondary"
+            className="btn-gradient"
             href="https://drive.google.com/file/d/1SrwJCrNLfMOLNtAwNVq5qT65MCIO15bS/view?usp=sharing"
             target="_blank" /* Opens in new tab */
             rel="noopener noreferrer"
@@ -66,7 +67,8 @@ const ProfileDetails: React.FC = () => {
             Download Resume
           </Button>
           <Button
-            variant="primary"
+            variant="outline-secondary"
+            className="btn-gradient"
             href="mailto:mmasi.branley@gmail.com?subject=Hello Bmmasi!&body=Hi, I visited your website and would like to get in touch!"
             target="_blank"
             onClick={handleMessageMe}
@@ -75,6 +77,7 @@ const ProfileDetails: React.FC = () => {
           </Button>
           <Button
             variant="outline-secondary"
+            className="btn-gradient"
             href="https://github.com/branley1"
             target="_blank"
             onClick={handleGitHub}
@@ -83,6 +86,7 @@ const ProfileDetails: React.FC = () => {
           </Button>
           <Button
             variant="outline-secondary"
+            className="btn-gradient"
             href="https://linkedin.com/in/bmmasi1"
             target="_blank"
             onClick={handleLinkedIn}
@@ -91,6 +95,7 @@ const ProfileDetails: React.FC = () => {
           </Button>
           <Button
             variant="outline-secondary"
+            className="btn-gradient"
             href="/highlights"
             onClick={handleHighlights}
           >

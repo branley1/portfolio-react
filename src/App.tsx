@@ -9,6 +9,7 @@ import AboutMe from "./components/AboutMe/AboutMe";
 import ExperienceTimeline from "./components/ExperienceTimeline/ExperienceTimeline";
 import Extracurricular from "./pages/Extracurricular";
 import ProjectsPage from "./pages/Projects";
+import JuaCode from "./pages/JuaCode";
 import Footer from "./components/Footer/Footer";
 import "./styles/main.scss";
 
@@ -36,10 +37,10 @@ const MainPortfolio: React.FC = () => {
       <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1rem", marginBottom: "1rem", flexWrap: "wrap" }}>
         <button
           type="button"
-          className="btn btn-primary cta-extracurricular-btn"
+          className="btn-gradient cta-extracurricular-btn"
           onClick={() => navigate("/extra-experience")}
         >
-          View Extracurricular Experience <i className="fa fa-arrow-right"></i>
+          View Extracurricular Experience <i className="fa fa-arrow-right blink-arrow"></i>
         </button>
       </div>
       <Footer />
@@ -53,6 +54,7 @@ const App: React.FC = () => (
     <Route path="/projects" element={<ProjectsPage />} />
     <Route path="/extra-experience" element={<Extracurricular />} />
     <Route path="/highlights" element={<Highlights />} />
+    <Route path="/juacode" element={<JuaCode />} />
   </Routes>
 );
 

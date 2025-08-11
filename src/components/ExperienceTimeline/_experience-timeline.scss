@@ -3,7 +3,7 @@
 .experience-timeline {
     font-family: 'PT Sans', sans-serif;
     padding-left: 0.5rem;
-    background-color: var(--bg-color);
+    background-color: transparent;
     color: var(--text-color);
     border-radius: 8px;
     /* Remove any decorative bottom line/underline */
@@ -21,11 +21,18 @@
   
     .experience-item {
       padding: 1rem;
-      background-color: var(--bg-color);
-      border-top-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-      border-top-left-radius: 10px;
-      border-bottom-right-radius: 10px;
+      margin: 0 0 1rem;
+      border-radius: 25px;
+      background: linear-gradient(
+        225deg,
+        color-mix(in srgb, var(--bg-color) 16%, transparent),
+        color-mix(in srgb, var(--heading-color) 8%, transparent)
+      );
+      border: 1px solid color-mix(in srgb, var(--bg-color) 22%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+      cursor: default;
   
       h4 {
         font-size: 1.25rem;
@@ -51,8 +58,7 @@
     }
 
     .experience-item:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 1px 2px var(--box-shadow-color);
-      background-color: var(--card-color);
+      transform: translateY(1px);
+      border-color: color-mix(in srgb, var(--heading-color) 30%, transparent);
     }
   }

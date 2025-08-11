@@ -32,11 +32,11 @@ button.btn.btn-primary {
   padding: 0.4rem 0.8rem;
   }
   
-  button.btn.btn-outline-secondary:hover {
-    transform: translateY(1px);
-    background-color: var(--bg-color);
-    box-shadow: 0 3px 6px var(--box-shadow-color);
-  }
+button.btn.btn-outline-secondary:hover {
+  transform: translateY(1px);
+  background-color: var(--hover-color);
+  box-shadow: 0 3px 6px var(--box-shadow-color);
+}
   
 /* CTA: View Extracurricular Experience */
 .cta-extracurricular-btn {

@@ -4,7 +4,7 @@
   position: sticky; /* Fix sidebar to the viewport */
   top: 0; /* Sticks to the top of it's container */
   flex: 0 0 250px; /* flex-grow: 0, flex-shrink: 0, flex-basis: 250px */
-  background-color: var(--bg-color);
+  background-color: transparent;
   color: var(--text-color);
   padding: 1rem;
   box-sizing: border-box;
@@ -17,6 +17,7 @@
   margin-top: 1rem;
   margin-left: -0.125rem;
   transition: width 160ms ease, flex-basis 160ms ease, box-shadow 160ms ease, padding 160ms ease;
+  max-height: 100vh; /* Ensure sidebar doesn't exceed viewport height */
 
   &:hover {
     // transform: translateY(-2.5px);
@@ -52,7 +53,7 @@
   }
 
   .card-subtitle {
-    background-color: var(--bg-color);
+    background-color: transparent;
     opacity: 0.8;
   }
   
@@ -81,7 +82,7 @@
   }
 
   .sidebar-card {
-    background-color: var(--bg-color);
+    background-color: transparent;
     width: 100%;
     margin: 0;
     text-align: left;
@@ -130,7 +131,7 @@
   .course-highlight {
     font-size: 0.9rem;
     padding: 0rem;
-    background-color: var(--card-color);
+    background-color: transparent;
     margin-bottom: 0rem;
     margin-top: 0.5rem;
     list-style: none;
@@ -155,27 +156,13 @@
     font-size: 0.8rem;
   }
 
-  /* Mobile version of the sidebar */
+  /* Mobile version of the sidebar - completely hidden */
   @media (max-width: 767px) {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    height: 100vh; // Full height on mobile
-    display: none; // Hide by default
-    border: none;
-    border-radius: 0;
-    margin-bottom: 1rem;
-
-    &.active {
-      display: block; // Show when active (dropdown)
-      background-color: var(--bg-color);
-    }
-
-    /* Ignore collapsed on mobile; active controls visibility */
+    display: none !important; /* Force hide sidebar on all mobile devices */
+    
+    &.active,
     &.collapsed {
-      display: none;
+      display: none !important; /* Ensure all states are hidden on mobile */
     }
   }
 }

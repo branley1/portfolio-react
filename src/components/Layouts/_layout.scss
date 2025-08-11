@@ -1,7 +1,7 @@
 .app-container {
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-color);
+    background-color: transparent;
     padding: 0.5rem;
 }
   
@@ -17,25 +17,7 @@
     }
 }
 
-/* Blinking green dot indicator when Spotify is active */
-.sidebar-toggle.spotify-active::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #1DB954; /* Spotify green */
-  bottom: -3px;
-  right: -3px;
-  box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7);
-  animation: spotify-blink 1.4s ease-in-out infinite;
-}
 
-@keyframes spotify-blink {
-  0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); opacity: 1; }
-  70% { box-shadow: 0 0 0 6px rgba(29, 185, 84, 0); opacity: 0.8; }
-  100% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0); opacity: 1; }
-}
 
 /* VS Code-like sidebar toggle */
 .sidebar-toggle {
@@ -53,7 +35,7 @@
   border: 1px solid var(--box-shadow-color);
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
-  position: sticky;
+  position: relative; /* Allow absolute children like the Spotify indicator */
 
   &:hover {
     transform: translateY(-1px);
@@ -74,18 +56,38 @@
   }
 
   @media (max-width: 767px) {
-    position: fixed;
-    top: 0.75rem;
-    right: 0.75rem;
-    left: auto;
+    display: none; /* Hide toggle on small screens */
   }
+}
+
+/* Spotify indicator positioned on the sidebar toggle */
+.sidebar-toggle .navbar-spotify-indicator {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  pointer-events: none; /* purely indicative */
+}
+
+.sidebar-toggle .navbar-spotify-indicator .spotify-status {
+  margin: 0;
+}
+
+.sidebar-toggle .navbar-spotify-indicator .spotify-status .status-row {
+  gap: 0;
+}
+
+.sidebar-toggle .navbar-spotify-indicator .spotify-status .dot {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 6px rgba(83, 177, 79, 0.55);
+  border: none;
 }
 
 .main-content {
     flex: 1;
     padding: 0.5rem;
     flex-grow: 1;
-    background-color: var(--bg-color);
+    background-color: transparent;
     margin-top: -1rem;
     padding-left: 1rem;
 }

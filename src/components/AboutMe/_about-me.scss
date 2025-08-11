@@ -1,9 +1,23 @@
 // src/components/AboutMe/_about-me.scss
 
+/* Hide arrows by default in AboutMe component */
+.about-me .blink-arrow {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Show arrows on hover - override global blink animation */
+.about-me .btn-gradient:hover .blink-arrow,
+.about-me .btn-gradient:hover .nav-link .blink-arrow,
+.about-me .btn-gradient:hover i.fa-arrow-right {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
 .about-me {
   font-family: 'PT Sans', sans-serif;
   padding: 0.5rem;
-  background-color: var(--bg-color);
+  background-color: transparent;
   color: var(--text-color);
   border-radius: 8px;
 

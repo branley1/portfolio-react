@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import SidebarSpotifyOnly from "../Sidebar/SidebarSpotifyOnly";
+import SpotifyStatus from "../Embeds/SpotifyStatus";
 import "./_layout.scss";
 
 interface LayoutProps {
@@ -38,36 +39,12 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [isSidebarOpen]);
 
-  // Determine Spotify activity by inspecting the external SVG text
-  const [spotifyActive, setSpotifyActive] = useState(false);
-  useEffect(() => {
-    const spotifySvgUrl =
-      "https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&cover_image=true&theme=default&show_offline=true&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false";
-    let cancelled = false;
 
-    const checkSpotify = async () => {
-      try {
-        const res = await fetch(spotifySvgUrl, { cache: "no-store" });
-        const text = await res.text();
-        const inactive = /currently not playing on spotify/i.test(text);
-        if (!cancelled) setSpotifyActive(!inactive);
-      } catch {
-        if (!cancelled) setSpotifyActive(false);
-      }
-    };
-
-    checkSpotify();
-    const id = window.setInterval(checkSpotify, 10_000);
-    return () => {
-      cancelled = true;
-      window.clearInterval(id);
-    };
-  }, []);
 
   return (
     <div className="content-wrapper">
       <button
-        className={`sidebar-toggle ${spotifyActive ? "spotify-active" : ""}`}
+        className="sidebar-toggle"
         onClick={toggleSidebar}
         ref={toggleBtnRef}
         aria-label={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
@@ -78,6 +55,10 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
           <rect x="3" y="4" width="6" height="16" rx="1.5" fill="currentColor" opacity="0.85"/>
           <rect x="11" y="4" width="10" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.6" fill="none"/>
         </svg>
+        {/* Compact Spotify indicator on the toggle button */}
+        <div className="navbar-spotify-indicator">
+          <SpotifyStatus compact />
+        </div>
       </button>
 
       {/* Sidebar: 'active' for mobile open, 'collapsed' for desktop collapse */}

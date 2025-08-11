@@ -1,0 +1,27 @@
+@import '../styles/abstracts/variables';
+
+.juacode-page {
+  min-height: 100vh;
+  background: var(--background-primary);
+  padding: 0;
+  margin: 0;
+  
+  .container {
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .juacode-page {
+    .container {
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+    }
+  }
+}

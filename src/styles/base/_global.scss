@@ -6,13 +6,32 @@
 
 // Apply global styles
 body, html {
-    background-color: var(--bg-color);
+    /* Modern multi-layer gradient for both light and dark themes
+       Palette: blue, black, white. Layers blend with theme variables. */
+    background:
+      /* Soft blue glow top-left */
+      radial-gradient(1200px 800px at 0% -10%, color-mix(in srgb, #3b82f6 45%, transparent), transparent 60%),
+      /* Subtle white wash top-right */
+      radial-gradient(900px 650px at 110% 0%, color-mix(in srgb, #ffffff 30%, transparent), transparent 55%),
+      /* Deep vignette bottom-center for depth */
+      radial-gradient(1100px 750px at 50% 120%, color-mix(in srgb, #000000 35%, transparent), transparent 60%),
+      /* Theme-driven base gradient */
+      linear-gradient(
+        140deg,
+        color-mix(in srgb, var(--bg-color) 80%, #ffffff 10%) 0%,
+        color-mix(in srgb, var(--bg-color) 70%, #3b82f6 10%) 40%,
+        color-mix(in srgb, var(--bg-color) 85%, #000000 10%) 100%
+      );
+    background-color: var(--bg-color); /* fallback */
     font-family: 'PT Sans', sans-serif;
     font-size: var(--font-size-base);
-    margin: 0.5rem;
+    margin: 0; /* remove outer margins to reduce space near navbar */
     padding: 0;
     line-height: 1.2;
     overflow-x: hidden;
+    /* App-wide blur so every route inherits the frosted effect */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Apply transitions to all elements */
@@ -20,3 +39,89 @@ body, html {
   transition: background-color 0.15s ease-in-out;
 }
 
+/* App-wide frosted surface: make the primary app wrapper translucent and blurred
+   so every page (not only Extracurricular) benefits from the effect */
+.app-container {
+  background: linear-gradient(
+    225deg,
+    color-mix(in srgb, var(--heading-color) 16%, transparent),
+    color-mix(in srgb, var(--bg-color) 16%, transparent)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Gradient utilities to match navbar modern style */
+.surface-glass {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 16%, transparent),
+    color-mix(in srgb, var(--bg-color) 16%, transparent)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--heading-color) 22%, transparent);
+  border-radius: 16px;
+}
+
+.btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 16%, transparent),
+    color-mix(in srgb, var(--heading-color) 8%, transparent)
+  );
+  color: var(--text-color);
+  border: 1px solid color-mix(in srgb, var(--bg-color) 22%, transparent);
+  border-radius: 9999px;
+  padding: 0.625rem 1rem;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 28%, transparent),
+    color-mix(in srgb, var(--heading-color) 16%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--bg-color) 30%, transparent);
+}
+
+/* Synchronized blink for arrow icons:
+   Animation runs globally; hidden by default via visibility and revealed on hover */
+.blink-arrow {
+  display: inline-block;
+  will-change: opacity;
+  animation-name: blink-sync;
+  animation-duration: 1600ms; /* slower */
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+  animation-direction: normal;
+  visibility: hidden; /* hidden until parent hover reveals */
+}
+
+/* Reveal arrows on hover of buttons or links (global) */
+.btn-gradient:hover .blink-arrow,
+.nav-link:hover .blink-arrow,
+button:hover .blink-arrow,
+a:hover .blink-arrow {
+  visibility: visible;
+}
+
+@keyframes blink-sync {
+  0%, 75% { opacity: 0; }
+  76%, 100% { opacity: 1; }
+}
+
+/* Override blink behavior for extracurricular button - show arrow only on hover */
+.cta-extracurricular-btn .blink-arrow {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.cta-extracurricular-btn:hover .blink-arrow {
+  opacity: 1 !important;
+  animation: none !important;
+}
