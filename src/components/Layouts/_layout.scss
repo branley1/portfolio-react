@@ -3,7 +3,8 @@
     flex-direction: column;
     background-color: transparent !important;
     background: transparent !important;
-    padding: 0.5rem;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
 }
   
 .content-wrapper {
@@ -86,12 +87,12 @@
 
 .main-content {
     flex: 1;
-    padding: 0.5rem;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
     flex-grow: 1;
     background-color: transparent !important;
     background: transparent !important;
-    margin-top: -1rem;
-    padding-left: 1rem;
+    margin-top: 0;
 }
 
 .content-container {
@@ -99,7 +100,7 @@
     flex-direction: row;
     padding-top: 1rem;
     margin-bottom: -1rem;
-    padding-right: 1rem;
+    padding-right: var(--container-padding);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     padding-bottom: -1rem;

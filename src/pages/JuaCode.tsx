@@ -4,6 +4,7 @@ import CustomNavbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import './JuaCode.scss';
 import ReactGA from 'react-ga4';
+import Layout from '../components/Layouts/Layout';
 
 const JuaCode: React.FC = () => {
   const [embedKey, setEmbedKey] = useState<number>(0);
@@ -26,11 +27,13 @@ const JuaCode: React.FC = () => {
           <img src="/icon-64.png" alt="JuaCode logo" width={16} height={16} style={{ marginLeft: '4px' }} /> Refresh
         </button>
       </div>
-      <div className="container">
-        <div key={embedKey}>
-          <JuaCodeEmbed />
+      <Layout sidebarVariant="spotifyOnly">
+        <div className="container">
+          <div key={embedKey}>
+            <JuaCodeEmbed />
+          </div>
         </div>
-      </div>
+      </Layout>
       <Footer />
     </div>
   );

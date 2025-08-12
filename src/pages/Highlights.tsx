@@ -4,6 +4,7 @@ import Footer from "../components/Footer/Footer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "./Highlights.scss";
+import Layout from "../components/Layouts/Layout";
 
 // Content is now sourced from public/content/highlights.md (markdown-only)
 // No raw HTML injection; safer and more maintainable.
@@ -30,11 +31,13 @@ const Highlights: React.FC = () => {
     <div className="highlights-page">
       <Navbar />
       <div className="navbar-spacer" aria-hidden />
-      <main className="highlights-content">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {content}
-        </ReactMarkdown>
-      </main>
+      <Layout sidebarVariant="spotifyOnly">
+        <div className="highlights-content">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {content}
+          </ReactMarkdown>
+        </div>
+      </Layout>
       <Footer />
     </div>
   );

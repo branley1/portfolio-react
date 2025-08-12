@@ -164,32 +164,19 @@ const CustomNavbar: React.FC = () => {
               Projects
             </button>
             <a className="nav-link btn-gradient" href="/classic/index.html">Curious?</a>
-            {/* Theme toggle switch appears only when expanded on mobile */}
-            {expanded && (
-              <div className="nav-link btn-gradient theme-switch-container">
-                <Form.Check
-                  type="switch"
-                  id="mobile-theme-toggle"
-                  label={theme === "light" ? "" : ""}
-                  onChange={handleThemeToggle}
-                  checked={theme === "dark"}
-                  className="mobile-theme-switch"
-                />
-              </div>
-            )}
           </div>
         </div>
-        {/* Right-side actions: desktop theme toggle (far right) and mobile hamburger */}
+        {/* Right-side actions: theme toggle and mobile hamburger */}
         <div className="navbar-actions">
-          <div className="desktop-theme-switch-container desktop-only">
+          <div className="theme-switch-container">
             <Form.Check
               type="switch"
-              id="desktop-theme-toggle"
+              id="theme-toggle"
               label={theme === "light" ? "" : ""}
               style={{fontSize: '0.9rem'}}
               onChange={handleThemeToggle}
               checked={theme === "dark"}
-              className="desktop-theme-switch"
+              className="theme-switch"
             />
           </div>
           <button

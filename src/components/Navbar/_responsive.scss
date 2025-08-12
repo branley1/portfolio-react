@@ -15,6 +15,9 @@
 
   .navbar-actions { gap: 0.5rem; }
   .navbar-toggle { display: inline-flex; }
+  /* Hide theme switch in actions on mobile by default; show only when expanded */
+  .navbar-actions .theme-switch-container { display: none; }
+  .custom-navbar.expanded .navbar-actions .theme-switch-container { display: inline-flex; }
   
   /* Hide the main navbar collapse by default on mobile */
   .navbar-collapse { 
@@ -144,24 +147,24 @@
     color: var(--text-color);
   }
 
-  .mobile-theme-switch {
+  .theme-switch {
     margin: 0;
     padding-left: 0 !important;
     display: flex !important;
     align-items: center !important;
   }
-  .mobile-theme-switch .form-check-input {
+  .theme-switch .form-check-input {
     background-color: var(--bg-color);
     border-color: var(--border-color);
     position: static !important;
     margin: 0 !important;
     cursor: pointer;
   }
-  .mobile-theme-switch .form-check-input:checked {
+  .theme-switch .form-check-input:checked {
     background-color: var(--heading-color);
     border-color: var(--heading-color);
   }
-  .mobile-theme-switch .form-check-label {
+  .theme-switch .form-check-label {
     color: inherit;
     font-size: inherit;
     font-weight: inherit;
@@ -176,6 +179,8 @@
   .mobile-only { display: none; }
   .navbar-links { display: flex; }
   .navbar-collapse { display: flex; }
+  /* Show theme switch in actions on desktop */
+  .navbar-actions .theme-switch-container { display: inline-flex; }
   
   /* Hide essential links on desktop */
   .navbar-essential-links,
@@ -184,7 +189,7 @@
   }
 
   /* Desktop theme switch styling - consistent with button system */
-  .desktop-theme-switch-container {
+  .theme-switch-container {
     color: var(--text-color);
     font-size: var(--font-size-body);
     font-weight: 450;
@@ -200,33 +205,34 @@
     text-decoration: none;
     background: transparent;
     cursor: default;
+    /* in actions area, it's already right-aligned */
   }
-  .desktop-theme-switch-container:hover,
-  .desktop-theme-switch-container:focus {
+  .theme-switch-container:hover,
+  .theme-switch-container:focus {
     background: transparent;
     border-color: transparent;
     box-shadow: none;
     transform: none;
     color: var(--text-color);
   }
-  .desktop-theme-switch {
+  .theme-switch {
     margin: 0;
     padding-left: 0 !important;
     display: flex !important;
     align-items: center !important;
   }
-  .desktop-theme-switch .form-check-input {
+  .theme-switch .form-check-input {
     background-color: var(--bg-color);
     border-color: var(--border-color);
     position: static !important;
     margin: 0 !important;
     cursor: pointer;
   }
-  .desktop-theme-switch .form-check-input:checked {
+  .theme-switch .form-check-input:checked {
     background-color: var(--heading-color);
     border-color: var(--heading-color);
   }
-  .desktop-theme-switch .form-check-label {
+  .theme-switch .form-check-label {
     color: inherit;
     font-size: inherit;
     font-weight: inherit;

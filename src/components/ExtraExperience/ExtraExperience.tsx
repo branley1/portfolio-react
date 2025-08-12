@@ -1,5 +1,6 @@
 import React from "react";
-import "./_extra-experience.scss";
+// Inherit styles from Technical experience timeline
+import "../ExperienceTimeline/_experience-timeline.scss";
 
 interface ExperienceProps {
   role: string;
@@ -43,22 +44,9 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
 
 const ExperienceTimeline: React.FC = () => {
   return (
-    <section
-      id="extra-experience"
-      className="my-4 extra-experience-timeline"
-    >
-      <div className="right-border"></div>
-
-      <div className="experience-header">
-        <h2 id="extra-experience-heading">Extracurricular Experience</h2>
-      </div>
-      
-      <div
-        id="extra-experience-content"
-        className={`experience-content open`}
-        aria-labelledby="extra-experience-heading"
-      >
-        <>
+    <section id="extra-experience" className="experience-timeline">
+      <h2 id="extra-experience-heading">Extracurricular Experience</h2>
+      <>
           <ExperienceItem
             role="Swarthmore College Fellow 2024"
             company="University Innovation Fellows"
@@ -122,7 +110,6 @@ const ExperienceTimeline: React.FC = () => {
             ]}
           />
         </>
-      </div>
     </section>
   );
 };

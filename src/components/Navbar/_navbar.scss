@@ -32,7 +32,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem var(--container-padding);
 }
 
 /* On scroll, add subtle blur + border/shadow. Keep bg from variables (no RGB needed) */

@@ -2,9 +2,10 @@
 
 .experience-timeline {
     font-family: 'PT Sans', sans-serif;
-    padding-left: 0.5rem;
-    /* Reduce space above the whole component */
-    margin-top: 0.25rem;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    /* Add space above the experience timeline component */
+    margin-top: 2rem;
     background-color: transparent;
     color: var(--text-color);
     border-radius: 8px;
@@ -24,20 +25,16 @@
     }
   
     .experience-item {
-      padding: 1rem;
+      padding: 1.25rem 1.5rem; /* match project card spacing */
       margin: 0 0 1rem;
       border-radius: 25px;
-      background: linear-gradient(
-        225deg,
-        color-mix(in srgb, var(--bg-color) 16%, transparent),
-        color-mix(in srgb, var(--heading-color) 8%, transparent)
-      );
-      border: 1px solid color-mix(in srgb, var(--bg-color) 22%, transparent);
+      background-color: transparent; /* match project card base */
+      border: 0.1px solid var(--heading-color); /* match project card border */
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      transition: all 0.2s ease;
+      transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
       cursor: default;
-  
+
       h4 {
         font-size: 1.25rem;
         font-weight: bold;
@@ -63,6 +60,12 @@
 
     .experience-item:hover {
       transform: translateY(1px);
+      box-shadow: 0 5px 10px var(--box-shadow-color);
       border-color: color-mix(in srgb, var(--heading-color) 30%, transparent);
+      background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--heading-color) 14%, transparent),
+        color-mix(in srgb, var(--bg-color) 14%, transparent)
+      );
     }
   }
