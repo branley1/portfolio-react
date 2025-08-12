@@ -20,7 +20,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
 }
 
 /* Remove bottom blurry border/glow */
@@ -50,13 +50,27 @@
   cursor: pointer;
 }
 
+/* Wiggle animation on brand hover */
+.custom-navbar .navbar-brand:hover .brand-logo,
+.custom-navbar .navbar-brand:focus .brand-logo {
+  animation: navbar-wiggle 600ms ease-in-out;
+}
+
+@keyframes navbar-wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(6deg); }
+  75% { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
 /* Manual layout (no bootstrap) */
 .navbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 40px; /* Ensure consistent height when navbar is closed */
+  min-height: 48px; /* Ensure consistent height when navbar is closed */
 }
 
 .navbar-actions {
@@ -145,6 +159,25 @@
 .navbar-spacer {
   /* Match the navbar top offset so content starts below the fixed bar */
   height: calc(var(--navbar-top-offset, 0.5rem) + var(--navbar-height, 64px));
+  position: relative; /* allow absolute fade overlay */
+}
+
+/* Add a subtle fade below the navbar into the page content */
+.navbar-spacer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--navbar-top-offset, 0.5rem) + var(--navbar-height, 64px) - 10px);
+  height: 28px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--heading-color) 14%, transparent) 0%,
+    color-mix(in srgb, var(--bg-color) 38%, transparent) 45%,
+    transparent 100%
+  );
+  filter: blur(8px);
 }
 
 

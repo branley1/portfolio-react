@@ -13,8 +13,8 @@ const TechnicalExperiencePage: React.FC = () => {
         <ExperienceTimeline />
       </Layout>
       {/* Bottom page CTA consistent with About Me buttons */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", margin: "0.75rem 0 1rem", flexWrap: "wrap" }}>
-        <a href="/extra-experience" className="btn-gradient cta-extracurricular-btn">
+      <div className="cta-row">
+        <a href="/extra-experience" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none' }}>
           View Extracurricular Experience <i className="fa fa-arrow-right blink-arrow"></i>
         </a>
       </div>

@@ -63,8 +63,9 @@ html, body {
   );
   color: var(--text-color);
   border: 1px solid color-mix(in srgb, var(--bg-color) 30%, transparent);
-  border-radius: 9999px;
+  border-radius: 25px;
   padding: 0.625rem 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
 }
 
 .btn-gradient:hover {
@@ -74,6 +75,15 @@ html, body {
     color-mix(in srgb, var(--heading-color) 22%, transparent)
   );
   border-color: color-mix(in srgb, var(--bg-color) 40%, transparent);
+  box-shadow: 0 5px 10px var(--box-shadow-color);
+  transform: translateY(1px);
+  color: var(--text-color);
+}
+
+.btn-gradient:focus-visible {
+  outline: none;
+  box-shadow: 0 5px 10px var(--box-shadow-color), 0 0 0 2px color-mix(in srgb, var(--heading-color) 25%, transparent);
+  transform: translateY(1px);
 }
 
 /* Dark theme buttons: base darker, hover lighter */
@@ -95,6 +105,9 @@ html, body {
     color-mix(in srgb, var(--heading-color) 35%, transparent)
   );
   border-color: color-mix(in srgb, var(--bg-color) 30%, transparent);
+  box-shadow: 0 5px 10px var(--box-shadow-color);
+  transform: translateY(1px);
+  color: var(--text-color);
 }
 
 /* Synchronized blink for arrow icons:
@@ -133,4 +146,14 @@ a:hover .blink-arrow {
 .cta-extracurricular-btn:hover .blink-arrow {
   opacity: 1 !important;
   animation: none !important;
+}
+
+/* CTA rows reusable utility */
+.cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0.75rem 0 1rem;
+  flex-wrap: wrap;
+  font-family: inherit;
 }

@@ -2,35 +2,53 @@
 
 .juacode-page {
   min-height: 100vh;
-  /* Inherit from global theme; avoid setting page background explicitly */
   background: transparent;
   padding: 0;
   margin: 0;
   
-  .juacode-top-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem 0 1rem;
-  }
-
-  .container {
-    max-width: none;
+  .juacode-fullscreen-container {
+    position: relative;
     width: 100vw;
-    min-height: calc(100vh - var(--navbar-height, 64px));
-    margin: 0;
-    padding: 0;
+    height: calc(100vh - var(--navbar-height, 64px));
+    margin-top: var(--navbar-height, 64px);
+    overflow: hidden;
+  }
+  
+  .juacode-refresh-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    font-family: 'PT Sans', sans-serif;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
 // Mobile responsive
 @media (max-width: 768px) {
   .juacode-page {
-    .container {
+    .juacode-fullscreen-container {
       width: 100vw;
-      min-height: calc(100vh - var(--navbar-height, 64px));
-      padding: 0;
+      height: calc(100vh - var(--navbar-height, 64px));
+    }
+    
+    .juacode-refresh-button {
+      bottom: 0.5rem;
+      right: 0.5rem;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.85rem;
     }
   }
 }

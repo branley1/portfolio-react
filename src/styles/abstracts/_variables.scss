@@ -5,7 +5,8 @@
     --navbar-bg: var(--bg-color);
     --button-bg: #0a66c2;
     --button-text: #ffffff;
-    --card-bg: #F0F0F0;
+    /* Ensure secondary surfaces follow the app background to avoid white blocks */
+    --card-bg: var(--bg-color);
     --heading-color: #0a66c2; /* LinkedIn blue */
     --border-color: #404040;
     --container-padding: 24px;
@@ -40,7 +41,8 @@
     --navbar-bg: var(--bg-color);
     --button-bg: #1f77d0;
     --button-text: #ffffff;
-    --card-bg: #161a20;
+    /* Dark theme secondary surface follows background too */
+    --card-bg: var(--bg-color);
     --border-color: #404040;
     --heading-color: #1f77d0;
     --box-shadow-color: rgba(255, 255, 255, 0.2);

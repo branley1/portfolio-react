@@ -32,7 +32,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: none;
-  padding: 0.5rem var(--container-padding);
+  padding: 0.625rem var(--container-padding);
 }
 
 /* On scroll, add subtle blur + border/shadow. Keep bg from variables (no RGB needed) */
@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 40px; /* Ensure consistent height when navbar is closed */
+  min-height: 48px; /* Ensure consistent height when navbar is closed */
 }
 
 .navbar-actions {

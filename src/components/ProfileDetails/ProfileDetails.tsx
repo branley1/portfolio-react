@@ -37,11 +37,11 @@ const ProfileDetails: React.FC = () => {
     });
   };
 
-  const handleHighlights = () => {
+  const handleCurious = () => {
     ReactGA.event({
       category: "Navigation",
-      action: "Visited Highlights",
-      label: "Git Stats Button",
+      action: "Visited Classic Site",
+      label: "Curious Button",
     });
   };
 
@@ -96,10 +96,12 @@ const ProfileDetails: React.FC = () => {
           <Button
             variant="outline-secondary"
             className="btn-gradient"
-            href="/highlights"
-            onClick={handleHighlights}
+            href="/classic/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleCurious}
           >
-            Git Stats
+            Curious?
           </Button>
         </div>
       </div>

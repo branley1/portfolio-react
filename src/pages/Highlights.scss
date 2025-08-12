@@ -47,3 +47,19 @@
   align-items: center;
   justify-items: center;
 }
+
+/* Ensure GitHub Top Languages and Streak images render with the same visual size */
+.highlights-content a img[src*="github-readme-stats.vercel.app/api/top-langs"],
+.highlights-content a img[src*="streak-stats.demolab.com"] {
+  width: 420px;             /* fixed visual width for consistency */
+  max-width: 100%;          /* responsive: don’t overflow on small screens */
+  height: auto;             /* maintain original aspect ratio */
+  display: block;
+}
+
+/* Optional: center the linked images neatly */
+.highlights-content a[href*="github-readme-stats"],
+.highlights-content a[href*="streak-stats.demolab.com"] {
+  display: inline-block;
+  text-align: center;
+}

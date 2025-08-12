@@ -1,11 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./_navbar.scss";
 import { useSpotify } from "../../contexts/SpotifyContext";
 
 const CustomNavbar: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Helper function to check if a nav link should be active
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
   
   // Prefer dark mode but respect user's stored theme preference
   const [theme, setTheme] = useState<string>(() => {
@@ -85,6 +91,19 @@ const CustomNavbar: React.FC = () => {
     setExpanded(false);
   };
 
+  // Wiggle effect on brand click
+  const brandRef = useRef<HTMLButtonElement | null>(null);
+  const handleBrandClick = () => {
+    // Only wiggle when Spotify is NOT playing (icon logo state)
+    if (!isPlaying && brandRef.current) {
+      brandRef.current.classList.remove('wiggle-once');
+      // Force reflow to restart the animation if clicked multiple times
+      void brandRef.current.offsetWidth;
+      brandRef.current.classList.add('wiggle-once');
+    }
+    handleNavigation('/');
+  };
+
   // No decorative river effect
 
   return (
@@ -96,9 +115,10 @@ const CustomNavbar: React.FC = () => {
       <div className="navbar-content">
         <button
           className={`navbar-brand vinyl-disk ${isPlaying ? 'playing' : ''}`}
-          onClick={() => handleNavigation('/')}
+          onClick={handleBrandClick}
           aria-label="Home"
           style={{ border: 'none', background: 'transparent', padding: 0 }}
+          ref={brandRef}
         >
           {isPlaying ? (
             <img
@@ -122,48 +142,54 @@ const CustomNavbar: React.FC = () => {
         <div id="primary-nav" className="navbar-collapse">
           <div id="primary-links" className="navbar-links">
             <button
-              className="nav-link"
-              onClick={() => handleNavigation('/#about')}
-              style={{ border: 'none', background: 'transparent' }}
+              className={`nav-link btn-gradient ${isActive('/') ? 'active' : ''}`}
+              onClick={() => handleNavigation('/')}
+              style={{ border: 'none' }}
             >
               Who Am I?
             </button>
             <button 
-              className="nav-link btn-gradient" 
+              className={`nav-link btn-gradient ${isActive('/juacode') ? 'active' : ''}`}
               onClick={() => handleNavigation('/juacode')}
               style={{ border: 'none' }}
             >
               <img
                 src="/icon-64.png"
                 alt="JuaCode logo"
-                width={16}
-                height={16}
+                width={14}
+                height={14}
                 style={{ marginRight: '2px', verticalAlign: 'text-bottom', marginTop: '2px'}}
               />
               JuaCode AI
             </button>
             <button
-              className="nav-link btn-gradient"
+              className={`nav-link btn-gradient ${isActive('/technical') ? 'active' : ''}`}
               onClick={() => handleNavigation('/technical')}
               style={{ border: 'none' }}
             >
               Technical
             </button>
             <button 
-              className="nav-link btn-gradient" 
-              onClick={() => handleNavigation('/extra-experience')}
-              style={{ border: 'none' }}
-            >
-              Extracurricular
-            </button>
-            <button 
-              className="nav-link btn-gradient" 
+              className={`nav-link btn-gradient ${isActive('/projects') ? 'active' : ''}`}
               onClick={() => handleNavigation('/projects')}
               style={{ border: 'none' }}
             >
               Projects
             </button>
-            <a className="nav-link btn-gradient" href="/classic/index.html">Curious?</a>
+            <button 
+              className={`nav-link btn-gradient ${isActive('/extra-experience') ? 'active' : ''}`}
+              onClick={() => handleNavigation('/extra-experience')}
+              style={{ border: 'none' }}
+            >
+              Extracurricular
+            </button>
+            <button
+              className={`nav-link btn-gradient ${isActive('/highlights') ? 'active' : ''}`}
+              onClick={() => handleNavigation('/highlights')}
+              style={{ border: 'none' }}
+            >
+              Git Stats
+            </button>
           </div>
         </div>
         {/* Right-side actions: theme toggle and mobile hamburger */}

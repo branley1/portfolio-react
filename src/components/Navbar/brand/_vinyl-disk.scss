@@ -97,3 +97,26 @@
 
 /* when playing, the vinyl disk should be slightly larger */
 .custom-navbar.expanded .navbar-brand.vinyl-disk:hover.playing { transform: scale(1.2); transition: transform 160ms ease; }
+
+/* Wiggle animation for brand logo when on bmmasi.com */
+@keyframes logoWiggleAuth {
+  0% { transform: translateY(0) rotate(0deg); }
+  8% { transform: translateY(2px) rotate(6deg); }
+  16% { transform: translateY(4px) rotate(-8deg); }
+  24% { transform: translateY(6px) rotate(7deg); }
+  32% { transform: translateY(7px) rotate(-6deg); }
+  40% { transform: translateY(7px) rotate(5deg); }
+  48% { transform: translateY(6px) rotate(-4deg); }
+  56% { transform: translateY(5px) rotate(3deg); }
+  64% { transform: translateY(4px) rotate(-2deg); }
+  72% { transform: translateY(3px) rotate(1.5deg); }
+  80% { transform: translateY(2px) rotate(-1deg); }
+  88% { transform: translateY(1px) rotate(0.6deg); }
+  96% { transform: translateY(0.5px) rotate(-0.3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Add a class to trigger the wiggle; we'll toggle it in Navbar.tsx */
+.custom-navbar .navbar-brand.vinyl-disk.wiggle-once {
+  animation: logoWiggleAuth 700ms ease-in-out 1;
+}

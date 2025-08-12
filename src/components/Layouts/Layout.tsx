@@ -59,7 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
   return (
     <div className="content-wrapper">
       <button
-        className="sidebar-toggle"
+        className="sidebar-toggle btn-gradient"
         onClick={toggleSidebar}
         ref={toggleBtnRef}
         aria-label={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}

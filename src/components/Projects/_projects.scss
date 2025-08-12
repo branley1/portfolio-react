@@ -31,7 +31,7 @@
 }
 
 .project-card {
-  background-color: transparent;
+  background-color: var(--background-primary);
   color: var(--text-color);
   border-radius: 25px;
   padding: 1.25rem 1.5rem;
@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
-  border: 0.1px solid var(--heading-color);
+  border: 1px solid color-mix(in srgb, var(--heading-color) 22%, transparent);
   overflow: hidden; // ensure inner content respects rounded corners
   position: relative; // needed for bottom fade overlay
   /* Equal height for all project cards by default */
@@ -69,6 +69,7 @@
     opacity: 0;
     transition: opacity 0.3s;
     color: var(--button-text);
+    border-radius: 25px; /* enforce consistency */
   }
 
   h3 {

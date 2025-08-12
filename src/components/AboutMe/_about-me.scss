@@ -20,6 +20,9 @@
   background-color: transparent;
   color: var(--text-color);
   border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 
   h2 {
     font-size: var(--font-size-subheading);
@@ -50,5 +53,32 @@
     li::before {
       content: "🖥️   ";
     }
+  }
+}
+
+/* CTA group styles */
+.about-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Desktop layout: place CTAs on the right, vertically centered */
+@media (min-width: 992px) {
+  .about-me {
+    grid-template-columns: 1fr auto;
+    align-items: center; /* vertically center the right column relative to left content */
+  }
+
+  .about-content {
+    max-width: 60ch;
+  }
+
+  .about-cta-group {
+    align-items: center; /* center buttons within the right column */
+    justify-self: end;   /* align the group to the right side */
   }
 }

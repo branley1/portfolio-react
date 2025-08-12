@@ -38,24 +38,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {isFeatured && links.live && (
         <Button
           variant="outline-secondary"
-          className="btn-gradient"
+          className="btn-gradient live-button"
           href={links.live}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Visit Live Site
+          Live Site
         </Button>
       )}
       {/* Use default Button for GitHub link or regular projects */}
       {links.github && (
         <Button
           variant="outline-secondary"
-          className="btn-gradient"
+          className="btn-gradient github-button"
           href={links.github}
           target="_blank"
           rel="noopener noreferrer"
         >
-          View on GitHub
+          GitHub
         </Button>
       )}
     </div>

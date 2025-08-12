@@ -9,7 +9,7 @@
     right: 0;
     margin-bottom: 0;
     border-radius: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.625rem 1rem;
     z-index: 1200;
   }
 
@@ -95,7 +95,7 @@
   .mobile-only { display: inline-flex; }
 
   /* Keep closed height consistent; inline links sit in a single row without wrapping */
-  .navbar-content { min-height: 44px; }
+  .navbar-content { min-height: 48px; }
   .navbar-links-inline {
     display: flex;
     align-items: center;

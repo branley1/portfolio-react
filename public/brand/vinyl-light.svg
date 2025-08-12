@@ -20,9 +20,9 @@
     <circle cx="100" cy="100" r="60" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
     <circle cx="100" cy="100" r="50" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
     <circle cx="100" cy="100" r="40" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
-    <!-- Label and center adjusted for contrast on dark disk -->
-    <circle cx="100" cy="100" r="20" fill="#D3DDE2" />
-    <circle cx="100" cy="100" r="5" fill="#D3DDE2" />
+    <!-- Label and center use dark theme color for contrast in light mode -->
+    <circle cx="100" cy="100" r="20" fill="#161B22" />
+    <circle cx="100" cy="100" r="5" fill="#161B22" />
     <!-- Motion markers (outer) -->
     <circle cx="180" cy="100" r="3.2" fill="#3B82F6" />
     <circle cx="60" cy="31" r="3.2" fill="#3B82F6" />

@@ -8,7 +8,9 @@
     width: auto;
     height: auto;
     box-sizing: border-box;
-    min-height: 100px;
+    /* Increase outer container size without affecting inner content */
+    padding: 1rem 1.25rem; /* enlarge hoverable surface */
+    min-height: 160px;
     margin-top: 0.5rem; /* 0.5rem spacing from navbar */
     border-radius: 25px;
 
@@ -64,4 +66,11 @@
         transform: translateY(-1px);
         box-shadow: 0 1px 2px var(--box-shadow-color);
     }
+}
+
+@media (min-width: 992px) {
+  .hero-section {
+    padding: 1.25rem 1.5rem; /* a touch larger on desktop */
+    min-height: 200px;
+  }
 }

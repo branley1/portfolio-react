@@ -11,7 +11,11 @@ const ChatbotEmbed: React.FC<ChatbotEmbedProps> = ({
   title = "Chatbot",
   height = 520,
 }) => {
-  const envSrc = import.meta.env.VITE_CHATBOT_URL as string | "https://juacode.netlify.app/chat";
+  const envSrc =
+    (import.meta as any).env?.VITE_CHATBOT_URL ||
+    ((import.meta as any).env?.MODE === "development"
+      ? "http://localhost:3000/chat"
+      : "https://juacode.netlify.app/chat");
   const iframeSrc = src ?? envSrc;
 
   if (!iframeSrc) return null;
