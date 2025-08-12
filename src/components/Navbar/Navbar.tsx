@@ -149,7 +149,7 @@ const CustomNavbar: React.FC = () => {
               Who Am I?
             </button>
             <button 
-              className={`nav-link btn-gradient ${isActive('/juacode') ? 'active' : ''}`}
+              className={`nav-link btn-gradient juacode-btn ${isActive('/juacode') ? 'active' : ''}`}
               onClick={() => handleNavigation('/juacode')}
               style={{ border: 'none' }}
             >

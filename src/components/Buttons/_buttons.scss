@@ -44,10 +44,396 @@
 /* CTA: inherit hero button styling; keep spacing only */
 .cta-extracurricular-btn {
   margin-top: 1rem;
+  /* Improve perf and visual smoothness */
+  will-change: transform, box-shadow, background;
+  transform-origin: center;
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 200ms ease;
 }
 
 .cta-extracurricular-btn:hover,
 .cta-extracurricular-btn:focus-visible {
   box-shadow: 0 3px 8px var(--box-shadow-color);
+  animation: cta-nudge 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Invert gradient for CTA buttons only (keep hero buttons unchanged) */
+.cta-extracurricular-btn.btn-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 12%, transparent),
+    color-mix(in srgb, var(--bg-color) 24%, transparent)
+  );
+  position: relative;
+  overflow: hidden;
+  /* Make CTA border thinner than default */
+  border-width: 0.5px !important;
+}
+
+.cta-extracurricular-btn.btn-gradient:hover,
+.cta-extracurricular-btn.btn-gradient:focus-visible {
+  /* Inverse the gradient compared to default state (swap stops) */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 36%, transparent),
+    color-mix(in srgb, var(--heading-color) 22%, transparent)
+  );
+  border-width: 0.5px !important;
+}
+
+/* Subtle sheen shimmer for CTA buttons (lighter than Curious) */
+.cta-extracurricular-btn.btn-gradient::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -60%;
+  width: 60%;
+  background: linear-gradient(120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.06) 38%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.06) 62%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 9999px; /* soften edges */
+  filter: blur(8px);
+  will-change: transform, opacity;
+  transform: translateX(-240%);
+  /* Base motion: smooth with snap-like acceleration (slightly slower) */
+  animation: cta-sheen 3200ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  /* Feather the sides further to avoid sharp edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 82%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+
+/* Light theme: use background-aware sheen for visibility on bright surfaces */
+:root[data-theme='light'] .cta-extracurricular-btn.btn-gradient::after {
+  /* Use heading color for better brand alignment on light BGs */
+  background: linear-gradient(120deg,
+    color-mix(in srgb, var(--heading-color) 0%, transparent) 0%,
+    color-mix(in srgb, var(--heading-color) 14%, transparent) 38%,
+    color-mix(in srgb, var(--heading-color) 28%, transparent) 50%,
+    color-mix(in srgb, var(--heading-color) 14%, transparent) 62%,
+    color-mix(in srgb, var(--heading-color) 0%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Coordinate shimmer across CTA buttons with slight stagger per button */
+.about-cta-group .cta-extracurricular-btn.btn-gradient::after { animation-delay: 0ms; }
+.about-cta-group .cta-extracurricular-btn.btn-gradient:nth-child(2)::after {
+  /* Make View Projects shimmer significantly slower to de-emphasize */
+  animation-name: cta-sheen-deep;
+  animation-duration: 4300ms;
+  animation-delay: 240ms;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.25, 0.95, 0.25, 1);
+  filter: blur(8px);
+}
+.about-cta-group .cta-extracurricular-btn.btn-gradient:nth-child(3)::after {
+  /* Make View Technical Experience shimmer the slowest for focus on Try JuaCode */
+  animation-name: cta-sheen-deep;
+  animation-duration: 5200ms;
+  animation-delay: 400ms;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.25, 0.95, 0.25, 1);
+  filter: blur(9px);
+}
+
+/* Variant sheens: different opacity envelopes to create interplay */
+@keyframes cta-sheen-variant {
+  0% { transform: translateX(-240%); opacity: 0; }
+  6% { transform: translateX(-240%); opacity: 0; } /* hold at start */
+  12% { opacity: 0.25; }
+  30% { opacity: 0.95; }
+  68% { opacity: 0.6; }
+  88% { opacity: 0.15; }
+  94% { transform: translateX(240%); opacity: 0; } /* hold at end */
+  100% { transform: translateX(240%); opacity: 0; }
+}
+
+@keyframes cta-sheen-deep {
+  0% { transform: translateX(-240%); opacity: 0; }
+  8% { transform: translateX(-240%); opacity: 0; } /* hold at start */
+  18% { opacity: 0.2; }
+  40% { opacity: 0.8; }
+  60% { opacity: 0.9; }
+  82% { opacity: 0.25; }
+  92% { transform: translateX(240%); opacity: 0; } /* hold at end */
+  100% { transform: translateX(240%); opacity: 0; }
+}
+
+@keyframes cta-sheen {
+  0% { transform: translateX(-240%); opacity: 0; }
+  7% { transform: translateX(-240%); opacity: 0; } /* hold at start */
+  15% { opacity: 0.3; }
+  25% { opacity: 0.85; }
+  75% { opacity: 0.85; }
+  85% { opacity: 0.3; }
+  93% { transform: translateX(240%); opacity: 0; } /* hold at end */
+  100% { transform: translateX(240%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-extracurricular-btn.btn-gradient::after { animation: none; }
+}
+
+/* Curious button: yellow-tinted hover gradient reminiscent of classic site */
+/* Curious button: default yellow gradient, no border */
+.curious-btn.btn-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #ffd54f 60%, transparent),
+    color-mix(in srgb, var(--bg-color) 18%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, #ffd54f 55%, transparent);
+  border-color: color-mix(in srgb, #ffd54f 55%, transparent);
+  position: relative;
+  overflow: hidden; /* contain sheen */
+}
+
+[data-theme="dark"] .curious-btn.btn-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #ffca28 60%, transparent),
+    color-mix(in srgb, #0d1117 20%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, #ffca28 55%, transparent);
+  border-color: color-mix(in srgb, #ffca28 55%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.curious-btn.btn-gradient:hover,
+.curious-btn.btn-gradient:focus-visible {
+  /* Invert gradient and tint with classic yellow */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 18%, transparent),
+    color-mix(in srgb, #ffb300 70%, transparent)
+  );
+  border-color: color-mix(in srgb, #e09c00 60%, transparent);
+  border: 1px solid color-mix(in srgb, #e09c00 60%, transparent);
+  box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 45%, transparent);
+  animation: curious-pulse-up 900ms ease-in-out infinite;
+}
+
+[data-theme="dark"] .curious-btn.btn-gradient:hover,
+[data-theme="dark"] .curious-btn.btn-gradient:focus-visible {
+  /* Invert gradient and tint with classic yellow for dark theme */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #0d1117 20%, transparent),
+    color-mix(in srgb, #ffb300 70%, transparent)
+  );
+  border-color: color-mix(in srgb, #e09c00 60%, transparent);
+  border: 1px solid color-mix(in srgb, #e09c00 60%, transparent);
+  box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 45%, transparent);
+  animation: curious-pulse-up 900ms ease-in-out infinite;
+}
+
+/* Pulse all hero section buttons on hover */
+.hero-buttons .btn-gradient:hover,
+.hero-buttons .btn-gradient:focus-visible {
+  animation: curious-pulse 900ms ease-out;
+}
+
+/* Reuse shimmer + pulse behaviors for JuaCode navbar button without changing colors */
+.juacode-btn.btn-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.juacode-btn.btn-gradient::after {
+  content: "";
+  position: absolute;
+  top: -22%;
+  bottom: -22%;
+  left: -60%;
+  width: 60%;
+  background: linear-gradient(120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.10) 38%,
+    rgba(255,255,255,0.20) 50%,
+    rgba(255,255,255,0.10) 62%,
+    rgba(255,255,255,0) 100%
+  );
+  border-radius: 9999px;
+  filter: blur(7px);
+  will-change: transform, opacity;
+  transform: translateX(-220%);
+  animation: juacode-sheen 2600ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate-reverse;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 82%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+
+/* Light theme: neutral sheen tuned for light BG */
+:root[data-theme='light'] .juacode-btn.btn-gradient::after {
+  background: linear-gradient(120deg,
+    color-mix(in srgb, var(--heading-color) 0%, transparent) 0%,
+    color-mix(in srgb, var(--heading-color) 14%, transparent) 38%,
+    color-mix(in srgb, #ffffff 22%, transparent) 50%,
+    color-mix(in srgb, var(--heading-color) 14%, transparent) 62%,
+    color-mix(in srgb, var(--heading-color) 0%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Disable JuaCode navbar shimmer on the JuaCode page to reduce distraction */
+.juacode-page .juacode-btn.btn-gradient::after,
+.juacode-btn.btn-gradient.active::after {
+  animation: none !important;
+  display: none !important;
+}
+
+.juacode-btn.btn-gradient:hover,
+.juacode-btn.btn-gradient:focus-visible {
+  animation: curious-pulse 900ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .juacode-btn.btn-gradient::after { animation: none; }
+  .juacode-btn.btn-gradient:hover,
+  .juacode-btn.btn-gradient:focus-visible { animation: none; }
+}
+
+/* Pulse animation for Curious button */
+@keyframes curious-pulse {
+  0% { transform: translateY(1px) scale(1); }
+  40% { transform: translateY(1px) scale(1.03); }
+  70% { transform: translateY(1px) scale(1.015); }
+  100% { transform: translateY(1px) scale(1); }
+}
+
+/* Upward pulse specifically for Curious button */
+@keyframes curious-pulse-up {
+  0% { transform: translateY(-1px) scale(1); }
+  40% { transform: translateY(-1px) scale(1.03); }
+  70% { transform: translateY(-1px) scale(1.015); }
+  100% { transform: translateY(-1px) scale(1); }
+}
+
+/* Sheen shimmer effect using a moving highlight for a glassy feel */
+.curious-btn.btn-gradient::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -60%;
+  width: 60%;
+  background: linear-gradient(120deg,
+    rgba(255, 213, 79, 0) 0%,
+    rgba(255, 213, 79, 0.10) 38%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 213, 79, 0.10) 62%,
+    rgba(255, 213, 79, 0) 100%
+  );
+  border-radius: 9999px;
+  filter: blur(8px);
+  will-change: transform, opacity;
+  transform: translateX(-220%);
+  animation: curious-sheen-soft 2900ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 16%, black 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 16%, black 84%, transparent 100%);
+}
+
+/* Light theme: higher-contrast yellow sheen for visibility */
+:root[data-theme='light'] .curious-btn.btn-gradient::after {
+  /* Darker orange skirts with bright core for visibility */
+  background: linear-gradient(120deg,
+    color-mix(in srgb, #e09c00 0%, transparent) 0%,
+    color-mix(in srgb, #ffb300 22%, transparent) 36%,
+    color-mix(in srgb, #ffffff 28%, transparent) 50%,
+    color-mix(in srgb, #ffb300 22%, transparent) 64%,
+    color-mix(in srgb, #e09c00 0%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .curious-btn.btn-gradient::after {
+  background: linear-gradient(120deg,
+    rgba(255, 202, 40, 0) 0%,
+    rgba(255, 202, 40, 0.12) 38%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 202, 40, 0.12) 62%,
+    rgba(255, 202, 40, 0) 100%
+  );
+  mix-blend-mode: screen;
+}
+
+@keyframes curious-sheen-soft {
+  0% { transform: translateX(-220%); opacity: 0; }
+  8% { transform: translateX(-220%); opacity: 0; } /* hold at start */
+  12% { opacity: 0.25; }
+  28% { opacity: 0.9; }
+  72% { opacity: 0.9; }
+  88% { opacity: 0.25; }
+  96% { transform: translateX(220%); opacity: 0; } /* hold at end */
+  100% { transform: translateX(220%); opacity: 0; }
+}
+
+@keyframes juacode-sheen {
+  0% { transform: translateX(-220%); opacity: 0; }
+  9% { transform: translateX(-220%); opacity: 0; } /* hold at start */
+  14% { opacity: 0.2; }
+  30% { opacity: 0.85; }
+  70% { opacity: 0.85; }
+  86% { opacity: 0.2; }
+  95% { transform: translateX(220%); opacity: 0; } /* hold at end */
+  100% { transform: translateX(220%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curious-btn.btn-gradient { animation: none; }
+  [data-theme="dark"] .curious-btn.btn-gradient { animation: none; }
+  .curious-btn.btn-gradient::after { animation: none; }
+  [data-theme="dark"] .curious-btn.btn-gradient::after { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curious-btn.btn-gradient:hover,
+  .curious-btn.btn-gradient:focus-visible {
+    animation: none;
+  }
+}
+
+/* Dark theme inverted gradient for CTA */
+[data-theme="dark"] .cta-extracurricular-btn.btn-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--heading-color) 10%, transparent),
+    color-mix(in srgb, var(--bg-color) 55%, #0d1117 30%)
+  );
+}
+
+[data-theme="dark"] .cta-extracurricular-btn.btn-gradient:hover,
+[data-theme="dark"] .cta-extracurricular-btn.btn-gradient:focus-visible {
+  /* Inverse the gradient compared to default state (swap stops) */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 30%, #0d1117 10%),
+    color-mix(in srgb, var(--heading-color) 35%, transparent)
+  );
+}
+
+@keyframes cta-nudge {
+  0% { transform: translateX(0) scale(1); }
+  30% { transform: translateX(3px) scale(1.01); }
+  60% { transform: translateX(-2px) scale(1.005); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-extracurricular-btn:hover,
+  .cta-extracurricular-btn:focus-visible {
+    animation: none;
+    transform: translateX(0);
+  }
 }
   

@@ -113,6 +113,11 @@
       height: 100%;
       border: none;
       background: var(--bg-color);
+      transform-origin: 0 0;
+      transform: scale(var(--juacode-zoom, 1));
+      /* Compensate layout so parent doesn't shrink when zooming out */
+      width: calc(100% / var(--juacode-zoom, 1));
+      height: calc(100% / var(--juacode-zoom, 1));
     }
   }
 }

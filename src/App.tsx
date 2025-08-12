@@ -29,6 +29,7 @@ const MainPortfolio: React.FC = () => {
       <div className="app-container">
         <div className="navbar-spacer" aria-hidden />
         <Hero />
+        <hr className="hero-about-divider" aria-hidden />
         <div className="content-container">
           <Layout>
             <AboutMe />

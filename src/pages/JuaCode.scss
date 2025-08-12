@@ -2,7 +2,7 @@
 
 .juacode-page {
   min-height: 100vh;
-  background: transparent;
+  background: var(--bg-color);
   padding: 0;
   margin: 0;
   
@@ -12,12 +12,15 @@
     height: calc(100vh - var(--navbar-height, 64px));
     margin-top: var(--navbar-height, 64px);
     overflow: hidden;
+    background: var(--bg-color);
+    transform-origin: top left;
+    transition: transform 200ms ease;
   }
   
   .juacode-refresh-button {
     position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    top: 1rem;
+    left: 1rem;
     z-index: 1000;
     font-family: 'PT Sans', sans-serif;
     padding: 0.5rem 0.9rem;
@@ -34,6 +37,88 @@
       opacity: 1;
     }
   }
+
+  .juacode-zoom-split {
+    position: absolute;
+    top: calc(1rem + 44px);
+    left: 1rem;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    z-index: 1000;
+  }
+
+  .juacode-zoom-split .zoom-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .juacode-zoom-split .zoom-item .zoom-value {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 6px;
+    color: var(--text-color);
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--bg-color) 40%, transparent),
+      color-mix(in srgb, var(--heading-color) 14%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--heading-color) 20%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .juacode-zoom-btn {
+    font-family: 'PT Sans', sans-serif;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    min-width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .juacode-zoom-btn:hover { opacity: 1; }
+  .juacode-zoom-btn.active {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--heading-color) 30%, transparent);
+  }
+  .juacode-zoom-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .juacode-zoom-indicator {
+    position: absolute;
+    top: calc(1rem + 84px);
+    left: 1rem;
+    z-index: 1000;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    color: var(--text-color);
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--bg-color) 40%, transparent),
+      color-mix(in srgb, var(--heading-color) 14%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--heading-color) 20%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 200ms ease, transform 220ms ease;
+    pointer-events: none;
+  }
+  .juacode-zoom-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 // Mobile responsive
@@ -45,10 +130,13 @@
     }
     
     .juacode-refresh-button {
-      bottom: 0.5rem;
-      right: 0.5rem;
+      top: 0.5rem;
+      left: 0.5rem;
       padding: 0.4rem 0.7rem;
       font-size: 0.85rem;
     }
+    .juacode-zoom-split { top: calc(0.5rem + 40px); left: 0.5rem; flex-direction: column; }
+    .juacode-zoom-btn { min-width: 36px; padding: 0.35rem 0.6rem; font-size: 0.85rem; }
+    .juacode-zoom-btn:disabled { opacity: 0.5; }
   }
 }

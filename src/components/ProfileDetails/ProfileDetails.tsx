@@ -50,9 +50,8 @@ const ProfileDetails: React.FC = () => {
       <div className="profile-info">
         <h1>Branley Mmasi</h1>
         <h4>
-          {" "}
-          Software Engineer @ Bloomberg (starting Sep 2025) | Computer Science major with a Cognitive Science minor at
-          Swarthmore College, graduated in May 2025.{" "}
+          Software Engineer @ Bloomberg LP | Computer Science major with a Cognitive Science minor,
+          Swarthmore College, 2025.
         </h4>
         <div className="hero-buttons mt-3">
           <Button
@@ -95,7 +94,7 @@ const ProfileDetails: React.FC = () => {
           </Button>
           <Button
             variant="outline-secondary"
-            className="btn-gradient"
+            className="btn-gradient curious-btn"
             href="/classic/index.html"
             target="_blank"
             rel="noopener noreferrer"

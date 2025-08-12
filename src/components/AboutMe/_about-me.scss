@@ -1,5 +1,19 @@
 // src/components/AboutMe/_about-me.scss
 
+/* Hide arrows by default in AboutMe component */
+.about-me .blink-arrow {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Show arrows on hover - override global blink animation */
+.about-me .btn-gradient:hover .blink-arrow,
+.about-me .btn-gradient:hover .nav-link .blink-arrow,
+.about-me .btn-gradient:hover i.fa-arrow-right {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
 .about-me {
   font-family: 'PT Sans', sans-serif;
   padding: 0.25rem; /* reduce outer padding to bring it closer to hero */
@@ -73,20 +87,14 @@
   }
 }
 
-/* Stack layout on smaller screens: move CTAs below the text */
-@media (max-width: 991px) {
+/* Stack layout only when hamburger is shown (match navbar breakpoint <= 767px) */
+@media (max-width: 767px) {
   .about-me { grid-template-columns: 1fr; }
   .about-cta-group {
-    align-items: stretch;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     margin-top: 0.75rem;
+    text-align: center;
   }
-  .about-cta-group .btn-gradient { width: auto; }
-}
-
-/* Also stack if viewport height is very small */
-@media (max-height: 700px) {
-  .about-me { grid-template-columns: 1fr; }
-  /* Keep CTA buttons same size on short viewports */
   .about-cta-group .btn-gradient { width: auto; }
 }
