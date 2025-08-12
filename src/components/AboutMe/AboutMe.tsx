@@ -10,28 +10,22 @@ const AboutMe: React.FC = () => {
       <div className="about-content">
         <h2>hi!</h2>
         <p>i build software that helps people do things.</p>
-        <p>sometimes, the software helps me do things.</p>
-        <p>i'm currently working on JuaCode, and you can find links plastered all over this site.</p>
-        <p>try it out and build things.</p>
-        <p>it may help you do things too.</p>
+        <p>sometimes, it helps me do things too.</p>
+        <p>right now, i'm pouring my time into juacode.</p>
+        <p>you'll find links plastered all over this site.</p>
+        <p>give it a try, and if you like making things, let's talk.</p> 
+        <p>lately, i've been:</p>
         <ul>
-          <li>Fine-tuning local LLMs and shipping an AI chatbot end-to-end</li>
-          <li>Exploring compilers with OCaml</li>
-          <li>Prototyping audio tools with JUCE</li>
+          <li>fine-tuning local LLMs & shipping an AI chatbot end-to-end</li>
+          <li>exploring compilers with OCaml</li>
+          <li>building a simple multiband compressor with JUCE and C++</li>
         </ul>
-        <h5>Interests</h5>
-        <ul>
-          <li>Full-stack engineering (TypeScript/React, APIs, infrastructure)</li>
-          <li>iOS/Android development</li>
-          <li>Machine Learning & NLP</li>
-          <li>Fintech and data-driven systems</li>
-          <li>Cloud & DevOps</li>
-        </ul>
+        <p>my interests include full-stack engineering (typescript/react, APIs, infrastructure), ios/android dev, machine learning & NLP, fintech, data systems, and cloud/devops.</p>
         <p>if you're into building things people actually need & use, i'm always happy to chat.</p>
-        <p>oh btw, i make music!</p>
+        <p>oh, and i make music too.</p>
       </div>
 
-      <div className="about-cta-group">
+      <aside className="about-cta-group" aria-label="Quick navigation">
         <button 
           type="button"
           className="btn-gradient cta-extracurricular-btn"
@@ -60,7 +54,7 @@ const AboutMe: React.FC = () => {
         >
           View Technical Experience <i className="fa fa-arrow-right blink-arrow"></i>
         </button>
-      </div>
+      </aside>
     </section>
   );
 };

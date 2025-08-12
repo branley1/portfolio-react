@@ -21,6 +21,9 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
     }
   });
 
+  // Fixed height for the expanded sidebar (window effect)
+  const [sidebarFixedHeightPx, setSidebarFixedHeightPx] = useState<number | null>(null);
+
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -37,6 +40,32 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
   // Refs for detecting outside clicks
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  // Measure About section height when sidebar is closed, and use that as the fixed
+  // height for the expanded sidebar. We re-measure on resize only while closed so the
+  // expanded state keeps a stable window height.
+  useEffect(() => {
+    const measureAboutHeight = () => {
+      if (isSidebarOpen) return; // keep current fixed height while open
+      const aboutEl = document.getElementById("about");
+      if (aboutEl) {
+        const measured = aboutEl.getBoundingClientRect().height;
+        if (Number.isFinite(measured) && measured > 0) {
+          setSidebarFixedHeightPx(Math.round(measured));
+        }
+      }
+    };
+
+    // Initial measure
+    measureAboutHeight();
+
+    // Measure on resize (only while closed)
+    const onResize = () => {
+      measureAboutHeight();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [isSidebarOpen]);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -83,7 +112,10 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
         {sidebarVariant === "spotifyOnly" ? (
           <SidebarSpotifyOnly className={isSidebarOpen ? "active" : "collapsed"} />
         ) : (
-          <Sidebar className={isSidebarOpen ? "active" : "collapsed"} />
+          <Sidebar
+            className={isSidebarOpen ? "active" : "collapsed"}
+            maxHeightPx={sidebarFixedHeightPx ?? undefined}
+          />
         )}
       </div>
 

@@ -13,11 +13,11 @@
   font-size: var(--font-size-body);
   border: 0.1px dashed var(--box-shadow-color); /* Other options: inset, outset, groove, double, dashed, dotted */
   margin: 0;
-  overflow-y: auto;
+  overflow-y: auto; /* keep internal scroll for window effect */
   margin-top: 1rem;
   margin-left: -0.125rem;
   transition: width 160ms ease, flex-basis 160ms ease, box-shadow 160ms ease, padding 160ms ease;
-  max-height: 100vh; /* Ensure sidebar doesn't exceed viewport height */
+  max-height: 100vh; /* safety cap; actual height set inline when expanded */
 
   &:hover {
     // transform: translateY(-2.5px);
@@ -165,6 +165,27 @@
       display: none !important; /* Ensure all states are hidden on mobile */
     }
   }
+}
+
+/* Subtle, theme-aware scrollbar styling for the sidebar */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--heading-color) 20%, transparent)
+                   color-mix(in srgb, var(--bg-color) 85%, transparent);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bg-color) 85%, transparent);
+  border-radius: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--heading-color) 20%, transparent);
+  border-radius: 8px;
 }
 
 .future-courses {

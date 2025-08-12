@@ -8,10 +8,18 @@ import SpotifyNowPlayingImage from "../Embeds/SpotifyNowPlayingImage";
 
 interface SidebarProps {
   className?: string;
+  maxHeightPx?: number;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
-  <div className={`sidebar ${className}`}>
+const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => (
+  <div
+    className={`sidebar ${className}`}
+    style={
+      className.includes("active") && maxHeightPx
+        ? { height: `${maxHeightPx}px`, maxHeight: `${maxHeightPx}px` }
+        : undefined
+    }
+  >
     <Card className="sidebar-card">
       <h5>
         Vibe with Me! 🎧

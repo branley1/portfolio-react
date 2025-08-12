@@ -18,6 +18,25 @@ html, body {
     overflow-x: hidden;
     /* Removed global blur to avoid fixed-position issues */
 }
+/* Subtle, theme-aware scrollbar styling for the page */
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--heading-color) 20%, transparent)
+                   color-mix(in srgb, var(--bg-color) 85%, transparent);
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bg-color) 85%, transparent);
+}
+
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--heading-color) 20%, transparent);
+  border-radius: 8px;
+}
 
 /* Dark theme-specific background and button behavior */
 [data-theme="dark"] body,

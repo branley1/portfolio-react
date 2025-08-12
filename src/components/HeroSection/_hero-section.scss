@@ -9,10 +9,11 @@
     height: auto;
     box-sizing: border-box;
     /* Increase outer container size without affecting inner content */
-    padding: 1rem 1.25rem; /* enlarge hoverable surface */
+    padding: 0.5rem 1rem; /* reduce vertical padding to tighten spacing */
     min-height: 160px;
-    margin-top: 0.5rem; /* 0.5rem spacing from navbar */
+    margin-top: 0.25rem; /* tighter to navbar */
     border-radius: 25px;
+    margin-bottom: -0.5rem;
 
     .hero-banner {
       position: relative;

@@ -2,7 +2,7 @@ import React from "react";
 import ProfileDetails from "../ProfileDetails/ProfileDetails";
 import "/src/components/HeroSection/_hero-section.scss";
 import heroImage from "../../assets/images/hero/hero-image.jpg";
-import profileImage from "../../assets/images/profile/profile.jpeg";
+import profileImage from "../../assets/images/profile/profile.jpg";
 
 const HeroSection: React.FC = () => (
   <section className="hero-section">
