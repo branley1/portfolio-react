@@ -10,12 +10,13 @@ const TechnicalExperiencePage: React.FC = () => {
       <div className="navbar-spacer" aria-hidden />
       <main className="content-container">
         <ExperienceTimeline />
-        <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", marginTop: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
-          <a href="/extra-experience" className="btn-gradient" style={{ fontSize: '0.95rem', padding: '0.5rem 0.9rem' }}>
-            View Extracurricular Experience <i className="fa fa-arrow-right blink-arrow"></i>
-          </a>
-        </div>
       </main>
+      {/* Bottom page CTA consistent with About Me buttons */}
+      <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", margin: "0.75rem 0 1rem", flexWrap: "wrap" }}>
+        <a href="/extra-experience" className="btn-gradient cta-extracurricular-btn">
+          View Extracurricular Experience <i className="fa fa-arrow-right blink-arrow"></i>
+        </a>
+      </div>
       <Footer />
     </div>
   );

@@ -37,7 +37,7 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
 );
 
 const ExperienceTimeline: React.FC = () => (
-  <section id="experience" className="my-4 experience-timeline">
+  <section id="experience" className="experience-timeline">
     <h2>Technical Experience</h2>
     <ExperienceItem
       role="

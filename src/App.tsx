@@ -23,18 +23,20 @@ if (googleAnalyticsKey) {
 // Main portfolio component
 const MainPortfolio: React.FC = () => {
   return (
-    <div className="app-container">
+    <>
       <CustomNavbar />
-      {/* Spacer to ensure content starts below fixed navbar */}
-      <div className="navbar-spacer" aria-hidden />
-      <Hero />
-      <div className="content-container">
-        <Layout>
-          <AboutMe />
-        </Layout>
+      {/* Keep spacer with the scrollable content */}
+      <div className="app-container">
+        <div className="navbar-spacer" aria-hidden />
+        <Hero />
+        <div className="content-container">
+          <Layout>
+            <AboutMe />
+          </Layout>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

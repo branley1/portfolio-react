@@ -69,6 +69,6 @@
 .navbar-spotify-indicator .spotify-status .dot {
   width: 8px;
   height: 8px;
-  box-shadow: 0 0 6px rgba(83, 177, 79, 0.55);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--heading-color) 75%, transparent);
   border: none;
 }

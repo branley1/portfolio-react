@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="48" height="48" role="img" aria-label="Vinyl Dark">
+  <style>
+    @keyframes vinyl-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .record-spin { transform-origin: 100px 100px; animation: vinyl-spin 3s linear infinite; }
+  </style>
+  <defs>
+    <filter id="grooveGlowDark" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <g class="record-spin" transform-origin="100 100">
+    <circle cx="100" cy="100" r="80" fill="#FFFFFF" />
+    <!-- Blue glowing grooves -->
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowDark)" />
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowDark)" />
+    <circle cx="100" cy="100" r="50" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowDark)" />
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowDark)" />
+    <!-- Label and center adjusted for contrast on light disk -->
+    <circle cx="100" cy="100" r="20" fill="#161B22" />
+    <circle cx="100" cy="100" r="5" fill="#161B22" />
+    <!-- Motion markers (outer) -->
+    <circle cx="180" cy="100" r="3.2" fill="#3B82F6" />
+    <circle cx="60" cy="31" r="3.2" fill="#3B82F6" />
+    <circle cx="60" cy="169" r="3.2" fill="#3B82F6" />
+    <!-- Motion markers (inner rings) scaled to r=60 and r=50 for illusion -->
+    <!-- r=60 equivalents -->
+    <circle cx="160" cy="100" r="2.6" fill="#3B82F6" />
+    <circle cx="70" cy="48" r="2.6" fill="#3B82F6" />
+    <circle cx="70" cy="152" r="2.6" fill="#3B82F6" />
+    <!-- r=50 equivalents -->
+    <circle cx="150" cy="100" r="2.4" fill="#3B82F6" />
+    <circle cx="75" cy="57" r="2.4" fill="#3B82F6" />
+    <circle cx="75" cy="143" r="2.4" fill="#3B82F6" />
+  </g>
+  <!-- Tonearm -->
+  <g fill="#161B22">
+    <rect x="140" y="40" width="6" height="80" rx="3" />
+    <circle cx="143" cy="40" r="8" />
+    <rect x="138" y="120" width="12" height="25" rx="3" />
+  </g>
+</svg>
+

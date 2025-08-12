@@ -6,14 +6,17 @@ import JuaCodeLogo from "../../assets/images/icon-64.png"
 const AboutMe: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <section id="about" className="my-4 about-me">
-      <h2>Hi there!</h2>
-      <p>I build reliable, human-centered software and love using machine learning to turn messy, real‑world data into useful products. My work spans from front‑end experiences to the systems that power them.</p>
-      <p>Right now, I'm focused on a few things:</p>
+    <section id="about" className="my-3 about-me">
+      <h2>hi!</h2>
+      <p>i build software that helps people do things.</p>
+      <p>sometimes, the software helps me do things.</p>
+      <p>i'm currently working on JuaCode, and you can find links plastered all over this site.</p>
+      <p>try it out and build things.</p>
+      <p>it may help you do things too.</p>
       <ul>
         <li>Fine-tuning local LLMs and shipping an AI chatbot end-to-end</li>
-        <li>Exploring compilers with OCaml to deepen language and systems fundamentals</li>
-        <li>Prototyping audio tools with JUCE because building for sound is fun</li>
+        <li>Exploring compilers with OCaml</li>
+        <li>Prototyping audio tools with JUCE</li>
       </ul>
       <h5>Interests</h5>
       <ul>
@@ -23,7 +26,8 @@ const AboutMe: React.FC = () => {
         <li>Fintech and data-driven systems</li>
         <li>Cloud & DevOps</li>
       </ul>
-      <p>I enjoy collaborating on open source and building things people actually use. If you're into AI agents, product engineering, or data tooling, I'm always happy to chat.</p>
+      <p>if you're into building things people actually need & use, i'm always happy to chat.</p>
+      <p>oh btw, i make music!</p>
 
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem", marginTop: "1rem" }}>
         <button 

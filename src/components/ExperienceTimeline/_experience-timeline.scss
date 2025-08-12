@@ -3,6 +3,8 @@
 .experience-timeline {
     font-family: 'PT Sans', sans-serif;
     padding-left: 0.5rem;
+    /* Reduce space above the whole component */
+    margin-top: 0.25rem;
     background-color: transparent;
     color: var(--text-color);
     border-radius: 8px;
@@ -17,6 +19,8 @@
       font-size: var(--font-size-subheading);
       color: var(--heading-color);
       font-weight: 700;
+      /* Add space below the title */
+      margin-bottom: 0.5rem;
     }
   
     .experience-item {

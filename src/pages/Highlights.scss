@@ -1,5 +1,6 @@
 .highlights-page {
-  background-color: var(--background-primary);
+  /* Inherit from global; ensure no white override on light theme */
+  background: transparent;
   color: var(--text-color);
   min-height: 100vh;
   display: flex;
@@ -21,7 +22,11 @@
 }
 
 .tools-section, .stats-section {
-  background: var(--bg-color);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 24%, transparent),
+    color-mix(in srgb, var(--heading-color) 12%, transparent)
+  );
   border: 1px solid var(--box-shadow-color);
   border-radius: 12px;
   padding: 1rem;

@@ -22,6 +22,8 @@
   letter-spacing: normal;
   position: relative;
   margin-right: 1.5rem;
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--heading-color) 30%, transparent);
+  transition: transform 160ms ease;
 }
 
 .custom-navbar .navbar-brand.vinyl-disk .vinyl-svg { display: block; width: 48px; height: 48px; aspect-ratio: 1 / 1; background: none; }
@@ -37,7 +39,17 @@
 .custom-navbar .navbar-brand.vinyl-disk .label { fill: var(--label-fill, #f5f5f5); }
 .custom-navbar .navbar-brand.vinyl-disk .center { fill: var(--record-fill, #111); }
 .custom-navbar .navbar-brand.vinyl-disk .tonearm * { fill: var(--tonearm-fill, #ccc); }
-.custom-navbar .navbar-brand.vinyl-disk .groove { fill: none; stroke: var(--groove-stroke, rgba(255, 255, 255, 0.08)); stroke-width: 1; }
+.custom-navbar .navbar-brand.vinyl-disk .groove {
+  fill: none;
+  stroke: color-mix(in srgb, var(--heading-color) 75%, transparent);
+  stroke-width: 1.25;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--heading-color) 65%, transparent));
+}
+
+/* Stronger glow while spinning */
+.custom-navbar .navbar-brand.vinyl-disk .vinyl-svg.playing .groove {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--heading-color) 85%, transparent));
+}
 .custom-navbar .navbar-brand.vinyl-disk .record-spin { transform-box: fill-box; transform-origin: 50% 50%; animation: none; }
 /* small spinning markers for clear motion */
 .custom-navbar .navbar-brand.vinyl-disk .spin-marker {
@@ -54,7 +66,7 @@
 .custom-navbar .navbar-brand.vinyl-disk .vinyl-svg.playing .record,
 .custom-navbar .navbar-brand.vinyl-disk.playing .brand-logo,
 .custom-navbar .navbar-brand.vinyl-disk .brand-logo.playing {
-  filter: drop-shadow(0 0 6px rgba(83, 177, 79, 0.6));
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--heading-color) 85%, transparent));
 }
 
 .custom-navbar .navbar-brand.vinyl-disk.playing .tonearm,
@@ -80,7 +92,8 @@
 .custom-navbar.expanded .navbar-brand.vinyl-disk .vinyl-svg.playing .record-spin {
   animation: vinyl-spin 3s linear infinite;
 }
-.custom-navbar.expanded .navbar-brand.vinyl-disk:hover { transform: none; box-shadow: none; }
-.custom-navbar .navbar-brand.vinyl-disk:hover:not(.custom-navbar.expanded .navbar-brand.vinyl-disk) { transform: none; }
+.custom-navbar.expanded .navbar-brand.vinyl-disk:hover { transform: scale(1.04); box-shadow: none; }
+.custom-navbar .navbar-brand.vinyl-disk:hover { transform: scale(1.1); }
 
-
+/* when playing, the vinyl disk should be slightly larger */
+.custom-navbar.expanded .navbar-brand.vinyl-disk:hover.playing { transform: scale(1.2); transition: transform 160ms ease; }

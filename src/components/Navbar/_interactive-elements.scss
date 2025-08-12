@@ -58,9 +58,13 @@
 
 .custom-navbar .navbar-links .nav-link:hover,
 .custom-navbar .navbar-links .nav-link:focus {
-  background: transparent;
-  box-shadow: none;
-  transform: none;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-color) 28%, transparent),
+    color-mix(in srgb, var(--heading-color) 16%, transparent)
+  );
+  box-shadow: 0 5px 10px var(--box-shadow-color);
+  transform: translateY(1px);
   color: var(--text-color);
 }
 

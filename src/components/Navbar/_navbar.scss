@@ -6,12 +6,19 @@
 @use './toggles/_hamburger.scss' as *;
 @use './_responsive.scss' as *;
 
+
 .custom-navbar {
+  --river-center: -9999px; /* off-screen by default */
+  --river-top: 0px;
+  --splash-width: 120px;
+  --trail-width: 8px;
+  --ocean-height: 16px;
+  --river-color: color-mix(in srgb, var(--heading-color) 26%, transparent);
   --navbar-top-offset: 0.5rem;
   position: fixed;
-  top: 0.5rem;
-  left: 0.5rem;
-  right: 0.5rem;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1200; /* stay above page content */
   /* Frosted glass base: theme-aware translucent gradient */
   background: linear-gradient(
@@ -21,11 +28,10 @@
   );
   color: var(--text-color);
   font-family: 'PT Sans', sans-serif;
-  border-radius: 25px;
   transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid color-mix(in srgb, var(--heading-color) 26%, transparent);
+  border: none;
   padding: 0.5rem 1rem;
 }
 
@@ -38,7 +44,7 @@
   );
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: color-mix(in srgb, var(--heading-color) 38%, transparent);
+  border-color: transparent;
 }
 
 /* Manual layout (no bootstrap) */
@@ -70,4 +76,66 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* Decorative river overlay */
+/* Remove duplicate position rule to avoid overrides */
+/* .custom-navbar { position: fixed; } */
+
+.custom-navbar .nav-river-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.custom-navbar .nav-river-layer.active { opacity: 1; }
+
+.custom-navbar .nav-river-layer .nav-trail {
+  position: absolute;
+  left: calc(var(--river-center) - var(--trail-width) / 2);
+  top: calc(var(--river-top) - 4px);
+  bottom: var(--ocean-height);
+  width: var(--trail-width);
+  background: var(--river-color);
+  filter: blur(8px);
+  transform-origin: 50% 0%;
+  transform: scaleY(0.1);
+  opacity: 0.85;
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+
+.custom-navbar .nav-river-layer.active .nav-trail {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.custom-navbar .nav-river-layer .nav-splash {
+  position: absolute;
+  left: calc(var(--river-center) - var(--splash-width) / 2);
+  bottom: -2px; /* bleed slightly to blend with border */
+  width: var(--splash-width);
+  height: calc(var(--ocean-height) + 6px);
+  background: var(--river-color);
+  border-radius: 9999px 9999px 0 0;
+  filter: blur(10px);
+  opacity: 0.9;
+  transform: translateY(6px) scaleY(0.85);
+  transform-origin: 50% 100%;
+  transition: transform 260ms ease, opacity 220ms ease;
+}
+
+.custom-navbar .nav-river-layer.active .nav-splash {
+  transform: translateY(0) scaleY(1);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-navbar .nav-river-layer .nav-trail,
+  .custom-navbar .nav-river-layer .nav-splash {
+    transition: none !important;
+  }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import "./_sidebar.scss";
+import SpotifyNowPlayingImage from "../Embeds/SpotifyNowPlayingImage";
 // import profileImage from "../../assets/images/sidebar/sidebargif.webp";
 // import courseImage from "../../assets/images/sidebar/education.jpg";
 // import lastImage from "../../assets/images/sidebar/qr-code.png";
@@ -21,11 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => (
           aria-label="Open Spotify profile"
         >
           <i>
-            <img
-              loading="lazy"
-              src="https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&cover_image=true&theme=default&show_offline=true&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false"
-              alt="Spotify now playing widget"
-            ></img>
+            <SpotifyNowPlayingImage />
           </i>
         </a>
       </h5>

@@ -64,6 +64,15 @@ const CustomNavbar: React.FC = () => {
     return () => window.removeEventListener("resize", updateHeightVar);
   }, []);
 
+  // Recalculate height when expanded/collapsed so the spacer pushes content correctly
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      const h = containerRef.current?.offsetHeight || 64;
+      document.documentElement.style.setProperty("--navbar-height", `${h}px`);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [expanded]);
+
   // Spotify state for brand animation
   const { isPlaying } = useSpotify();
 
@@ -75,6 +84,8 @@ const CustomNavbar: React.FC = () => {
     }, 100);
     setExpanded(false);
   };
+
+  // No decorative river effect
 
   return (
     <nav
@@ -90,28 +101,13 @@ const CustomNavbar: React.FC = () => {
           style={{ border: 'none', background: 'transparent', padding: 0 }}
         >
           {isPlaying ? (
-            <svg className={`vinyl-svg ${isPlaying ? 'playing' : ''}`} viewBox="0 0 200 200" width="48" height="48" aria-hidden="true" role="img">
-              {/* Record spins around center (100,100) */}
-              <g className="record-spin">
-                <circle cx="100" cy="100" r="80" className="record" />
-                <circle className="groove" cx="100" cy="100" r="70" />
-                <circle className="groove" cx="100" cy="100" r="60" />
-                <circle className="groove" cx="100" cy="100" r="50" />
-                <circle className="groove" cx="100" cy="100" r="40" />
-                <circle cx="100" cy="100" r="20" className="label" />
-                <circle cx="100" cy="100" r="5" className="center" />
-                {/* Spinning markers to make rotation obvious */}
-                <circle cx="180" cy="100" r="3.2" className="spin-marker" />
-                <circle cx="60" cy="31" r="3.2" className="spin-marker" />
-                <circle cx="60" cy="169" r="3.2" className="spin-marker" />
-              </g>
-              {/* Tonearm (player stick) remains static */}
-              <g className="tonearm">
-                <rect x="140" y="40" width="6" height="80" rx="3" />
-                <circle cx="143" cy="40" r="8" />
-                <rect x="138" y="120" width="12" height="25" rx="3" />
-              </g>
-            </svg>
+            <img
+              src={theme === 'light' ? '/brand/vinyl-light.svg' : '/brand/vinyl-dark.svg'}
+              alt="Vinyl logo"
+              width={48}
+              height={48}
+              className={`brand-logo ${isPlaying ? 'playing' : ''}`}
+            />
           ) : (
             <img
               src="/portfolio-logo.png"
@@ -119,7 +115,6 @@ const CustomNavbar: React.FC = () => {
               width={48}
               height={48}
               className="brand-logo"
-              aria-hidden="true"
             />
           )}
           <span className="sr-only">Bmmasi</span>
@@ -208,6 +203,7 @@ const CustomNavbar: React.FC = () => {
           </button>
         </div>
       </div>
+      {/* Decorative river layer removed */}
     </nav>
   );
 };

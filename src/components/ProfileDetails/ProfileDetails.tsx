@@ -99,7 +99,7 @@ const ProfileDetails: React.FC = () => {
             href="/highlights"
             onClick={handleHighlights}
           >
-            🏆 Git Stats
+            Git Stats
           </Button>
         </div>
       </div>

@@ -1,7 +1,8 @@
 .app-container {
     display: flex;
     flex-direction: column;
-    background-color: transparent;
+    background-color: transparent !important;
+    background: transparent !important;
     padding: 0.5rem;
 }
   
@@ -79,7 +80,7 @@
 .sidebar-toggle .navbar-spotify-indicator .spotify-status .dot {
   width: 8px;
   height: 8px;
-  box-shadow: 0 0 6px rgba(83, 177, 79, 0.55);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--heading-color) 75%, transparent);
   border: none;
 }
 
@@ -87,7 +88,8 @@
     flex: 1;
     padding: 0.5rem;
     flex-grow: 1;
-    background-color: transparent;
+    background-color: transparent !important;
+    background: transparent !important;
     margin-top: -1rem;
     padding-left: 1rem;
 }

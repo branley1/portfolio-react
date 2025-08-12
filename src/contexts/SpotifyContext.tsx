@@ -88,7 +88,7 @@ export const SpotifyProvider: React.FC<SpotifyProviderProps> = ({ children }) =>
     };
 
     checkSpotifyStatus();
-    const id = setInterval(checkSpotifyStatus, 30000); // Check every 30s
+    const id = setInterval(checkSpotifyStatus, 5000); // Check every 5s
     
     return () => {
       cancelled = true;

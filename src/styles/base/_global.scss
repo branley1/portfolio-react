@@ -5,19 +5,18 @@
 @use '../components/index' as components;
 
 // Apply global styles
-body, html {
+/* Ensure light theme never falls back to white; make it authoritative */
+html, body {
     /* Unified flat background matching JuaCode page */
-    background: var(--background-primary);
-    background-color: var(--background-primary);
+    background: var(--background-primary) !important;
+    background-color: var(--background-primary) !important;
     font-family: 'PT Sans', sans-serif;
     font-size: var(--font-size-base);
     margin: 0; /* remove outer margins to reduce space near navbar */
     padding: 0;
     line-height: 1.2;
     overflow-x: hidden;
-    /* App-wide blur so every route inherits the frosted effect */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    /* Removed global blur to avoid fixed-position issues */
 }
 
 /* Dark theme-specific background and button behavior */
@@ -36,9 +35,7 @@ body, html {
 /* App-wide frosted surface: make the primary app wrapper translucent and blurred
    so every page (not only Extracurricular) benefits from the effect */
 .app-container {
-  background: transparent;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: transparent !important;
 }
 
 /* Gradient utilities to match navbar modern style */
@@ -58,6 +55,7 @@ body, html {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: inherit;
   background: linear-gradient(
     135deg,
     color-mix(in srgb, var(--bg-color) 24%, transparent),

@@ -42,8 +42,8 @@
   .blink { animation: spotify-blink 1.2s ease-in-out infinite; }
 
   @keyframes spotify-blink {
-    0%, 100% { opacity: 0.35; box-shadow: 0 0 0px rgba(83, 177, 79, 0.2); }
-    50% { opacity: 1; box-shadow: 0 0 10px rgba(83, 177, 79, 0.6); }
+  0%, 100% { opacity: 0.35; box-shadow: 0 0 0px color-mix(in srgb, var(--heading-color) 35%, transparent); }
+  50% { opacity: 1; box-shadow: 0 0 10px color-mix(in srgb, var(--heading-color) 70%, transparent); }
   }
 
   .widget img {
