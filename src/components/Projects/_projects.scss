@@ -31,7 +31,7 @@
 }
 
 .project-card {
-  background-color: var(--background-primary);
+  background-color: var(--bg-color);
   color: var(--text-color);
   border-radius: 25px;
   padding: 1.25rem 1.5rem;
@@ -58,17 +58,18 @@
     background: linear-gradient(
       to bottom,
       rgba(0,0,0,0),
-      color-mix(in srgb, var(--bg-color) 22%, transparent)
+      color-mix(in srgb, var(--heading-color) 12%, transparent)
     );
-    pointer-events: none;
+    pointer-events: visibleStroke;
     transition: opacity 0.2s ease-in-out;
   }
 
   .btn {
     // Project button opacity
     opacity: 0;
+    border: 1px solid var(--button-bg);
     transition: opacity 0.3s;
-    color: var(--button-text);
+    color: var(--text-color);
     border-radius: 25px; /* enforce consistency */
   }
 
@@ -126,6 +127,7 @@
     .btn {
       transition: opacity 0.15s;
       opacity: 1;
+      border: 1px solid var(--button-bg);
     }
     &::after { opacity: 0; }
   }

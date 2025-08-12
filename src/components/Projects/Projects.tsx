@@ -195,7 +195,7 @@ const projects = [
 
 const ProjectsShowcase: React.FC = () => {
   return (
-    <section id="custom-projects" className="projects-section my-2">
+    <section id="custom-projects" className="projects-section my-1">
       <h2>Projects</h2>
       <Row className="g-4 justify-content-left project grid">
         {projects.map((project, index) => (

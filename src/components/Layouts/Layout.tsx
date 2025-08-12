@@ -40,32 +40,43 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
   // Refs for detecting outside clicks
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
+  const mainContentRef = useRef<HTMLElement | null>(null);
 
-  // Measure About section height when sidebar is closed, and use that as the fixed
-  // height for the expanded sidebar. We re-measure on resize only while closed so the
-  // expanded state keeps a stable window height.
+  // Compute fixed height for expanded sidebar as min(page height, viewport height)
   useEffect(() => {
-    const measureAboutHeight = () => {
-      if (isSidebarOpen) return; // keep current fixed height while open
-      const aboutEl = document.getElementById("about");
-      if (aboutEl) {
-        const measured = aboutEl.getBoundingClientRect().height;
-        if (Number.isFinite(measured) && measured > 0) {
-          setSidebarFixedHeightPx(Math.round(measured));
-        }
+    const computeFixedHeight = () => {
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+      const mainEl = mainContentRef.current;
+      if (!mainEl) {
+        setSidebarFixedHeightPx(viewportHeight || null);
+        return;
+      }
+      const contentRect = mainEl.getBoundingClientRect();
+      // Use scrollHeight to capture full content, fallback to bounding rect height
+      const contentHeight = Math.max(mainEl.scrollHeight || 0, Math.round(contentRect.height));
+      const fixed = Math.max(0, Math.min(viewportHeight, contentHeight));
+      setSidebarFixedHeightPx(fixed);
+    };
+
+    computeFixedHeight();
+
+    const onResize = () => computeFixedHeight();
+    window.addEventListener("resize", onResize);
+
+    // Watch for content size changes
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined" && mainContentRef.current) {
+      ro = new ResizeObserver(() => computeFixedHeight());
+      ro.observe(mainContentRef.current);
+    }
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (ro && mainContentRef.current) {
+        try { ro.unobserve(mainContentRef.current); } catch {}
       }
     };
-
-    // Initial measure
-    measureAboutHeight();
-
-    // Measure on resize (only while closed)
-    const onResize = () => {
-      measureAboutHeight();
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [isSidebarOpen]);
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -120,7 +131,7 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
       </div>
 
       {/* Main content */}
-      <main className="main-content">{children}</main>
+      <main className="main-content" ref={mainContentRef}>{children}</main>
     </div>
   );
 };
