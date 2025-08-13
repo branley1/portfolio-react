@@ -11,11 +11,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* keep sidebar and content side-by-side on desktop */
     width: 100%;
     
     @media (max-width: 767px) {
         flex-direction: column;
+        flex-wrap: nowrap;
     }
 }
 
@@ -88,6 +89,7 @@
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
     flex-grow: 1;
+    min-width: 0; /* allow flex item to shrink beside sidebar instead of wrapping below */
     background-color: transparent !important;
     background: transparent !important;
     margin-top: 0;
