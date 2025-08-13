@@ -89,6 +89,11 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   overflow: hidden;  /* clip shimmer to the button's rounded shape */
 }
 
+/* Force shimmer layer to match the desired button radius across all buttons */
+.btn-gradient::after {
+  border-radius: 25px !important;
+}
+
 .btn-gradient:hover {
   background: linear-gradient(
     135deg,

@@ -35,8 +35,8 @@ const JuaCodeEmbed: React.FC = () => {
   }, [baseUrl, baseOrigin]);
 
   const [iframeSrc, setIframeSrc] = useState<string>(initialSrc);
-  const [didLoad, setDidLoad] = useState<boolean>(false);
-  const [didError, setDidError] = useState<boolean>(false);
+  const [didError404, setDidError404] = useState<boolean>(false);
+  const [embedAlive, setEmbedAlive] = useState<boolean>(false);
   
 
   const handleIframeLoad = () => {
@@ -53,8 +53,8 @@ const JuaCodeEmbed: React.FC = () => {
         } catch {}
       }).catch(() => {});
     } catch {}
-    setDidLoad(true);
-    setDidError(false);
+    setDidError404(false);
+    setEmbedAlive(true);
   };
 
 
@@ -62,6 +62,8 @@ const JuaCodeEmbed: React.FC = () => {
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
       if (!event.origin || event.origin !== baseOrigin) return;
+      // Any valid message from the embed indicates it's alive
+      try { setEmbedAlive(true); } catch {}
       const data = event.data as any;
       if (!data || typeof data !== 'object') return;
       if (data.type === 'juacode:navigate' && typeof data.path === 'string') {
@@ -108,12 +110,14 @@ const JuaCodeEmbed: React.FC = () => {
       if (!iframeSrc) return;
       (async () => {
         try {
-          setDidError(false);
-          await fetch(iframeSrc, { method: 'HEAD', mode: 'no-cors', signal: controller.signal });
+          setDidError404(false);
+          const res = await fetch(iframeSrc, { method: 'HEAD', mode: 'cors', signal: controller.signal });
           if (cancelled) return;
+          setDidError404(res?.status === 404);
         } catch {
           if (cancelled) return;
-          setDidError(true);
+          // Network/CORS failures are inconclusive; do not mark error
+          setDidError404(false);
         } finally {
           clearTimeout(timer);
         }
@@ -138,15 +142,10 @@ const JuaCodeEmbed: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [iframeSrc]);
 
-  // Timeout if iframe does not load
+  // Reset flags on src change; no timeout fallback
   useEffect(() => {
-    setDidLoad(false);
-    setDidError(false);
-    const id = setTimeout(() => {
-      if (!didLoad) setDidError(true);
-    }, 15000);
-    return () => clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setDidError404(false);
+    setEmbedAlive(false);
   }, [iframeSrc]);
 
   
@@ -154,18 +153,17 @@ const JuaCodeEmbed: React.FC = () => {
   return (
     <div className="juacode-embed-container fullpage">
       <div className="juacode-iframe-wrapper zoom-75" style={{ contentVisibility: 'auto', containIntrinsicSize: '900px 600px' }}>
-        {!didError ? (
           <iframe
             src={iframeSrc}
             title="JuaCode AI Coding Assistant"
             className="juacode-iframe"
             loading="lazy"
             onLoad={handleIframeLoad}
-            onError={() => setDidError(true)}
+            onError={() => { /* ignore generic errors; rely on 404+no-ping */ }}
             allow="camera; microphone; clipboard-read; clipboard-write"
             sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
           />
-        ) : (
+        {(!embedAlive && didError404) ? (
           <div className="juacode-fallback" role="status" aria-live="polite">
             <div className="fallback-icon">
               <span className="dot-pulse" aria-hidden></span>
@@ -188,7 +186,7 @@ const JuaCodeEmbed: React.FC = () => {
               If you&apos;re still having issues, please contact me at <a href="mailto:bbm1@duck.com" className="link">bbm1@duck.com</a>.
             </p>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
