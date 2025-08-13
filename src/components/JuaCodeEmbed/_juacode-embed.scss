@@ -120,6 +120,55 @@
       height: calc(100% / var(--juacode-zoom, 1));
     }
   }
+
+  .juacode-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    border: 1px dashed color-mix(in srgb, var(--border-color) 85%, transparent);
+    border-radius: 25px;
+    background: color-mix(in srgb, var(--background-secondary) 70%, transparent);
+    padding: 1.25rem;
+    text-align: center;
+
+    .fallback-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dot-pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-color, #53b14f);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-color, #53b14f) 40%, transparent);
+      animation: juacode-pulse 1.4s ease-in-out infinite;
+    }
+
+    .fallback-text {
+      h3 {
+        margin: 0;
+        color: var(--heading-color);
+        font-weight: 700;
+      }
+      p {
+        margin: 0;
+        color: var(--text-color);
+        opacity: 0.9;
+      }
+    }
+  }
+
+  @keyframes juacode-pulse {
+    0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-color, #53b14f) 30%, transparent); }
+    50% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent-color, #53b14f) 0%, transparent); }
+    100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-color, #53b14f) 30%, transparent); }
+  }
 }
 
 // Mobile responsive

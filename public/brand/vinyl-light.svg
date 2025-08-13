@@ -14,15 +14,15 @@
     </filter>
   </defs>
   <g class="record-spin" transform-origin="100 100">
-    <circle cx="100" cy="100" r="80" fill="#D3DDE2" />
+    <circle cx="100" cy="100" r="80" fill="#161B22" />
     <!-- Blue glowing grooves -->
     <circle cx="100" cy="100" r="70" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
     <circle cx="100" cy="100" r="60" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
     <circle cx="100" cy="100" r="50" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
     <circle cx="100" cy="100" r="40" fill="none" stroke="#3B82F6" stroke-width="1.25" filter="url(#grooveGlowLight)" />
-    <!-- Label and center use dark theme color for contrast in light mode -->
-    <circle cx="100" cy="100" r="20" fill="#161B22" />
-    <circle cx="100" cy="100" r="5" fill="#161B22" />
+    <!-- Label and center match groove blue / heading color -->
+    <circle cx="100" cy="100" r="20" fill="#3B82F6" />
+    <circle cx="100" cy="100" r="5" fill="#3B82F6" />
     <!-- Motion markers (outer) -->
     <circle cx="180" cy="100" r="3.2" fill="#3B82F6" />
     <circle cx="60" cy="31" r="3.2" fill="#3B82F6" />

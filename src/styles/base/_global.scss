@@ -85,6 +85,8 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   border-radius: 25px;
   padding: 0.625rem 1rem;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
+  position: relative; /* ensure shimmer positions correctly */
+  overflow: hidden;  /* clip shimmer to the button's rounded shape */
 }
 
 .btn-gradient:hover {

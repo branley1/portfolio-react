@@ -95,7 +95,7 @@
     rgba(255, 255, 255, 0.06) 62%,
     rgba(255, 255, 255, 0) 100%
   );
-  border-radius: 9999px; /* soften edges */
+  border-radius: inherit; /* match button radius */
   filter: blur(8px);
   will-change: transform, opacity;
   transform: translateX(-240%);
@@ -188,6 +188,8 @@
     color-mix(in srgb, #ffd54f 60%, transparent),
     color-mix(in srgb, var(--bg-color) 18%, transparent)
   );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
   border: 1px solid color-mix(in srgb, #ffd54f 55%, transparent);
   border-color: color-mix(in srgb, #ffd54f 55%, transparent);
   position: relative;
@@ -212,12 +214,13 @@
   background: linear-gradient(
     135deg,
     color-mix(in srgb, var(--bg-color) 18%, transparent),
-    color-mix(in srgb, #ffb300 70%, transparent)
+    color-mix(in srgb, #ffb300 85%, transparent)
   );
-  border-color: color-mix(in srgb, #e09c00 60%, transparent);
-  border: 1px solid color-mix(in srgb, #e09c00 60%, transparent);
-  box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 45%, transparent);
-  animation: curious-pulse-up 900ms ease-in-out infinite;
+  background-size: 220% 220%;
+  animation: curious-gradient-shift 1400ms ease-in-out infinite alternate, curious-pulse-up 900ms ease-in-out infinite;
+  border-color: color-mix(in srgb, #e09100 62%, transparent);
+  border: 1px solid color-mix(in srgb, #e09100 62%, transparent);
+  box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 56%, transparent);
 }
 
 [data-theme="dark"] .curious-btn.btn-gradient:hover,
@@ -226,12 +229,18 @@
   background: linear-gradient(
     135deg,
     color-mix(in srgb, #0d1117 20%, transparent),
-    color-mix(in srgb, #ffb300 70%, transparent)
+    color-mix(in srgb, #ffb300 12%, transparent)
   );
-  border-color: color-mix(in srgb, #e09c00 60%, transparent);
-  border: 1px solid color-mix(in srgb, #e09c00 60%, transparent);
-  box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 45%, transparent);
-  animation: curious-pulse-up 900ms ease-in-out infinite;
+  background-size: 220% 220%;
+  animation: curious-gradient-shift 1400ms ease-in-out infinite alternate, curious-pulse-up 900ms ease-in-out infinite;
+  border-color: color-mix(in srgb, #e09100 60%, transparent);
+  border: 1px solid color-mix(in srgb, #e09100 60%, transparent);
+  box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 54%, transparent);
+}
+
+@keyframes curious-gradient-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 /* Pulse all hero section buttons on hover */
@@ -260,7 +269,7 @@
     rgba(255,255,255,0.10) 62%,
     rgba(255,255,255,0) 100%
   );
-  border-radius: 9999px;
+  border-radius: inherit;
   filter: blur(7px);
   will-change: transform, opacity;
   transform: translateX(-220%);
@@ -332,7 +341,7 @@
     rgba(255, 213, 79, 0.10) 62%,
     rgba(255, 213, 79, 0) 100%
   );
-  border-radius: 9999px;
+  border-radius: inherit;
   filter: blur(8px);
   will-change: transform, opacity;
   transform: translateX(-220%);
@@ -394,6 +403,8 @@
   [data-theme="dark"] .curious-btn.btn-gradient { animation: none; }
   .curious-btn.btn-gradient::after { animation: none; }
   [data-theme="dark"] .curious-btn.btn-gradient::after { animation: none; }
+  .curious-btn.btn-gradient:hover,
+  .curious-btn.btn-gradient:focus-visible { animation: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

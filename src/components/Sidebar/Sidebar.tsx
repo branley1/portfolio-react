@@ -22,7 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => (
   >
     <Card className="sidebar-card">
       <h5>
-        Vibe with Me! 🎧
+        vibe with me
         <a
           href="https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&redirect=true"
           target="_blank"
