@@ -34,7 +34,7 @@ const AboutMe: React.FC = () => {
         </ul>
 
         <p>if you like building useful things, let's chat.</p>
-        <p>oh—and i also make music.</p>
+        <p>oh—and i make music too.</p>
       </div>
 
       <aside className="about-cta-group" aria-label="Quick navigation">

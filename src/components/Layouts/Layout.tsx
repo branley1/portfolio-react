@@ -98,25 +98,25 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
 
   return (
     <div className="content-wrapper">
-      <button
-        className="sidebar-toggle btn-gradient"
-        onClick={toggleSidebar}
-        ref={toggleBtnRef}
-        aria-label={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
-        title={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
-      >
-        {/* Simple sidebar icon */}
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="4" width="6" height="16" rx="1.5" fill="currentColor" opacity="0.85"/>
-          <rect x="11" y="4" width="10" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.6" fill="none"/>
-        </svg>
-        {/* Compact Spotify indicator on the toggle button - only when sidebar is closed */}
-        {!isSidebarOpen && (
-          <div className="navbar-spotify-indicator">
-            <SpotifyStatus compact />
-          </div>
-        )}
-      </button>
+      <div className="sidebar-toggle-wrapper">
+        <button
+          className="sidebar-toggle btn-gradient"
+          onClick={toggleSidebar}
+          ref={toggleBtnRef}
+          aria-label={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+          title={isSidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+        >
+          {/* Simple sidebar icon */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="6" height="16" rx="1.5" fill="currentColor" opacity="0.85"/>
+            <rect x="11" y="4" width="10" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.6" fill="none"/>
+          </svg>
+        </button>
+        {/* Overlayed Spotify indicator, positioned relative to wrapper so it's above the button border */}
+        <div className={`navbar-spotify-indicator ${isSidebarOpen ? 'hidden' : ''}`}>
+          <SpotifyStatus compact hideWhenMuted />
+        </div>
+      </div>
 
       {/* Sidebar: 'active' for mobile open, 'collapsed' for desktop collapse */}
       <div ref={sidebarRef}>

@@ -57,16 +57,16 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => (
           </li>
           <li>
             <strong>Database: </strong>
-            <span>MySQL, PostgreSQL, SQLAlchemy, MongoDB, Firebase, SQLite</span>
+            <span>MySQL, PostgreSQL, Supabase, SQLAlchemy, MongoDB, Firebase, SQLite</span>
           </li>
           <li>
             <strong>Tools: </strong>
             <span>
-              gRPC, REST APIs, Git/GitHub, RabbitMQ, Xcode, Apache Flume, Jupyter Notebook, GCP, AWS, WebAPIs, Google Colab, RPC APIs, Websocket APIs
+              gRPC, REST APIs, FAST Git/GitHub, RabbitMQ, Xcode, Apache Flume, Jupyter Notebook, GCP, AWS, WebAPIs, Google Colab, RPC APIs, Websocket APIs
             </span>
           </li>
         </ul>
-        <Card.Title>Coursework</Card.Title>
+        <Card.Title>Course Highlight</Card.Title>
         <ul className="course-highlight">
           <li>
             <strong>Computer Science:</strong>

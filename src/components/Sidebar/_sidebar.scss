@@ -137,6 +137,27 @@
     }
   }
 
+  /* Prefix technical skills with '>' to match About Me styling */
+  .skills-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .skills-list > li {
+    list-style: none;
+    position: relative;
+    padding-left: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .skills-list > li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--heading-color);
+  }
+
   .course-highlight {
     font-size: 0.9rem;
     padding: 0rem;
@@ -158,11 +179,24 @@
   }
 
   .course-highlight > li > ul {
-    list-style-type: square;
-    list-style-position: outside;
+    list-style: none;
     margin-left: 0;
-    padding-left: 1.5em;
+    padding-left: 0.75rem;
     font-size: 0.8rem;
+  }
+
+  /* Prefix course items with '>' similar to About Me list */
+  .course-highlight > li > ul > li {
+    list-style: none;
+    position: relative;
+    padding-left: 0.9rem;
+  }
+
+  .course-highlight > li > ul > li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--heading-color);
   }
 
   /* Mobile version of the sidebar - completely hidden */

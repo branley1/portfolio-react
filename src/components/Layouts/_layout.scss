@@ -22,12 +22,21 @@
 
 
 
-/* VS Code-like sidebar toggle */
-.sidebar-toggle {
+/* Wrapper to allow overlay elements above the toggle border */
+.sidebar-toggle-wrapper {
   position: sticky;
   top: 0.75rem;
   left: 0.75rem;
   z-index: 20;
+  display: inline-block;
+}
+
+/* VS Code-like sidebar toggle */
+.sidebar-toggle {
+  position: relative; /* wrapper handles sticky positioning */
+  top: 0;
+  left: 0;
+  z-index: 20; /* keep above page content but below indicator */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +44,7 @@
   border-radius: 9999px; /* align with btn-gradient */
   cursor: pointer;
   /* visual styles now come from .btn-gradient */
-  position: relative; /* Allow absolute children like the Spotify indicator */
+  position: relative;
 
   /* Ensure the toggle uses themed background/text, not default black/white */
   background: var(--bg-color) !important;
@@ -61,27 +70,36 @@
   }
 }
 
-/* Spotify indicator positioned on the sidebar toggle */
-.sidebar-toggle .navbar-spotify-indicator {
+/* Spotify indicator positioned attached to the toggle border (bottom-right, slightly outside) */
+.sidebar-toggle-wrapper .navbar-spotify-indicator {
   position: absolute;
-  right: -2px;
-  bottom: -2px;
+  right: 0; /* align to outer border curve */
+  bottom: 0; /* raise to sit flush with rounded edge */
+  z-index: 40; /* above the toggle button */
   pointer-events: none; /* purely indicative */
 }
+.sidebar-toggle-wrapper .navbar-spotify-indicator.hidden { display: none; }
 
-.sidebar-toggle .navbar-spotify-indicator .spotify-status {
+.sidebar-toggle-wrapper .navbar-spotify-indicator.hidden { display: none; }
+
+.sidebar-toggle-wrapper .navbar-spotify-indicator .spotify-status {
   margin: 0;
 }
 
-.sidebar-toggle .navbar-spotify-indicator .spotify-status .status-row {
+.sidebar-toggle-wrapper .navbar-spotify-indicator .spotify-status .status-row {
   gap: 0;
 }
 
-.sidebar-toggle .navbar-spotify-indicator .spotify-status .dot {
-  width: 8px;
-  height: 8px;
-  box-shadow: 0 0 6px color-mix(in srgb, var(--heading-color) 75%, transparent);
+.sidebar-toggle-wrapper .navbar-spotify-indicator .spotify-status .dot {
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 6px color-mix(in srgb, var(--heading-color) 65%, transparent);
   border: none;
+}
+
+/* Hide the entire wrapper (and thus the indicator) on small screens */
+@media (max-width: 767px) {
+  .sidebar-toggle-wrapper { display: none !important; }
 }
 
 .main-content {

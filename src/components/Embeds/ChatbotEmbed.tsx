@@ -119,7 +119,7 @@ const ChatbotEmbed: React.FC<ChatbotEmbedProps> = ({
           </div>
           {isPlaying ? (
             <>
-              <p>So in the meantime, here&apos;s what I&apos;m jamming to:</p>
+              <p>In the meantime, here&apos;s what I&apos;m jamming to:</p>
               <div style={{ marginTop: 12 }} className="widget">
                 <SpotifyNowPlayingImage />
               </div>

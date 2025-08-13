@@ -7,6 +7,8 @@
 /* Ensure all gradient buttons (even those without the base .btn class) keep a 25px radius on all screens */
 .btn-gradient {
   border-radius: 25px !important;
+  position: relative; /* allow shimmer to attach to the button itself */
+  overflow: hidden; /* keep shimmer clipped to the button, not the container */
 }
 
 .btn.btn-primary {

@@ -37,13 +37,13 @@
 
   .dot-green { background-color: #53b14f; }
   .dot-muted { background-color: color-mix(in srgb, var(--text-color) 35%, transparent); border: 1px solid color-mix(in srgb, var(--text-color) 45%, transparent); }
-  .dot-neutral { background-color: color-mix(in srgb, var(--heading-color) 45%, transparent); }
+  .dot-neutral { background-color: var(--heading-color); opacity: 0.7; }
 
   .blink { animation: spotify-blink 1.2s ease-in-out infinite; }
 
   @keyframes spotify-blink {
   0%, 100% { opacity: 0.35; box-shadow: 0 0 0px color-mix(in srgb, var(--heading-color) 35%, transparent); }
-  50% { opacity: 1; box-shadow: 0 0 10px color-mix(in srgb, var(--heading-color) 70%, transparent); }
+  50% { opacity: 1; box-shadow: 0 0 8px color-mix(in srgb, var(--heading-color) 60%, transparent); }
   }
 
   .widget img {
