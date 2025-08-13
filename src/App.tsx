@@ -1,24 +1,32 @@
-import React from "react";
-import ReactGA from "react-ga4";
+import React, { Suspense, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Highlights from "./pages/Highlights";
 import Layout from "./components/Layouts/Layout";
 import CustomNavbar from "./components/Navbar/Navbar";
 import Hero from "./components/HeroSection/HeroSection";
 import AboutMe from "./components/AboutMe/AboutMe";
-import Extracurricular from "./pages/Extracurricular";
-import ProjectsPage from "./pages/Projects";
-import JuaCode from "./pages/JuaCode";
-import TechnicalExperiencePage from "./pages/Technical";
 import Footer from "./components/Footer/Footer";
+const Highlights = React.lazy(() => import("./pages/Highlights"));
+const Extracurricular = React.lazy(() => import("./pages/Extracurricular"));
+const ProjectsPage = React.lazy(() => import("./pages/Projects"));
+const JuaCode = React.lazy(() => import("./pages/JuaCode"));
+const TechnicalExperiencePage = React.lazy(() => import("./pages/Technical"));
 import { SpotifyProvider } from "./contexts/SpotifyContext";
 import "./styles/main.scss";
 
-// Initialize Google analytics
+// Defer Google Analytics to after mount to keep it out of the initial bundle
 const googleAnalyticsKey = import.meta.env.VITE_GOOGLE_ANALYTICS_KEY;
-if (googleAnalyticsKey) {
-  ReactGA.initialize(googleAnalyticsKey);
-}
+const useDeferredAnalytics = () => {
+  useEffect(() => {
+    if (!googleAnalyticsKey) return;
+    // Dynamically import so GA is not part of the initial JS payload
+    import("react-ga4").then((mod) => {
+      const ReactGA = mod.default || mod;
+      ReactGA.initialize(googleAnalyticsKey);
+    }).catch(() => {
+      // no-op on failure
+    });
+  }, []);
+};
 
 // Main portfolio component
 const MainPortfolio: React.FC = () => {
@@ -41,17 +49,22 @@ const MainPortfolio: React.FC = () => {
   );
 };
 
-const App: React.FC = () => (
-  <SpotifyProvider>
-    <Routes>
-      <Route path="/" element={<MainPortfolio />} />
-      <Route path="/projects" element={<ProjectsPage />} />
-      <Route path="/technical" element={<TechnicalExperiencePage />} />
-      <Route path="/extra-experience" element={<Extracurricular />} />
-      <Route path="/highlights" element={<Highlights />} />
-      <Route path="/juacode" element={<JuaCode />} />
-    </Routes>
-  </SpotifyProvider>
-);
+const App: React.FC = () => {
+  useDeferredAnalytics();
+  return (
+    <SpotifyProvider>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<MainPortfolio />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/technical" element={<TechnicalExperiencePage />} />
+          <Route path="/extra-experience" element={<Extracurricular />} />
+          <Route path="/highlights" element={<Highlights />} />
+          <Route path="/juacode" element={<JuaCode />} />
+        </Routes>
+      </Suspense>
+    </SpotifyProvider>
+  );
+};
 
 export default App;

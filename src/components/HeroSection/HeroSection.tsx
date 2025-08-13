@@ -1,20 +1,37 @@
 import React from "react";
 import ProfileDetails from "../ProfileDetails/ProfileDetails";
 import "/src/components/HeroSection/_hero-section.scss";
-import heroImage from "../../assets/images/hero/hero-image.jpg";
-import profileImage from "../../assets/images/profile/profile.jpg";
+import heroImageWebp from "../../assets/images/hero/hero-image.webp";
+import profileImageWebp from "../../assets/images/profile/profile.webp";
 
 const HeroSection: React.FC = () => (
   <section className="hero-section">
     <div className="hero-banner">
-      <img
-        src={heroImage}
-        alt="Banner"
-        className="banner-img"
-        loading="eager"
-      />
+      <picture>
+        <source srcSet={heroImageWebp} type="image/webp" />
+        <img
+          src={heroImageWebp}
+          alt="Banner"
+          className="banner-img"
+          loading="eager"
+          decoding="async"
+          sizes="100vw"
+        />
+      </picture>
       <div className="profile-picture">
-        <img src={profileImage} alt="Profile" className="dp" loading="eager" decoding="async" width={150} height={150} />
+        <picture>
+          <source srcSet={profileImageWebp} type="image/webp" />
+          <img
+            src={profileImageWebp}
+            alt="Profile"
+            className="dp"
+            loading="eager"
+            decoding="async"
+            width={150}
+            height={150}
+            sizes="150px"
+          />
+        </picture>
       </div>
     </div>
     {/* Include ProfileDetails within Hero */}

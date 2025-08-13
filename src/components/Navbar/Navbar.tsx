@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./_navbar.scss";
 import { useSpotify } from "../../contexts/SpotifyContext";
@@ -127,15 +126,22 @@ const CustomNavbar: React.FC = () => {
               width={48}
               height={48}
               className={`brand-logo ${isPlaying ? 'playing' : ''}`}
+              decoding="async"
+              loading="eager"
             />
           ) : (
-            <img
-              src="/portfolio-logo.png"
-              alt="Logo"
-              width={48}
-              height={48}
-              className="brand-logo"
-            />
+            <picture>
+              <source srcSet="/portfolio-logo.webp" type="image/webp" />
+              <img
+                src="/portfolio-logo.png"
+                alt="Logo"
+                width={48}
+                height={48}
+                className="brand-logo"
+                decoding="async"
+                loading="eager"
+              />
+            </picture>
           )}
           <span className="sr-only">Bmmasi</span>
         </button>
@@ -153,13 +159,18 @@ const CustomNavbar: React.FC = () => {
               onClick={() => handleNavigation('/juacode')}
               style={{ border: 'none' }}
             >
-              <img
-                src="/icon-64.png"
-                alt="JuaCode logo"
-                width={14}
-                height={14}
-                style={{ marginRight: '2px', verticalAlign: 'text-bottom', marginTop: '2px'}}
-              />
+              <picture>
+                <source srcSet="/icon-64.webp" type="image/webp" />
+                <img
+                  src="/icon-64.webp"
+                  alt="JuaCode logo"
+                  width={14}
+                  height={14}
+                  style={{ marginRight: '2px', verticalAlign: 'text-bottom', marginTop: '2px'}}
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
               JuaCode AI
             </button>
             <button
@@ -195,15 +206,15 @@ const CustomNavbar: React.FC = () => {
         {/* Right-side actions: theme toggle and mobile hamburger */}
         <div className="navbar-actions">
           <div className="theme-switch-container">
-            <Form.Check
-              type="switch"
-              id="theme-toggle"
-              label={theme === "light" ? "" : ""}
-              style={{fontSize: '0.9rem'}}
-              onChange={handleThemeToggle}
-              checked={theme === "dark"}
-              className="theme-switch"
-            />
+            <label htmlFor="theme-toggle" className="theme-switch" aria-label="Toggle theme">
+              <input
+                id="theme-toggle"
+                type="checkbox"
+                onChange={handleThemeToggle}
+                checked={theme === "dark"}
+              />
+              <span className="theme-slider" aria-hidden="true" />
+            </label>
           </div>
           <button
             className="navbar-toggle mobile-only"

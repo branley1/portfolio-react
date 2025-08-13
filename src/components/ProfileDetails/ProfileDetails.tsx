@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import ReactGA from "react-ga4";
+import { trackEvent } from "../../utils/analytics";
 import "/src/components/ProfileDetails/_profile-details.scss";
 
 const ProfileDetails: React.FC = () => {
   // Event handlers for Google Analytics
   const handleDownloadResume = () => {
-    ReactGA.event({
+    trackEvent({
       category: "Resume",
       action: "Downloaded Resume",
       label: "Download Resume Button",
@@ -14,7 +14,7 @@ const ProfileDetails: React.FC = () => {
   };
 
   const handleMessageMe = () => {
-    ReactGA.event({
+    trackEvent({
       category: "Contact",
       action: "Clicked Message Me",
       label: "Message Me Button",
@@ -22,7 +22,7 @@ const ProfileDetails: React.FC = () => {
   };
 
   const handleGitHub = () => {
-    ReactGA.event({
+    trackEvent({
       category: "Contact",
       action: "Clicked GitHub",
       label: "GitHub Button",
@@ -30,7 +30,7 @@ const ProfileDetails: React.FC = () => {
   };
 
   const handleLinkedIn = () => {
-    ReactGA.event({
+    trackEvent({
       category: "Contact",
       action: "Clicked LinkedIn",
       label: "LinkedIn Button",
@@ -38,7 +38,7 @@ const ProfileDetails: React.FC = () => {
   };
 
   const handleCurious = () => {
-    ReactGA.event({
+    trackEvent({
       category: "Navigation",
       action: "Visited Classic Site",
       label: "Curious Button",

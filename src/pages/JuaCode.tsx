@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import JuaCodeEmbed from '../components/JuaCodeEmbed/JuaCodeEmbed';
 import CustomNavbar from '../components/Navbar/Navbar';
 import './JuaCode.scss';
-import ReactGA from 'react-ga4';
+import { trackEvent } from '../utils/analytics';
 
 const JuaCode: React.FC = () => {
   const [embedKey, setEmbedKey] = useState<number>(0);
@@ -41,7 +41,7 @@ const JuaCode: React.FC = () => {
 
   const reloadEmbed = () => {
     setEmbedKey((k) => k + 1);
-    ReactGA.event({
+    trackEvent({
       category: 'JuaCode',
       action: 'JuaCode Iframe Reloaded',
       label: 'Manual Refresh',
