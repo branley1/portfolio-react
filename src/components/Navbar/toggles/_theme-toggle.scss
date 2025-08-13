@@ -84,14 +84,18 @@
   );
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 16px 16px;
+  transition: background-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
 }
 
 .theme-toggle.icon-only.btn-gradient { width: 28px; height: 28px; padding: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; gap: 0; }
 .theme-toggle.icon-only.btn-gradient:hover,
-.theme-toggle.icon-only.btn-gradient:focus-visible { transform: translateY(1px); box-shadow: 0 5px 10px var(--box-shadow-color); }
+.theme-toggle.icon-only.btn-gradient:focus-visible { transform: translateY(0); box-shadow: none; }
 
 /* Icon image based on theme using SVGs in public/ */
 [data-theme='light'] .theme-toggle.icon-only {
