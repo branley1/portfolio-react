@@ -36,22 +36,21 @@
         border: 1px solid var(--box-shadow-color);
         position: absolute;
         bottom: 25px; // Overlaps the picture with the banner
-        left: 100px;
-        transform: translateX(-50%);
+        left: clamp(12px, 6vw, 100px);
         transition: transform 0.2s ease-in-out;
         background: transparent;
         border-radius: 50%;
         overflow: hidden;
-        width: 50%;
-        height: auto;
-        max-width: 150px;
+        width: 150px;
+        height: 150px;
+        transform-origin: center;
         img {
             width: 100%; // Scales with viewport width
             height: 100%;
             object-fit: cover;
         }
         &:hover {
-            transform: translateX(-50%) scale(1.1);
+            transform: scale(1.1);
         }
     }
    
@@ -59,9 +58,10 @@
         min-height: 200px;
         
         .profile-picture {
-            width: 50%; /* Increase size on smaller screens if needed */
-            max-width: 150px;
-            bottom: 25px; // Adjust for smaller screens
+            width: 150px;
+            height: 150px;
+            left: clamp(12px, 5vw, 40px);
+            bottom: 16px; // Adjust for smaller screens
         }
     }
 
