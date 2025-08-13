@@ -12,6 +12,12 @@ const ProjectsPage: React.FC = () => (
     <Layout sidebarVariant="spotifyOnly">
       <ProjectsShowcase />
     </Layout>
+    {/* Bottom page CTA */}
+    <div className="cta-row">
+      <a href="/extra-experience" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
+        View Extracurricular Experience <i className="fa fa-arrow-right blink-arrow"></i>
+      </a>
+    </div>
     <Footer />
   </div>
 );

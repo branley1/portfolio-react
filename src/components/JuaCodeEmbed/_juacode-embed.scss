@@ -155,13 +155,19 @@
         margin: 0;
         color: var(--heading-color);
         font-weight: 700;
-      }
-      p {
-        margin: 0;
-        color: var(--text-color);
-        opacity: 0.9;
+        font-family: var(--font-family-heading, 'PT Sans');
       }
     }
+    p { 
+      margin: 0; 
+      color: var(--text-color); 
+      opacity: 0.9; 
+      font-family: var(--font-family-body, 'PT Sans');
+      line-height: 1.5; 
+      text-align: center; 
+      font-size: 1rem; 
+    }
+    a.link { color: var(--link-color); text-decoration: underline; cursor: pointer; }
   }
 
   @keyframes juacode-pulse {

@@ -19,7 +19,7 @@ const SidebarSpotifyOnly: React.FC<SidebarSpotifyOnlyProps> = ({ className = "" 
           aria-label="Open Spotify profile"
         >
           <i>
-            <SpotifyNowPlayingImage />
+            <SpotifyNowPlayingImage className="spotify-now-playing--small" />
           </i>
         </a>
       </h5>

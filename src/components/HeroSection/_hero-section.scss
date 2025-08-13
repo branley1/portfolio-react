@@ -28,6 +28,7 @@
        object-fit: cover; // Prevent distortion
        display: block;
        border-radius: 25px;
+       aspect-ratio: 16 / 9; // Reserve space to reduce CLS
       }
     }
 

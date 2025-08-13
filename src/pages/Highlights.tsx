@@ -28,7 +28,7 @@ const Highlights: React.FC = () => {
   }, []);
 
   return (
-    <div className="highlights-page">
+    <div className="app-container">
       <Navbar />
       <div className="navbar-spacer" aria-hidden />
       <Layout sidebarVariant="spotifyOnly">

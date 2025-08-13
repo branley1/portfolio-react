@@ -14,8 +14,8 @@ const Extracurricular: React.FC = () => {
       </Layout>
       {/* Bottom page CTA consistent with About Me buttons */}
       <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", margin: "0.75rem 0 1rem", flexWrap: "wrap" }}>
-        <a href="/projects" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
-          View Projects <i className="fa fa-arrow-right blink-arrow"></i>
+        <a href="/highlights" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
+          View GitHub Stats <i className="fa fa-arrow-right blink-arrow"></i>
         </a>
       </div>
       <Footer />

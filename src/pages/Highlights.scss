@@ -5,6 +5,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden; /* avoid horizontal scroll during scale */
 }
 
 .highlights-content {
@@ -12,6 +13,14 @@
   padding: 1rem;
   max-width: 1100px;
   margin: 0 auto;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* Scale the entire markdown-rendered block on hover */
+.highlights-content:hover {
+  transform: scale(1.02);
 }
 
 .page-title {

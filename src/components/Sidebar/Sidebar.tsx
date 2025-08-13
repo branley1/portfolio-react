@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => (
           aria-label="Open Spotify profile"
         >
           <i>
-            <SpotifyNowPlayingImage />
+            <SpotifyNowPlayingImage className="spotify-now-playing--small" />
           </i>
         </a>
       </h5>

@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSpotify } from '../../contexts/SpotifyContext';
 import SpotifyNowPlayingImage from '../Embeds/SpotifyNowPlayingImage';
-import ReactGA from 'react-ga4';
 import './_juacode-embed.scss';
 
 const JuaCodeEmbed: React.FC = () => {
@@ -41,11 +40,19 @@ const JuaCodeEmbed: React.FC = () => {
   
 
   const handleIframeLoad = () => {
-    ReactGA.event({
-      category: 'JuaCode',
-      action: 'JuaCode Iframe Loaded',
-      label: 'Iframe Load Complete',
-    });
+    // Lazily import analytics to keep initial JS smaller
+    try {
+      // @ts-ignore dynamic import to avoid early evaluation
+      import('react-ga4').then((mod) => {
+        try {
+          mod.default.event({
+            category: 'JuaCode',
+            action: 'JuaCode Iframe Loaded',
+            label: 'Iframe Load Complete',
+          });
+        } catch {}
+      }).catch(() => {});
+    } catch {}
     setDidLoad(true);
     setDidError(false);
   };
@@ -97,26 +104,36 @@ const JuaCodeEmbed: React.FC = () => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 4000);
 
-    async function preflight() {
-      try {
-        setDidError(false);
-        // no-cors so we only care about network reachability; success won't throw
-        await fetch(iframeSrc, { method: 'HEAD', mode: 'no-cors', signal: controller.signal });
-        if (cancelled) return;
-        // If reachable, keep going; onLoad will flip didLoad
-      } catch {
-        if (cancelled) return;
-        setDidError(true);
-      } finally {
-        clearTimeout(timer);
-      }
-    }
+    const run = () => {
+      if (!iframeSrc) return;
+      (async () => {
+        try {
+          setDidError(false);
+          await fetch(iframeSrc, { method: 'HEAD', mode: 'no-cors', signal: controller.signal });
+          if (cancelled) return;
+        } catch {
+          if (cancelled) return;
+          setDidError(true);
+        } finally {
+          clearTimeout(timer);
+        }
+      })();
+    };
 
-    if (iframeSrc) preflight();
+    // Defer preflight to idle time to reduce main-thread contention
+    const idleId = (window as any).requestIdleCallback
+      ? (window as any).requestIdleCallback(run, { timeout: 3000 })
+      : setTimeout(run, 0);
+
     return () => {
       cancelled = true;
       controller.abort();
       clearTimeout(timer);
+      if ((window as any).cancelIdleCallback && idleId) {
+        try { (window as any).cancelIdleCallback(idleId); } catch {}
+      } else if (idleId) {
+        clearTimeout(idleId as unknown as number);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [iframeSrc]);
@@ -136,12 +153,13 @@ const JuaCodeEmbed: React.FC = () => {
 
   return (
     <div className="juacode-embed-container fullpage">
-      <div className="juacode-iframe-wrapper zoom-75">
+      <div className="juacode-iframe-wrapper zoom-75" style={{ contentVisibility: 'auto', containIntrinsicSize: '900px 600px' }}>
         {!didError ? (
           <iframe
             src={iframeSrc}
             title="JuaCode AI Coding Assistant"
             className="juacode-iframe"
+            loading="lazy"
             onLoad={handleIframeLoad}
             onError={() => setDidError(true)}
             allow="camera; microphone; clipboard-read; clipboard-write"
@@ -153,29 +171,21 @@ const JuaCodeEmbed: React.FC = () => {
               <span className="dot-pulse" aria-hidden></span>
             </div>
             <div className="fallback-text">
-              <h3
-                style={{
-                  fontSize: 18,
-                  fontFamily: 'PT Sans',
-                  fontWeight: 700,
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}
-              >I&apos;m probably working on this embed right now.</h3>
+              <h3>I&apos;m probably working on this embed right now.</h3>
             </div>
             {isPlaying ? (
               <>
-                <p style={{ fontFamily: 'PT Sans', fontWeight: 400, lineHeight: 1.5, margin: 0, fontSize: 16 }}>So in the meantime, here&apos;s what I&apos;m jamming to:</p>
+                <p>So in the meantime, here&apos;s what I&apos;m jamming to:</p>
                 <div style={{ marginTop: 12 }} className="widget">
                   <SpotifyNowPlayingImage />
                 </div>
               </>
             ) : null}
-            <p style={{ fontFamily: 'PT Sans', fontWeight: 400, lineHeight: 1.5, margin: 0, fontSize: 16, textAlign: 'center' }}>
+            <p>
               Please try again in a bit.
             </p>
-            <p style={{ fontFamily: 'PT Sans', fontWeight: 400, lineHeight: 1.5, margin: 0, fontSize: 16, textAlign: 'center' }}>
-              If you&apos;re still having issues, please contact me at <a href="mailto:bbm1@duck.com" style={{ color: 'var(--link-color)', textDecoration: 'underline', cursor: 'pointer' }}>bbm1@duck.com</a>.
+            <p>
+              If you&apos;re still having issues, please contact me at <a href="mailto:bbm1@duck.com" className="link">bbm1@duck.com</a>.
             </p>
           </div>
         )}

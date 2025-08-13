@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => (
         loading="eager"
       />
       <div className="profile-picture">
-        <img src={profileImage} alt="Profile" className="dp" loading="eager" />
+        <img src={profileImage} alt="Profile" className="dp" loading="eager" decoding="async" width={150} height={150} />
       </div>
     </div>
     {/* Include ProfileDetails within Hero */}

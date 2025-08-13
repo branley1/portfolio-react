@@ -81,6 +81,15 @@
     margin-top: 1rem;
   }
 
+  /* Smaller Spotify widget to avoid pushing layout */
+  .spotify-now-playing--small {
+    display: block;
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    margin: 0.5rem auto 0.75rem auto;
+  }
+
   .sidebar-card {
     background-color: transparent;
     width: 100%;

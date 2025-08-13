@@ -4,6 +4,11 @@
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.12s ease;
 }
 
+/* Ensure all gradient buttons (even those without the base .btn class) keep a 25px radius on all screens */
+.btn-gradient {
+  border-radius: 25px !important;
+}
+
 .btn.btn-primary {
   background-color: var(--button-bg);
   color: var(--button-text);

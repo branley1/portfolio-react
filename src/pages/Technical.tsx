@@ -14,8 +14,8 @@ const TechnicalExperiencePage: React.FC = () => {
       </Layout>
       {/* Bottom page CTA consistent with About Me buttons */}
       <div className="cta-row">
-        <a href="/extra-experience" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
-          View Extracurricular Experience <i className="fa fa-arrow-right blink-arrow"></i>
+        <a href="/projects" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
+          View Projects <i className="fa fa-arrow-right blink-arrow"></i>
         </a>
       </div>
       <Footer />
