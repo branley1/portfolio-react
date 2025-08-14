@@ -42,19 +42,18 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarVariant = "default" })
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const mainContentRef = useRef<HTMLElement | null>(null);
 
-  // Compute fixed height for expanded sidebar as min(page height, viewport height)
+  // Compute fixed height for expanded sidebar as full page content height
   useEffect(() => {
     const computeFixedHeight = () => {
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
       const mainEl = mainContentRef.current;
       if (!mainEl) {
-        setSidebarFixedHeightPx(viewportHeight || null);
+        setSidebarFixedHeightPx(null);
         return;
       }
       const contentRect = mainEl.getBoundingClientRect();
       // Use scrollHeight to capture full content, fallback to bounding rect height
       const contentHeight = Math.max(mainEl.scrollHeight || 0, Math.round(contentRect.height));
-      const fixed = Math.max(0, Math.min(viewportHeight, contentHeight));
+      const fixed = Math.max(0, contentHeight - 25);
       setSidebarFixedHeightPx(fixed);
     };
 

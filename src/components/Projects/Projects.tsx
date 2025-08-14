@@ -121,7 +121,6 @@ export const projects = [
     links: {
       github: "https://github.com/branley1/moodi-fi",
     },
-    isFeatured: true,
   },
   {
     name: "Deepseek-r1 with RAG",
@@ -142,7 +141,6 @@ export const projects = [
     links: {
       github: "https://github.com/branley1/Predicting-emotions-with-GRUs.git",
     },
-    isFeatured: true,
   },
   {
     name: "Multi-label Classification with k-NN",
