@@ -14,7 +14,7 @@ interface ProjectCardProps {
   // no interactive props needed for hover expansion
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
+export const ProjectCard: React.FC<ProjectCardProps> = ({
   name,
   technologies,
   date,
@@ -62,7 +62,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   </div>
 );
 
-const projects = [
+export const projects = [
   {
     name: "JuaCode AI Coding Assistant",
     technologies:
@@ -74,6 +74,7 @@ const projects = [
       github: "https://github.com/branley1/juacode-ai",
       live: "https://juacode.netlify.app/",
     },
+    isFeatured: true,
   },
   {
     name: "Bmmasi Portal",
@@ -85,6 +86,7 @@ const projects = [
       live: "https://bmmasi.com",
       github: "https://github.com/branley1/portfolio-react",
     },
+    isFeatured: true,
   },
   {
     name: "TerraTune",
@@ -94,7 +96,7 @@ const projects = [
       "A modern web-based music streaming service with features including user authentication, playlist management, music streaming with HTML5 Audio API, search functionality, and real-time audio visualizations.",
     links: {
       github: "https://github.com/branley1/terratune",
-      live: "https://uithub.com/branley1/terratune"
+      live: "https://terratune.netlify.app/"
     },
     isFeatured: true,
   },
@@ -115,10 +117,11 @@ const projects = [
       "React (TypeScript, HTML, SCSS, JavaScript), MongoDB, Spotify WebAPI, Gemini 2.0 API, Gemini 1.5 API",
     date: "Dec. 2024 - Present",
     description:
-      "Currently working on a tool that let's users login to their Spotify, get detailed summaries of their listening and generate mood playlists based on text (coming soon: multimodal).",
+      "Full-stack web app that lets users login to their Spotify, get detailed summaries of their listening and generate playlists based on text/mood.",
     links: {
       github: "https://github.com/branley1/moodi-fi",
     },
+    isFeatured: true,
   },
   {
     name: "Deepseek-r1 with RAG",
@@ -139,6 +142,7 @@ const projects = [
     links: {
       github: "https://github.com/branley1/Predicting-emotions-with-GRUs.git",
     },
+    isFeatured: true,
   },
   {
     name: "Multi-label Classification with k-NN",
@@ -203,7 +207,7 @@ const ProjectsShowcase: React.FC = () => {
             <ProjectCard
               key={index}
               {...project}
-              isFeatured={index === 0}
+              isFeatured={project.isFeatured}
             />
           </Col>
         ))}

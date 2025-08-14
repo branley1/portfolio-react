@@ -55,13 +55,6 @@ const AboutMe: React.FC = () => {
         <button
           type="button"
           className="btn-gradient cta-extracurricular-btn"
-          onClick={() => navigate("/projects")}
-        >
-          View Projects <i className="fa fa-arrow-right blink-arrow"></i>
-        </button>
-        <button
-          type="button"
-          className="btn-gradient cta-extracurricular-btn"
           onClick={() => navigate("/technical")}
         >
           View Technical Experience <i className="fa fa-arrow-right blink-arrow"></i>

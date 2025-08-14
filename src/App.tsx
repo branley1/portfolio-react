@@ -5,6 +5,7 @@ import CustomNavbar from "./components/Navbar/Navbar";
 import Hero from "./components/HeroSection/HeroSection";
 import AboutMe from "./components/AboutMe/AboutMe";
 import Footer from "./components/Footer/Footer";
+import FeaturedProjects from "./components/Projects/FeaturedProjects";
 const Highlights = React.lazy(() => import("./pages/Highlights"));
 const Extracurricular = React.lazy(() => import("./pages/Extracurricular"));
 const ProjectsPage = React.lazy(() => import("./pages/Projects"));
@@ -41,6 +42,12 @@ const MainPortfolio: React.FC = () => {
         <div className="content-container">
           <Layout>
             <AboutMe />
+            <FeaturedProjects />
+            <div className="cta-row" style={{ marginBottom: '1.5rem' }}>
+              <a href="/projects" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
+                View all projects <i className="fa fa-arrow-right blink-arrow"></i>
+              </a>
+            </div>
           </Layout>
         </div>
         <Footer />
