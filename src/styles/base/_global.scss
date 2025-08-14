@@ -70,71 +70,7 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   border-radius: 16px;
 }
 
-.btn-gradient {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: inherit;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--bg-color) 24%, transparent),
-    color-mix(in srgb, var(--heading-color) 12%, transparent)
-  );
-  color: var(--text-color);
-  border: 1px solid color-mix(in srgb, var(--bg-color) 30%, transparent);
-  border-radius: 25px;
-  padding: 0.625rem 1rem;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
-  position: relative; /* ensure shimmer positions correctly */
-  overflow: hidden;  /* clip shimmer to the button's rounded shape */
-}
-
-/* Force shimmer layer to match the desired button radius across all buttons */
-.btn-gradient::after {
-  border-radius: 25px !important;
-}
-
-.btn-gradient:hover {
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--bg-color) 36%, transparent),
-    color-mix(in srgb, var(--heading-color) 22%, transparent)
-  );
-  border-color: color-mix(in srgb, var(--bg-color) 40%, transparent);
-  box-shadow: 0 5px 10px var(--box-shadow-color);
-  transform: translateY(1px);
-  color: var(--text-color);
-}
-
-.btn-gradient:focus-visible {
-  outline: none;
-  box-shadow: 0 5px 10px var(--box-shadow-color), 0 0 0 2px color-mix(in srgb, var(--heading-color) 25%, transparent);
-  transform: translateY(1px);
-}
-
-/* Dark theme buttons: base darker, hover lighter */
-[data-theme="dark"] .btn-gradient {
-  background: linear-gradient(
-    135deg,
-    /* Darker base */
-    color-mix(in srgb, var(--bg-color) 55%, #0d1117 30%),
-    color-mix(in srgb, var(--heading-color) 10%, transparent)
-  );
-  border-color: color-mix(in srgb, var(--bg-color) 45%, transparent);
-}
-
-[data-theme="dark"] .btn-gradient:hover {
-  background: linear-gradient(
-    135deg,
-    /* Lighter on hover */
-    color-mix(in srgb, var(--bg-color) 30%, #0d1117 10%),
-    color-mix(in srgb, var(--heading-color) 35%, transparent)
-  );
-  border-color: color-mix(in srgb, var(--bg-color) 30%, transparent);
-  box-shadow: 0 5px 10px var(--box-shadow-color);
-  transform: translateY(1px);
-  color: var(--text-color);
-}
+/* Button styles moved to components/Buttons/_buttons.scss to avoid global overrides */
 
 /* Synchronized blink for arrow icons:
    Animation runs globally; hidden by default via visibility and revealed on hover */
@@ -150,13 +86,10 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
   visibility: hidden; /* hidden until parent hover reveals */
 }
 
-/* Reveal arrows on hover of buttons or links (global) */
-.btn-gradient:hover .blink-arrow,
+/* Reveal arrows on hover of links retained; button-specific moved to Buttons styles */
 .nav-link:hover .blink-arrow,
 button:hover .blink-arrow,
-a:hover .blink-arrow {
-  visibility: visible;
-}
+a:hover .blink-arrow { visibility: visible; }
 
 @keyframes blink-sync {
   0%, 75% { opacity: 0; }
