@@ -1,6 +1,6 @@
 /* Shared shimmer styling: edit here to affect all shimmer layers */
 @mixin shimmer-shared() {
-  border-radius: 25px !important;
+  border-radius: inherit !important; /* inherit from parent button */
   /* Debug: visualize shimmer bounds. Remove or comment when done
   outline: 1px solid red !important;
   outline-offset: -1px !important;*/
@@ -30,6 +30,9 @@
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.15s ease;
   position: relative; /* allow shimmer to attach to the button itself */
   overflow: hidden; /* keep shimmer clipped to the button, not the container */
+  /* Ensure proper clipping of child elements */
+  isolation: isolate;
+  contain: layout style paint;
 }
 
 .btn.btn-primary {
