@@ -152,6 +152,7 @@ export const projects = [
       github:
         "https://github.com/branley1/Multi-label-Classification-with-k-Nearest-Neighbor.git",
     },
+    isFeatured: true,
   },
   {
     name: "iOS Flashcard Application",

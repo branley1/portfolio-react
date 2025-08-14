@@ -5,10 +5,8 @@ import './_juacode-embed.scss';
 
 const JuaCodeEmbed: React.FC = () => {
   const { isPlaying } = useSpotify();
-  const baseUrl = (import.meta as any).env?.VITE_JUACODE_URL ||
-    (import.meta.env.MODE === 'development'
-      ? 'http://localhost:3000'
-      : 'https://juacode.netlify.app');
+  // Always use the online JuaCode URL for embeds
+  const baseUrl = 'https://juacode.netlify.app';
   const baseOrigin = useMemo(() => {
     try { return new URL(baseUrl).origin; } catch { return baseUrl; }
   }, [baseUrl]);
