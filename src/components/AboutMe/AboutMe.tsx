@@ -9,32 +9,32 @@ const AboutMe: React.FC = () => {
     <section id="about" className="my-3 about-me">
       <div className="about-content">
       <h2>hi!</h2>
-        <p>i build software that helps people do things. <br />sometimes it helps me too.</p>
-        <p>right now, most of my time's going into <strong>juacode</strong>. 
-        <br />you'll see links scattered around, try it. </p>
-        <p><i>it might help you too.</i></p>
-        <p>i'm passionate about applying nlp to reveal implicit 
-          <br />patterns within large datasets and creating human-
-        <br />centered applications.</p>
-        <p><b>big picture:</b> bridge gap between machines and humans, 
-          <br />foster intuitive and meaningful connections.</p>
-        <p>computers should feel more like collaborators than tools.</p>
-        <p>stuff i work on:</p>
-        <ul>
-          <li>full-stack engineering</li>
-          <li>ml, ai & nlp</li>
-          <li>fintech</li>
-          <li>ios/android dev</li>
-        </ul>
-        <p>stuff i've been doing:</p>
-        <ul>
-          <li>fine-tuning local LLMs & shipping an AI chatbot end-to-end</li>
-          <li>exploring compilers with OCaml</li>
-          <li>building a multiband compressor in C++ with JUCE</li>
-        </ul>
+      <p>i build software that helps people do things.<br />sometimes it helps me too.</p>
 
-        <p>if you like building useful things, let's chat.</p>
-        <p>oh—and i make music too.</p>
+      <p>right now, most of my time's going into <strong>juacode</strong>.<br />you'll see links scattered around—give it a try.</p>
+      <p><i>it might help you too.</i></p>
+
+      <p>i'm passionate about applying nlp to uncover implicit patterns in large datasets and build human-centered applications.</p>
+      <p><b>big picture:</b> bridging the gap between machines and humans to foster intuitive, meaningful connections.</p>
+      <p>computers should feel more like collaborators than tools.</p>
+
+      <p>stuff i work on:</p>
+      <ul>
+        <li>full-stack engineering</li>
+        <li>ml, ai & nlp</li>
+        <li>fintech</li>
+        <li>ios/android dev</li>
+      </ul>
+
+      <p>stuff i've been doing:</p>
+      <ul>
+        <li>fine-tuning local LLMs & shipping an AI chatbot end-to-end</li>
+        <li>exploring compilers with OCaml</li>
+        <li>building a multiband compressor in C++ with JUCE</li>
+      </ul>
+
+      <p>if you like building useful things, let's chat.</p>
+      <p>oh—and i make music too.</p>
       </div>
 
       <aside className="about-cta-group" aria-label="Quick navigation">
