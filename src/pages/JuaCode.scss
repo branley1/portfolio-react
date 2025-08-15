@@ -5,13 +5,17 @@
   background: var(--bg-color);
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
   
   .juacode-fullscreen-container {
     position: relative;
-    width: 100vw;
-    height: calc(100vh - var(--navbar-height, 64px));
-    margin-top: var(--navbar-height, 64px);
-    overflow: hidden;
+    width: 100%;
+    flex: 1;
+    min-height: calc(100vh - var(--navbar-height, 64px) - 100px); // Account for footer
+    margin: var(--navbar-height, 64px) 0 2rem; // Normal bottom margin
+    padding-bottom: 1rem; // Add some space before the footer
+    overflow: auto;
     background: var(--bg-color);
     transform-origin: top left;
     transition: transform 200ms ease;
@@ -121,12 +125,41 @@
   }
 }
 
+/* Note styling just above footer */
+.experimental-disclaimer {
+  text-align: center;
+  height: 25px;
+  margin: 0.75rem auto 0.5rem;
+  padding: 0.45rem 1.1rem 0.95rem; /* compact top, extra bottom padding */
+  background-color: color-mix(in srgb, var(--bg-color) 70%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  font-size: 0.85rem; /* slightly smaller to reduce height */
+  line-height: 1.4;
+  color: var(--text-color);
+  max-width: 800px;
+  width: calc(100% - 2rem);
+  box-sizing: border-box;
+  font-family: 'PT Sans', sans-serif;
+
+  strong { color: var(--heading-color); }
+
+  a {
+    color: var(--heading-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--heading-color);
+  }
+}
+
 // Mobile responsive
 @media (max-width: 768px) {
   .juacode-page {
     .juacode-fullscreen-container {
-      width: 100vw;
-      height: calc(100vh - var(--navbar-height, 64px));
+      width: 100%;
+      min-height: calc(100vh - var(--navbar-height, 64px) - 150px); // Adjust for mobile footer
     }
     
     .juacode-refresh-button {

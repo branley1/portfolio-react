@@ -149,18 +149,18 @@ const JuaCodeEmbed: React.FC = () => {
   
 
   return (
-    <div className="juacode-embed-container fullpage">
-      <div className="juacode-iframe-wrapper zoom-75" style={{ contentVisibility: 'auto', containIntrinsicSize: '900px 600px' }}>
-          <iframe
-            src={iframeSrc}
-            title="JuaCode AI Coding Assistant"
-            className="juacode-iframe"
-            loading="lazy"
-            onLoad={handleIframeLoad}
-            onError={() => { /* ignore generic errors; rely on 404+no-ping */ }}
-            allow="camera; microphone; clipboard-read; clipboard-write"
-            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
-          />
+    <div className="juacode-embed-container">
+      <div className="juacode-iframe-wrapper" style={{ contentVisibility: 'auto', containIntrinsicSize: '900px 600px' }}>
+        <iframe
+          src={iframeSrc}
+          title="JuaCode AI Coding Assistant"
+          className="juacode-iframe"
+          loading="lazy"
+          onLoad={handleIframeLoad}
+          onError={() => { /* ignore generic errors; rely on 404+no-ping */ }}
+          allow="camera; microphone; clipboard-read; clipboard-write"
+          sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+        />
         {(!embedAlive && didError404) ? (
           <div className="juacode-fallback" role="status" aria-live="polite">
             <div className="fallback-icon">

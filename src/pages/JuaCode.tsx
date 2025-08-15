@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import JuaCodeEmbed from '../components/JuaCodeEmbed/JuaCodeEmbed';
 import CustomNavbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 import './JuaCode.scss';
 import { trackEvent } from '../utils/analytics';
 
@@ -97,6 +98,13 @@ const JuaCode: React.FC = () => {
           </div>
         </div>
       </div>
+      <div className="experimental-disclaimer">
+        <p>
+          <strong>Note:</strong> This is an experimental feature and may not work as expected. 
+          For the best experience, please use <a href="https://juacode.netlify.app/">juacode.netlify.app</a> instead.
+        </p>
+      </div>
+      <Footer />
     </div>
   );
 };

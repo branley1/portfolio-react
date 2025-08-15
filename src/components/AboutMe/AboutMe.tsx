@@ -8,7 +8,7 @@ const AboutMe: React.FC = () => {
       <h2>hi!</h2>
       <p>i build software that helps people do things.<br />sometimes it helps me too.</p>
 
-      <p>right now, most of my time's going into <strong>juacode</strong>.<br />here's a demo.</p>
+      <p>right now, most of my time's going into <strong>juacode</strong>.<br />here's an embedded demo.</p>
       <div style={{ margin: '0.5rem 0 0.75rem' }}>
         <a href="/juacode" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif', borderRadius: '25px' }}>
           <img
