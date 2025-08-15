@@ -14,6 +14,8 @@
     --box-shadow-color: rgba(0, 0, 0, 0.2);
     --highlight-color: color-mix(in srgb, var(--bg-color) 28%, transparent);
     --hover-color: var(--bg-color);
+    /* Opposite theme background (used for wave when playing) */
+    --opposite-bg-color: #161b22; /* dark bg for light theme */
     /* Aliases used by JuaCode styles */
     --background-primary: var(--bg-color);
     --background-secondary: var(--card-bg);
@@ -48,4 +50,6 @@
     --box-shadow-color: rgba(255, 255, 255, 0.2);
     --highlight-color: color-mix(in srgb, #161b22 28%, transparent);
     --hover-color: var(--bg-color-hover) !important;
+    /* Opposite theme background (used for wave when playing) */
+    --opposite-bg-color: #d3dde2; /* light bg for dark theme */
    }

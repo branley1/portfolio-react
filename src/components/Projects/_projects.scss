@@ -13,7 +13,7 @@
   }
 
   h2 {
-    font-size: var(--font-size-heading);
+    font-size: var(--font-size-subheading);
     font-weight: 700;
     color: var(--heading-color);
     text-align: center;
@@ -116,12 +116,7 @@
     cursor: pointer;
     transform: scale(1.04);
     box-shadow: 0 5px 10px var(--box-shadow-color);
-    /* Subtle glass background tied to theme, less white in light mode */
-    background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--heading-color) 14%, transparent),
-      color-mix(in srgb, var(--bg-color) 14%, transparent)
-    );
+    background-color: var(--bg-color);
     max-height: 700px; /* large enough to reveal full content */
 
     .btn {

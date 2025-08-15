@@ -1,10 +1,12 @@
 import React, { Suspense, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layouts/Layout";
+import { Row, Col } from "react-bootstrap";
 import CustomNavbar from "./components/Navbar/Navbar";
 import Hero from "./components/HeroSection/HeroSection";
 import AboutMe from "./components/AboutMe/AboutMe";
 import Footer from "./components/Footer/Footer";
+import TechnicalHighlights from "./components/Highlights/TechnicalHighlights";
 import FeaturedProjects from "./components/Projects/FeaturedProjects";
 const Highlights = React.lazy(() => import("./pages/Highlights"));
 const Extracurricular = React.lazy(() => import("./pages/Extracurricular"));
@@ -41,10 +43,27 @@ const MainPortfolio: React.FC = () => {
         <hr className="hero-about-divider" aria-hidden />
         <div className="content-container">
           <Layout>
-            <AboutMe />
+            <Row className="g-3 align-items-stretch">
+              <Col xs={12} lg={6}>
+                <AboutMe />
+              </Col>
+              <Col xs={12} lg={6}>
+                <TechnicalHighlights />
+              </Col>
+            </Row>
             <FeaturedProjects />
-            <div className="cta-row" style={{ marginBottom: '1.5rem' }}>
-              <a href="/projects" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif' }}>
+            <div
+              className="cta-row"
+              style={{
+                marginBottom: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '0.75rem',
+                justifyContent: 'center',
+              }}
+            >
+              <a href="/projects" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif', borderRadius: '25px' }}>
                 View all projects <i className="fa fa-arrow-right blink-arrow"></i>
               </a>
             </div>

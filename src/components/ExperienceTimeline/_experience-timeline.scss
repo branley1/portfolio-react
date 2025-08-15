@@ -23,6 +23,7 @@
       /* Add space below the title */
       margin-bottom: 0.5rem;
     }
+
   
     .experience-item {
       padding: 1.25rem 1.5rem; /* match project card spacing */
@@ -68,4 +69,77 @@
         color-mix(in srgb, var(--bg-color) 14%, transparent)
       );
     }
+
+    /* Highlight cards (used by TechnicalHighlights) get a themed, moving wave blur */
+    .highlight-card {
+      position: relative;
+      overflow: hidden;
+      /* ensure consistent max-height behavior akin to project cards */
+      max-height: 150px;
+      transition: max-height 360ms ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 36px; /* match project card fade height */
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+        /* Default: regular project blur (when paused/not playing) */
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0),
+          color-mix(in srgb, var(--heading-color) 12%, transparent)
+        );
+      }
+
+      /* When Spotify is playing, switch to animated wave using opposite theme BG */
+      /* Use container modifier on .experience-timeline, like Navbar brand */
+      /* eslint-disable-next-line selector-class-pattern */
+      /* The compiled selector becomes: .experience-timeline.playing .highlight-card::after */
+      
+
+      &:hover, &:focus-within {
+        max-height: 700px;
+        &::after {
+          opacity: 0; /* keep visible when expanded */
+          height: 15px !important; /* slimmer bar when expanded */
+        }
+      }
+    }
+
+    /* Container-scoped wave when Spotify is playing (placed after default to override) */
+    &.playing {
+      .highlight-card::after {
+        height: 20px; /* smaller wave height */
+        background: linear-gradient(
+          to top,
+          color-mix(in srgb, var(--heading-color) 35%, transparent),
+          color-mix(in srgb, var(--heading-color) 0%, transparent)
+        );
+        background-color: var(--heading-color);
+        color: var(--heading-color);
+        /* Blur the background behind the wave */
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        animation: highlight-wave-slide 6s linear infinite;
+        @supports (-webkit-mask-image: url("") ) or (mask-image: url("") ) {
+          -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'><path fill='black' d='M0,20 C150,40 350,0 600,20 C850,40 1050,0 1200,20 L1200,40 L0,40 Z'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'><path fill='black' d='M0,20 C150,40 350,0 600,20 C850,40 1050,0 1200,20 L1200,40 L0,40 Z'/></svg>");
+          -webkit-mask-repeat: repeat-x;
+          mask-repeat: repeat-x;
+          -webkit-mask-position: 0 0;
+          mask-position: 0 0;
+          -webkit-mask-size: 160px 28px; /* smaller tile */
+          mask-size: 160px 28px;
+        }
+      }
+    }
   }
+
+@keyframes highlight-wave-slide {
+  0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  100% { -webkit-mask-position: 160px 0; mask-position: 160px 0; } /* match mask-size width */
+}

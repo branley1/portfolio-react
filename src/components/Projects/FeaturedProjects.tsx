@@ -7,7 +7,7 @@ const FeaturedProjects: React.FC = () => {
 
   return (
     <section id="featured-projects" className="projects-section my-1">
-      <h2>Project Highlights</h2>
+      <h2>stuff i've built:</h2>
       <Row className="g-4 justify-content-left project grid">
         {featured.map((project, index) => (
           <Col key={index} xs={12} sm={6} md={6} lg={4} xl={3}>
