@@ -12,7 +12,7 @@ const AboutMe: React.FC = () => {
       <div style={{ margin: '0.5rem 0 0.75rem' }}>
         <a href="/juacode" className="btn-gradient cta-extracurricular-btn" style={{ textDecoration: 'none', fontFamily: 'PT Sans, sans-serif', borderRadius: '25px' }}>
           <img
-            src="/icon-64.png"
+            src="/icon-64.webp"
             alt="JuaCode logo"
             width={16}
             height={16}

@@ -30,11 +30,30 @@
        border-radius: 25px;
        aspect-ratio: 16 / 9; // Reserve space to reduce CLS
       }
+
+      // Slight blur overlay on top of the banner image
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 25px;
+        pointer-events: none;
+        z-index: 1; // Above banner image
+        // Subtle darkening + blur for readability
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.08) 0%,
+          rgba(0, 0, 0, 0.12) 100%
+        );
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
     }
 
     .profile-picture {
         border: 1px solid var(--box-shadow-color);
         position: absolute;
+        z-index: 2; // Above the blur overlay
         bottom: 25px; // Overlaps the picture with the banner
         left: clamp(12px, 6vw, 100px);
         transition: transform 0.2s ease-in-out;

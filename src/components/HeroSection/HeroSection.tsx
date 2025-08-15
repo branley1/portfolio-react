@@ -3,6 +3,7 @@ import ProfileDetails from "../ProfileDetails/ProfileDetails";
 import "/src/components/HeroSection/_hero-section.scss";
 import heroImageWebp from "../../assets/images/hero/hero-image.webp";
 import profileImageWebp from "../../assets/images/profile/profile.webp";
+import profileImage1xWebp from "../../assets/images/profile/profile-150.webp";
 
 const HeroSection: React.FC = () => (
   <section className="hero-section">
@@ -20,9 +21,10 @@ const HeroSection: React.FC = () => (
       </picture>
       <div className="profile-picture">
         <picture>
-          <source srcSet={profileImageWebp} type="image/webp" />
+          <source srcSet={`${profileImage1xWebp} 1x, ${profileImageWebp} 2x`} type="image/webp" />
           <img
             src={profileImageWebp}
+            srcSet={`${profileImage1xWebp} 1x, ${profileImageWebp} 2x`}
             alt="Profile"
             className="dp"
             loading="eager"
