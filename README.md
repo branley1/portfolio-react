@@ -1,4 +1,4 @@
-# **Bmmasi Portal**
+# **Branley Mmasi**
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a1192e94-a7ab-46b3-91bf-29ba6d7ad682/deploy-status)](https://app.netlify.com/sites/bmmasi/deploys)
 
 This project serves as my digital space to showcase who I am, what I do, and the 
@@ -35,34 +35,12 @@ projects I've either worked on or been a part of. This repository contains two p
 - Particle.js
 - Various jQuery plugins (see classic/js/ directory)
 
-## Project Structure
-```plaintext
-src/
-├── components/           # React components
-│   ├── Navbar/          # Navigation bar
-│   ├── HeroSection/     # Hero section
-│   ├── Layouts/         # Layout components
-│   ├── Sidebar/         # Sticky sidebar
-│   ├── AboutMe/         # About section
-│   ├── ExperienceTimeline/
-│   ├── Projects/        # Project showcase
-│   └── Footer/          # Footer component
-├── styles/              # Global styles
-public/
-└── classic/            # Classic portfolio files
-    ├── css/
-    ├── js/
-    ├── images/
-    ├── fonts/
-    └── index.html
-```
-
 ## Deployment
 
 The site is deployed on Netlify with the following configuration:
 - Main site (/) serves the React portfolio
 - Classic site (/classic) serves the HTML/CSS portfolio
-- Routing is handled via netlify.toml configuration
+- Routing is handled via Netlify configuration
 
 ---
 
@@ -101,6 +79,7 @@ Explore the live version here: [**Bmmasi Portal**](https://bmmasi.com)
 
 ## **Tech Stack**
 - **Frontend Framework**: React (TypeScript)
+- **Build Tool**: Vite
 - **Styling**: SCSS (with theming support)
 - **Hosting**: Netlify (with a custom domain)
 - **UI Library**: React Bootstrap
@@ -111,21 +90,26 @@ Explore the live version here: [**Bmmasi Portal**](https://bmmasi.com)
 ## **Project Structure**
 ```plaintext
 src/
-├── components/
-│   ├── Navbar/         # Navigation bar
-│   ├── HeroSection/    # Hero section
-│   ├── Layouts/        # Layout section
-│   ├── Sidebar/        # Sticky sidebar with skills & course highlights
-│   ├── AboutMe/        # About me section
-│   ├── ExperienceTimeline/ # Timeline for experiences
-│   ├── Projects/       # Project showcase
-│   ├── Footer/         # Footer with links
-├── styles/
-│   ├── main.scss       # Global styles and variables
-│   ├── _layout.scss    # Layout-specific styles
-│   ├── _sidebar.scss   # Sidebar-specific styles
-├── App.tsx             # Main app file
-├── index.tsx           # Entry point
+├── assets/                 # Static assets
+├── components/             # React components (AboutMe, Projects, etc.)
+├── pages/                  # Page-level components
+├── contexts/               # React context providers
+├── styles/                 # SCSS entry + modules
+│   ├── abstracts/          # variables, mixins, functions
+│   ├── base/
+│   ├── components/
+│   ├── themes/
+│   └── main.scss          
+├── utils/                  # Helpers/utilities
+├── App.tsx                 # App shell
+├── main.tsx                # Vite entry point
+public/
+└── classic/                # Classic portfolio (static site)
+    ├── css/
+    ├── js/
+    ├── images/
+    ├── fonts/
+    └── index.html
 ```
 
 ---
@@ -146,7 +130,7 @@ Want to see the code in action? Here's how to get the project up and running:
 
 3. **Run the development server**:
    ```bash
-   npm start
+   npm run dev
    ```
 
 4. Open your browser and navigate to [http://localhost:5173](http://localhost:5173).

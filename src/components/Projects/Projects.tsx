@@ -31,7 +31,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <strong>Technologies:</strong> {technologies}
     </p>
     <p>
-      <strong>Date:</strong> {date}
+      <strong>Date:</strong> <span className="project-date">{date}</span>
     </p>
     <p>{description}</p>
     <div className={`links ${isFeatured ? "featured-links" : ""}`}>
@@ -77,7 +77,7 @@ export const projects = [
     isFeatured: true,
   },
   {
-    name: "Bmmasi Portal",
+    name: "Bmmasi Portfolio",
     technologies: "React (TypeScript, HTML, SCSS, JavaScript)",
     date: "Nov. 2024 - Present",
     description:

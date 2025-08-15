@@ -50,7 +50,7 @@ const ProfileDetails: React.FC = () => {
       <div className="profile-info">
         <h1>Branley Mmasi</h1>
         <h4>
-          Software Engineer <small>@</small> Bloomberg LP <br /> Computer Science major <small>+</small> Cognitive Science minor,
+          Software Engineer, Bloomberg LP | Computer Science <small>&</small> Cognitive Science,
           Swarthmore College, 2025.
         </h4>
         <div className="hero-buttons mt-3">

@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import "./_sidebar.scss";
 import SpotifyNowPlayingImage from "../Embeds/SpotifyNowPlayingImage";
+import { useSpotify } from "../../contexts/SpotifyContext";
 // import profileImage from "../../assets/images/sidebar/sidebargif.webp";
 // import courseImage from "../../assets/images/sidebar/education.jpg";
 // import lastImage from "../../assets/images/sidebar/qr-code.png";
@@ -11,29 +12,34 @@ interface SidebarProps {
   maxHeightPx?: number;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => (
-  <div
-    className={`sidebar ${className}`}
-    style={
-      className.includes("active") && maxHeightPx
-        ? { height: `${maxHeightPx}px`, maxHeight: `${maxHeightPx}px` }
-        : undefined
-    }
-  >
-    <Card className="sidebar-card">
-      <h5>
-        vibe with me
-        <a
-          href="https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&redirect=true"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Spotify profile"
-        >
-          <i>
-            <SpotifyNowPlayingImage className="spotify-now-playing--small" />
-          </i>
-        </a>
-      </h5>
+const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => {
+  const { isPlaying } = useSpotify();
+
+  return (
+    <div
+      className={`sidebar ${className}`}
+      style={
+        className.includes("active") && maxHeightPx
+          ? { height: `${maxHeightPx}px`, maxHeight: `${maxHeightPx}px` }
+          : undefined
+      }
+    >
+      <Card className="sidebar-card">
+        {isPlaying ? (
+          <h5>
+            vibe with me
+            <a
+              href="https://spotify-github-profile.kittinanx.com/api/view.svg?uid=hvoh3gwfkd3h64bzeal1fejmu&redirect=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Spotify profile"
+            >
+              <i>
+                <SpotifyNowPlayingImage className="spotify-now-playing--small" />
+              </i>
+            </a>
+          </h5>
+        ) : null}
       <Card.Body>
         <Card.Title>Technical Skills</Card.Title>
         <ul className="skills-list">
@@ -140,7 +146,8 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "", maxHeightPx }) => (
         <Card.Link href="https://github.com/branley1">GitHub</Card.Link>
       </Card.Body>
     </Card>
-  </div>
-);
+    </div>
+  );
+};
 
 export default Sidebar;

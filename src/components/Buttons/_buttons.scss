@@ -176,23 +176,18 @@
   /* Inverse the gradient compared to default state (swap stops) */
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--bg-color) 36%, transparent),
-    color-mix(in srgb, var(--heading-color) 22%, transparent)
+    /* Flip order to shift gradient to the opposite side */
+    color-mix(in srgb, var(--heading-color) 22%, transparent),
+    color-mix(in srgb, var(--bg-color) 36%, transparent)
   );
   border-width: 0.5px !important;
 }
 
 /* Subtle sheen shimmer for CTA buttons */
 .cta-extracurricular-btn.btn-gradient::after {
-  @include shimmer-base();
-  @include shimmer-gradient('subtle');
-  --shimmer-blur: 8px;
-  --shimmer-fade-start: 18%;
-  --shimmer-fade-end: 82%;
-  --shimmer-opacity-start: 0.2;
-  --shimmer-opacity-peak: 0.6;
-  animation: shimmer-sweep 3200ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
-  mix-blend-mode: screen;
+  /* Disable shimmer overlay globally */
+  display: none !important;
+  content: none !important;
 }
 
 /* Light theme: use background-aware sheen for visibility on bright surfaces */
@@ -285,11 +280,13 @@
 .curious-btn.btn-gradient:focus-visible {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--bg-color) 18%, transparent),
-    color-mix(in srgb, #ffb300 85%, transparent)
+    /* Flip order to shift gradient to the opposite side */
+    color-mix(in srgb, #ffb300 85%, transparent),
+    color-mix(in srgb, var(--bg-color) 18%, transparent)
   );
   background-size: 220% 220%;
-  animation: curious-gradient-shift 1400ms ease-in-out infinite alternate, curious-pulse-up 900ms ease-in-out infinite;
+  /* Disable shimmer-like gradient shift */
+  animation: none;
   border: 1px solid color-mix(in srgb, #e09100 62%, transparent);
   box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 56%, transparent);
 }
@@ -298,11 +295,13 @@
 [data-theme="dark"] .curious-btn.btn-gradient:focus-visible {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, #0d1117 20%, transparent),
-    color-mix(in srgb, #ffb300 12%, transparent)
+    /* Flip order to shift gradient to the opposite side */
+    color-mix(in srgb, #ffb300 12%, transparent),
+    color-mix(in srgb, #0d1117 20%, transparent)
   );
   background-size: 220% 220%;
-  animation: curious-gradient-shift 1400ms ease-in-out infinite alternate, curious-pulse-up 900ms ease-in-out infinite;
+  /* Disable shimmer-like gradient shift */
+  animation: none;
   border: 1px solid color-mix(in srgb, #e09100 60%, transparent);
   box-shadow: 0 8px 18px color-mix(in srgb, #ffb300 54%, transparent);
 }
@@ -325,32 +324,23 @@
 }
 
 .juacode-btn.btn-gradient::after {
-  @include shimmer-base();
-  @include shimmer-gradient('normal');
-  --shimmer-blur: 7px;
-  --shimmer-fade-start: 18%;
-  --shimmer-fade-end: 82%;
-  --shimmer-opacity-start: 0.25;
-  --shimmer-opacity-peak: 0.75;
-  animation: shimmer-sweep 2600ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate-reverse;
-  mix-blend-mode: screen;
+  display: none !important;
+  content: none !important;
 }
 
 /* Light theme: neutral sheen tuned for light BG */
 :root[data-theme='light'] .juacode-btn.btn-gradient::after {
-  mix-blend-mode: multiply;
+  display: none !important;
 }
 
 /* Disable JuaCode navbar shimmer on the JuaCode page to reduce distraction */
 .juacode-page .juacode-btn.btn-gradient::after,
 .juacode-btn.btn-gradient.active::after {
-  animation: none !important;
   display: none !important;
 }
 
 /* Disable shimmer on highlights buttons */
 .highlight-grid .cta-extracurricular-btn.btn-gradient::after {
-  animation: none !important;
   display: none !important;
 }
 
@@ -378,23 +368,9 @@
 
 /* Sheen shimmer effect using a moving highlight for a glassy feel */
 .curious-btn.btn-gradient::after {
-  @include shimmer-base();
-  @include shimmer-gradient('bright');
-  --shimmer-blur: 8px;
-  --shimmer-fade-start: 16%;
-  --shimmer-fade-end: 84%;
-  --shimmer-opacity-start: 0.3;
-  --shimmer-opacity-peak: 0.9;
-  animation: shimmer-sweep 2900ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
-  mix-blend-mode: screen;
-  /* Custom yellow-tinted gradient for Curious button */
-  background: linear-gradient(120deg,
-    rgba(255, 213, 79, 0) 0%,
-    rgba(255, 213, 79, 0.10) 38%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(255, 213, 79, 0.10) 62%,
-    rgba(255, 213, 79, 0) 100%
-  );
+  /* Disable shimmer overlay */
+  display: none !important;
+  content: none !important;
 }
 
 /* Debug utility: force shimmer overlay to full-bleed and outline it when enabled */
@@ -426,14 +402,7 @@
 }
 
 [data-theme="dark"] .curious-btn.btn-gradient::after {
-  background: linear-gradient(120deg,
-    rgba(255, 202, 40, 0) 0%,
-    rgba(255, 202, 40, 0.12) 38%,
-    rgba(255, 255, 255, 0.18) 50%,
-    rgba(255, 202, 40, 0.12) 62%,
-    rgba(255, 202, 40, 0) 100%
-  );
-  mix-blend-mode: screen;
+  display: none !important;
 }
 
 
@@ -460,8 +429,9 @@
 .btn-gradient:hover {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--bg-color) 36%, transparent),
-    color-mix(in srgb, var(--heading-color) 22%, transparent)
+    /* Flip order to shift gradient to the opposite side */
+    color-mix(in srgb, var(--heading-color) 22%, transparent),
+    color-mix(in srgb, var(--bg-color) 36%, transparent)
   );
   border-color: color-mix(in srgb, var(--bg-color) 40%, transparent);
   box-shadow: 0 5px 10px var(--box-shadow-color);
@@ -488,8 +458,9 @@
 [data-theme="dark"] .btn-gradient:hover {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--bg-color) 30%, #0d1117 10%),
-    color-mix(in srgb, var(--heading-color) 35%, transparent)
+    /* Flip order to shift gradient to the opposite side */
+    color-mix(in srgb, var(--heading-color) 35%, transparent),
+    color-mix(in srgb, var(--bg-color) 30%, #0d1117 10%)
   );
   border-color: color-mix(in srgb, var(--bg-color) 30%, transparent);
   box-shadow: 0 5px 10px var(--box-shadow-color);
@@ -505,8 +476,9 @@
   /* Inverse the gradient compared to default state (swap stops) */
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--bg-color) 30%, #0d1117 10%),
-    color-mix(in srgb, var(--heading-color) 35%, transparent)
+    /* Flip order to shift gradient to the opposite side */
+    color-mix(in srgb, var(--heading-color) 35%, transparent),
+    color-mix(in srgb, var(--bg-color) 30%, #0d1117 10%)
   );
 }
 

@@ -79,6 +79,11 @@
     color: var(--heading-color);
   }
 
+  /* Grey tone for the date text */
+  .project-date {
+    color: color-mix(in srgb, var(--text-color) 55%, var(--bg-color) 45%);
+  }
+
   .links {
     // View Project Buttons
     display: flex;

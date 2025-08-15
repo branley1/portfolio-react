@@ -77,19 +77,17 @@
   height: 28px;
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--heading-color) 28%, transparent);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--heading-color) 18%, transparent),
-    color-mix(in srgb, var(--bg-color) 18%, transparent)
-  );
+  /* Use global .btn-gradient background & hover */
+  background: none;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Use only Font Awesome icons; no SVG background overlays */
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px 16px;
+  background-size: cover;
   transition: background-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
 }
 
@@ -98,26 +96,13 @@
 .theme-toggle.icon-only.btn-gradient:focus-visible { transform: translateY(0); box-shadow: none; }
 
 /* Icon image based on theme using SVGs in public/ */
-[data-theme='light'] .theme-toggle.icon-only {
-  background-image: url('/sun-light.svg'), linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--heading-color) 18%, transparent),
-    color-mix(in srgb, var(--bg-color) 18%, transparent)
-  );
-  background-size: 16px 16px, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+/* Do not set theme-based SVG backgrounds; rely on the <i class="fa ..."> inside */
+[data-theme='light'] .theme-toggle.icon-only,
+[data-theme='dark']  .theme-toggle.icon-only {
+  background-image: none !important;
 }
 
-[data-theme='dark']  .theme-toggle.icon-only {
-  background-image: url('/moon-dark.svg'), linear-gradient(
-    135deg,
-    color-mix(in srgb, white 16%, transparent),
-    color-mix(in srgb, var(--bg-color) 18%, transparent)
-  );
-  background-size: 16px 16px, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-}
+/* Ensure FA icon color matches theme text */
+.theme-toggle.icon-only i.fa { color: var(--text-color); }
 
 
