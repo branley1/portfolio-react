@@ -63,7 +63,7 @@ This portfolio reflects my skills, experience, and passions. It includes:
 - Detailed sections like **About Me**, **Experience Timeline**, and **Projects**.
 - Clean and intuitive navigation to help visitors find what they are looking for.
 
-Explore the live version here: [**Bmmasi Portal**](https://bmmasi.com)
+Explore the live version here: [**Branley Mmasi**](https://bmmasi.com)
 
 ---
 
@@ -138,7 +138,7 @@ Want to see the code in action? Here's how to get the project up and running:
 ---
 
 ## **Deployment**
-This portfolio is hosted on **Netlify** using a custom domain. Here's the latest live version: [Bmmasi Portal](https://bmmasi.com).
+This portfolio is hosted on **Netlify** using a custom domain. Here's the latest live version: [Branley Mmasi](https://bmmasi.com).
 
 ---
 
